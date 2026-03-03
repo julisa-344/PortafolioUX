@@ -17,330 +17,492 @@ interface Props {
 const { 
   title = "Experiencia Mobile", 
   subtitle = "Responsive Design",
-  description = "Adaptación responsive manteniendo la experiencia premium en dispositivos móviles",
   screens 
 } = Astro.props;
 ---
 
-<section class="py-24 bg-[var(--color-bg-secondary)] overflow-hidden">
+<section class="showcase-section py-24 bg-[var(--color-bg-secondary)] overflow-hidden">
   <div class="max-w-[1800px] mx-auto">
-    <!-- Section Header - Centrado y sin descripción -->
-    <div class="text-center mb-12 px-6 md:px-12 lg:px-16">
+
+    <!-- ── Header ── -->
+    <div class="text-center mb-16 px-6 md:px-12 lg:px-16">
       <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
         {subtitle}
       </p>
-      <h2 class="reveal font-serif text-4xl md:text-5xl lg:text-6xl font-medium" data-delay="0.1">
+      <h2 class="reveal font-serif text-4xl md:text-5xl lg:text-6xl font-medium mb-6" data-delay="0.1">
         {title}
       </h2>
+      <!-- Linea decorativa centrada -->
+      <div class="reveal flex items-center justify-center gap-4" data-delay="0.2">
+        <span class="deco-line"></span>
+        <span class="deco-star">✦</span>
+        <span class="deco-line"></span>
+      </div>
     </div>
 
-    <!-- Navigation Buttons -->
-    <!-- Wrapper centrado que contiene scroll + botones -->
-    <div class="relative max-w-[1180px] mx-auto">
-      <!-- Fade izquierdo: oculto hasta que el usuario haga scroll -->
-      <div id="fade-left" class="fade-edge pointer-events-none absolute left-0 top-0 bottom-0 w-28 z-10 opacity-0 transition-opacity duration-300" style="background: linear-gradient(to right, var(--color-bg-secondary) 30%, transparent);"></div>
-      <!-- Fade derecho: siempre visible -->
-      <div id="fade-right" class="fade-edge pointer-events-none absolute right-0 top-0 bottom-0 w-28 z-10 transition-opacity duration-300" style="background: linear-gradient(to left, var(--color-bg-secondary) 30%, transparent);"></div>
-      <button 
-        class="scroll-nav-btn scroll-nav-prev absolute -left-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[var(--color-bg)] border border-[var(--color-border)] flex items-center justify-center hover:bg-[var(--color-primary)] hover:border-[var(--color-primary)] hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
-        aria-label="Anterior"
-      >
+    <!-- ── Carousel wrapper ── -->
+    <div class="carousel-root relative">
+
+      <!-- Fade izquierdo -->
+      <div id="fade-left" class="fade-edge fade-edge-left pointer-events-none" aria-hidden="true"></div>
+      <!-- Fade derecho -->
+      <div id="fade-right" class="fade-edge fade-edge-right pointer-events-none" aria-hidden="true"></div>
+
+      <!-- Botones de navegacion -->
+      <button class="nav-btn nav-prev" aria-label="Anterior">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
-      
-      <button 
-        class="scroll-nav-btn scroll-nav-next absolute -right-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[var(--color-bg)] border border-[var(--color-border)] flex items-center justify-center hover:bg-[var(--color-primary)] hover:border-[var(--color-primary)] hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
-        aria-label="Siguiente"
-      >
+
+      <button class="nav-btn nav-next" aria-label="Siguiente">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
 
-      <!-- Horizontal Scroll Container - Optimizado -->
-      <div class="mobile-showcase-scroll" data-lenis-prevent>
-        <div class="mobile-showcase-track">
+      <!-- Track con scroll horizontal -->
+      <div class="showcase-scroll" data-lenis-prevent>
+        <div class="showcase-track">
           {screens.map((screen, index) => (
-            <div class="mobile-showcase-item reveal" data-delay={0.1 + index * 0.05}>
+            <div 
+              class="showcase-item"
+              data-index={index}
+            >
               <PhoneMockup src={screen.mobile} alt={`${screen.title} - Mobile`} />
-              <div class="mobile-showcase-info">
-                <h3 class="font-serif text-xl md:text-2xl font-medium">
-                  {screen.title}
-                </h3>
-              </div>
+              <p class="item-label">{screen.title}</p>
             </div>
           ))}
         </div>
       </div>
     </div>
 
-    <!-- Scroll Hint -->
-    <div class="flex items-center justify-center gap-3 mt-8 px-6">
-      <div class="scroll-hint-line"></div>
-      <span class="text-[var(--color-text-muted)] text-xs uppercase tracking-widest">
-        Desliza para ver más
-      </span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[var(--color-text-muted)] animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-      </svg>
+    <!-- ── Dots de paginacion ── -->
+    <div class="dots-wrapper" aria-label="Navegacion de pantallas">
+      {screens.map((_, i) => (
+        <button
+          class:list={["dot", { "dot-active": i === 0 }]}
+          data-dot={i}
+          aria-label={`Ir a pantalla ${i + 1}`}
+        ></button>
+      ))}
     </div>
+
   </div>
 </section>
 
 <style>
-  .mobile-showcase-scroll {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    cursor: grab;
-    scroll-snap-type: x mandatory;
-    will-change: scroll-position;
-    transform: translateZ(0);
-    /* Limita el ancho para mostrar 3 teléfonos + peek del 4º */
-    max-width: 1100px;
+  /* ── Seccion ── */
+  .showcase-section {
+    position: relative;
+  }
+
+  /* ── Linea decorativa del header ── */
+  .deco-line {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .deco-star {
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    opacity: 0.6;
+  }
+
+  /* ── Carousel root ── */
+  .carousel-root {
+    position: relative;
+    /* padding horizontal para que los botones queden pegados al scroll container */
+    padding: 0 3.5rem;
+    /* Limitar ancho: 3 items + 2 gaps + peek ~80px + botones (2×3.5rem) */
+    max-width: 1190px;  /* lg: 3×290 + 2×28 + 80 + 112 ≈ 1186px */
     margin-left: auto;
     margin-right: auto;
   }
 
-  .mobile-showcase-scroll::-webkit-scrollbar {
-    display: none;
+  @media (min-width: 1280px) {
+    .carousel-root {
+      max-width: 1250px; /* xl: 3×310 + 2×32 + 80 + 112 ≈ 1250px */
+    }
   }
 
-  .mobile-showcase-scroll:active {
-    cursor: grabbing;
+  @media (max-width: 767px) {
+    .carousel-root {
+      padding: 0;
+      max-width: 100%;
+    }
   }
 
-  .mobile-showcase-track {
-    display: flex;
-    gap: 3rem;
-    padding: 2rem 3rem;
-    width: max-content;
-    will-change: transform;
-  }
-
-  .mobile-showcase-item {
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-    scroll-snap-align: start;
-    contain: layout style paint;
-  }
-
-  .mobile-showcase-info {
-    text-align: center;
-    margin-top: 1.5rem;
-    max-width: 100%;
-  }
-
-  .scroll-hint-line {
-    width: 40px;
-    height: 2px;
-    background: var(--color-border);
-    border-radius: 1px;
-  }
-
-  .scroll-nav-btn {
-    opacity: 0;
+  /* ── Fades laterales ── */
+  .fade-edge {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    z-index: 10;
     pointer-events: none;
     transition: opacity 0.3s ease;
   }
 
-  /* Mostrar botones en desktop */
+  .fade-edge-left {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bg-secondary) 20%, transparent);
+    opacity: 0; /* Oculto al inicio */
+  }
+
+  .fade-edge-right {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bg-secondary) 20%, transparent);
+    opacity: 1;
+  }
+
+  /* ── Botones navegacion ── */
+  .nav-btn {
+    display: none; /* Solo en desktop */
+    position: absolute;
+    top: 42%; /* Centrado vertical en el area del telefono */
+    transform: translateY(-50%);
+    z-index: 20;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease, opacity 0.3s ease;
+  }
+
+  .nav-btn:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-bg);
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  .nav-btn:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .nav-prev { left: 0; }
+  .nav-next { right: 0; }
+
   @media (min-width: 768px) {
-    .scroll-nav-btn {
-      opacity: 1;
-      pointer-events: auto;
+    .nav-btn {
+      display: flex;
     }
+  }
 
-    .mobile-showcase-item {
-      width: 240px;
-    }
+  /* ── Scroll container ── */
+  .showcase-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    /* Sin scroll-snap: el JS maneja todo el posicionamiento */
+    will-change: scroll-position;
+    max-width: 100%;
+  }
 
-    .mobile-showcase-track {
-      gap: 3rem;
-      padding: 2rem 3rem;
-    }
+  .showcase-scroll::-webkit-scrollbar { display: none; }
+  .showcase-scroll:active { cursor: grabbing; }
+
+  /* ── Track ── */
+  .showcase-track {
+    display: flex;
+    gap: 1.5rem;
+    /* padding lateral minimo — el JS agrega el padding-right dinamico para el ultimo item */
+    padding: 2.5rem 0 2.5rem 2rem;
+    width: max-content;
+    align-items: center;
+  }
+
+  /* ── Item individual ── */
+  .showcase-item {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    width: 220px;
+    /* Sin scroll-snap — el JS posiciona */
+    transition:
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity  0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.88);
+    opacity: 0.55;
+  }
+
+  .showcase-item.is-active {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+
+  /* ── Etiqueta debajo ── */
+  .item-label {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    text-align: center;
+    letter-spacing: 0.02em;
+    transition: color 0.35s ease, opacity 0.35s ease;
+    opacity: 0.6;
+  }
+
+  .showcase-item.is-active .item-label {
+    color: var(--color-primary);
+    opacity: 1;
+  }
+
+  /* ── Responsive sizes ──
+     Objetivo: 3 items completos + ~60px del 4to visible
+     Calculo lg: contenedor ~1000px, 3 × 290px + 2 × 1.75rem gap ≈ 930px → peek de ~70px ✓
+  ── */
+  @media (min-width: 640px) {
+    .showcase-item { width: 240px; }
   }
 
   @media (min-width: 1024px) {
-    .mobile-showcase-item {
-      /* 3 × 270px + 2 × 3.5rem(56px) gap = 810 + 112 = 922px + peek ~130px + padding */
-      width: 270px;
-    }
-
-    .mobile-showcase-track {
-      gap: 3.5rem;
-      padding: 2rem 4rem;
-    }
-
-    .mobile-showcase-scroll {
-      max-width: 1180px;
+    .showcase-item { width: 290px; }
+    .showcase-track {
+      gap: 1.75rem;
+      padding: 3rem 0 3rem 2.5rem;
     }
   }
 
-  @keyframes bounce-x {
-    0%, 100% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(4px);
-    }
+  @media (min-width: 1280px) {
+    .showcase-item { width: 310px; }
+    .showcase-track { gap: 2rem; padding: 3rem 0 3rem 3rem; }
   }
 
-  .animate-bounce-x {
-    animation: bounce-x 1.5s ease-in-out infinite;
+  /* ── Dots ── */
+  .dots-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 2.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-border);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s ease, transform 0.3s ease, width 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .dot.dot-active {
+    background: var(--color-primary);
+    width: 22px;
+    border-radius: 4px;
+    transform: none;
+  }
+
+  .dot:hover:not(.dot-active) {
+    background: var(--color-text-muted);
+    transform: scale(1.2);
   }
 </style>
 
 <script>
-  // Optimized drag to scroll functionality with passive event listeners
-  const scrollContainers = document.querySelectorAll('.mobile-showcase-scroll');
-  
-  scrollContainers.forEach(container => {
-    let isDown = false;
-    let startX: number;
-    let scrollLeft: number;
-    let velocity = 0;
-    let lastX = 0;
-    let momentumID: number;
+  document.querySelectorAll('.showcase-section').forEach(section => {
+    const scroll    = section.querySelector('.showcase-scroll') as HTMLElement;
+    const track     = section.querySelector('.showcase-track') as HTMLElement;
+    const items     = Array.from(section.querySelectorAll('.showcase-item')) as HTMLElement[];
+    const dots      = Array.from(section.querySelectorAll('.dot')) as HTMLButtonElement[];
+    const prevBtn   = section.querySelector('.nav-prev') as HTMLButtonElement;
+    const nextBtn   = section.querySelector('.nav-next') as HTMLButtonElement;
+    const fadeLeft  = section.querySelector('.fade-edge-left')  as HTMLElement;
+    const fadeRight = section.querySelector('.fade-edge-right') as HTMLElement;
 
-    // Navigation buttons
-    const prevBtn = container.parentElement?.querySelector('.scroll-nav-prev') as HTMLButtonElement;
-    const nextBtn = container.parentElement?.querySelector('.scroll-nav-next') as HTMLButtonElement;
+    if (!scroll || !items.length) return;
 
-    // Reset scroll to beginning on load
-    const resetScroll = () => {
-      container.scrollLeft = 0;
+    let activeIndex = 0;
+
+    // ── Padding derecho dinamico para que el ultimo item pueda centrarse ──
+    // Solo padding derecho — el izquierdo es fijo en CSS (2rem) y el primer item
+    // queda al inicio (scroll = 0), lo cual es correcto.
+    const updateEndPadding = () => {
+      const lastItem  = items[items.length - 1];
+      // Espacio necesario a la derecha = mitad del scroll container - mitad del item
+      const needed = Math.max(16, scroll.clientWidth / 2 - lastItem.offsetWidth / 2);
+      track.style.paddingRight = needed + 'px';
     };
 
-    // Reset on load
-    setTimeout(resetScroll, 100);
-    window.addEventListener('resize', resetScroll);
+    // ── Activar item ──
+    const setActive = (index: number) => {
+      activeIndex = Math.max(0, Math.min(index, items.length - 1));
+      items.forEach((item, i) => item.classList.toggle('is-active', i === activeIndex));
+      dots.forEach((dot, i)   => dot.classList.toggle('dot-active',  i === activeIndex));
+      if (prevBtn) prevBtn.disabled = activeIndex === 0;
+      if (nextBtn) nextBtn.disabled = activeIndex === items.length - 1;
+    };
 
-    // Fade elements
-    const fadeLeft  = container.closest('.relative')?.querySelector('#fade-left')  as HTMLElement | null;
-    const fadeRight = container.closest('.relative')?.querySelector('#fade-right') as HTMLElement | null;
+    // ── Calcular item mas cercano al centro del scroll container ──
+    // Usa offsetLeft (relativo al track) + scrollLeft para obtener posicion absoluta
+    // Caso especial: item 0 cuando scroll ≈ 0, item final cuando scroll ≈ scrollWidth
+    const getNearestIndex = (): number => {
+      const scrolled  = scroll.scrollLeft;
+      const viewHalf  = scroll.clientWidth / 2;
+      const center    = scrolled + viewHalf;
 
-    // Update button states + fade visibility
-    const updateButtonStates = () => {
-      const scrolled  = container.scrollLeft;
-      const atEnd     = scrolled >= container.scrollWidth - container.clientWidth - 2;
+      // Caso borde izquierdo: si el scroll esta muy cerca del inicio, es el item 0
+      if (scrolled < 20) return 0;
 
-      if (prevBtn && nextBtn) {
-        prevBtn.disabled = scrolled <= 0;
-        nextBtn.disabled = atEnd;
+      // Caso borde derecho: si el scroll esta muy cerca del final, es el ultimo item
+      const atEnd = scrolled >= scroll.scrollWidth - scroll.clientWidth - 20;
+      if (atEnd) return items.length - 1;
+
+      // Caso general: item cuyo centro este mas cerca del centro del viewport
+      let nearest = 0;
+      let minDist = Infinity;
+      items.forEach((item, i) => {
+        // offsetLeft del item es relativo al track, que tiene paddingLeft = 2rem = 32px
+        const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+        const dist = Math.abs(center - itemCenter);
+        if (dist < minDist) { minDist = dist; nearest = i; }
+      });
+      return nearest;
+    };
+
+    // ── Scroll programatico al item (centrado) ──
+    const scrollToItem = (index: number) => {
+      const clamped = Math.max(0, Math.min(index, items.length - 1));
+      const item    = items[clamped];
+      if (!item) return;
+
+      let target: number;
+      if (clamped === 0) {
+        // Primer item: scroll al inicio
+        target = 0;
+      } else if (clamped === items.length - 1) {
+        // Ultimo item: scroll al final
+        target = scroll.scrollWidth - scroll.clientWidth;
+      } else {
+        // Centrar el item
+        target = item.offsetLeft + item.offsetWidth / 2 - scroll.clientWidth / 2;
       }
 
-      // Fade izquierdo: aparece solo cuando el usuario ha scrolleado
+      scroll.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+      // Actualizar foco inmediatamente — no esperar al evento scroll
+      setActive(clamped);
+    };
+
+    // ── Actualizar UI en scroll ──
+    let scrollEndTimer = 0;
+    scroll.addEventListener('scroll', () => {
+      // Fades y botones en tiempo real
+      const scrolled = scroll.scrollLeft;
+      const atEnd    = scrolled >= scroll.scrollWidth - scroll.clientWidth - 4;
       if (fadeLeft)  fadeLeft.style.opacity  = scrolled > 10 ? '1' : '0';
-      // Fade derecho: desaparece cuando llega al final
-      if (fadeRight) fadeRight.style.opacity = atEnd ? '0' : '1';
-    };
+      if (fadeRight) fadeRight.style.opacity = atEnd         ? '0' : '1';
+      if (prevBtn)   prevBtn.disabled = scrolled <= 0;
+      if (nextBtn)   nextBtn.disabled = atEnd;
 
-    // Smooth scroll to position
-    const smoothScrollTo = (targetX: number) => {
-      container.scrollTo({
-        left: targetX,
-        behavior: 'smooth'
-      });
-    };
-
-    // Button navigation
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        const scrollAmount = container.clientWidth * 0.8;
-        smoothScrollTo(container.scrollLeft - scrollAmount);
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        const scrollAmount = container.clientWidth * 0.8;
-        smoothScrollTo(container.scrollLeft + scrollAmount);
-      });
-    }
-
-    // Drag to scroll with momentum
-    container.addEventListener('mousedown', (e) => {
-      isDown = true;
-      container.classList.add('active');
-      startX = (e as MouseEvent).pageX - (container as HTMLElement).offsetLeft;
-      scrollLeft = container.scrollLeft;
-      lastX = startX;
-      velocity = 0;
-      cancelMomentumTracking();
+      // Foco: actualizar cuando el scroll se detiene (150ms sin scroll)
+      clearTimeout(scrollEndTimer);
+      scrollEndTimer = window.setTimeout(() => {
+        setActive(getNearestIndex());
+      }, 150);
     }, { passive: true });
 
-    container.addEventListener('mouseleave', () => {
-      isDown = false;
-      container.classList.remove('active');
-      beginMomentumTracking();
-    });
+    // ── Botones ──
+    prevBtn?.addEventListener('click', () => scrollToItem(activeIndex - 1));
+    nextBtn?.addEventListener('click', () => scrollToItem(activeIndex + 1));
 
-    container.addEventListener('mouseup', () => {
-      isDown = false;
-      container.classList.remove('active');
-      beginMomentumTracking();
-    });
+    // ── Dots ──
+    dots.forEach((dot, i) => dot.addEventListener('click', () => scrollToItem(i)));
 
-    container.addEventListener('mousemove', (e) => {
+    // ── Drag to scroll con momentum ──
+    let isDown     = false;
+    let startX     = 0;
+    let scrollLeft = 0;
+    let velocity   = 0;
+    let lastX      = 0;
+    let momentumID = 0;
+
+    const cancelMomentum = () => cancelAnimationFrame(momentumID);
+    const startMomentum  = () => {
+      cancelMomentum();
+      const loop = () => {
+        velocity *= 0.93;
+        if (Math.abs(velocity) > 0.5) {
+          scroll.scrollLeft -= velocity;
+          momentumID = requestAnimationFrame(loop);
+        }
+      };
+      momentumID = requestAnimationFrame(loop);
+    };
+
+    scroll.addEventListener('mousedown', (e) => {
+      isDown     = true;
+      startX     = e.pageX - scroll.offsetLeft;
+      scrollLeft = scroll.scrollLeft;
+      lastX      = startX;
+      velocity   = 0;
+      cancelMomentum();
+    }, { passive: true });
+
+    scroll.addEventListener('mouseleave', () => { if (isDown) { isDown = false; startMomentum(); } });
+    scroll.addEventListener('mouseup',    () => { if (isDown) { isDown = false; startMomentum(); } });
+    scroll.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       e.preventDefault();
-      const x = (e as MouseEvent).pageX - (container as HTMLElement).offsetLeft;
-      const walk = (x - startX) * 1.5;
-      velocity = x - lastX;
-      lastX = x;
-      container.scrollLeft = scrollLeft - walk;
-    });
+      const x       = e.pageX - scroll.offsetLeft;
+      velocity      = x - lastX;
+      lastX         = x;
+      scroll.scrollLeft = scrollLeft - (x - startX) * 1.4;
+    }, { passive: false });
 
-    // Touch support for mobile
-    let touchStartX = 0;
+    // ── Touch ──
+    let touchStartX     = 0;
     let touchScrollLeft = 0;
 
-    container.addEventListener('touchstart', (e) => {
-      const touchEvent = e as TouchEvent;
-      touchStartX = touchEvent.touches[0].pageX;
-      touchScrollLeft = container.scrollLeft;
+    scroll.addEventListener('touchstart', (e) => {
+      touchStartX     = e.touches[0].pageX;
+      touchScrollLeft = scroll.scrollLeft;
+      cancelMomentum();
     }, { passive: true });
 
-    container.addEventListener('touchmove', (e) => {
-      const touchEvent = e as TouchEvent;
-      const x = touchEvent.touches[0].pageX;
-      const walk = (touchStartX - x) * 1.2;
-      container.scrollLeft = touchScrollLeft + walk;
+    scroll.addEventListener('touchmove', (e) => {
+      scroll.scrollLeft = touchScrollLeft + (touchStartX - e.touches[0].pageX) * 1.2;
     }, { passive: true });
 
-    // Update buttons on scroll
-    container.addEventListener('scroll', updateButtonStates, { passive: true });
+    // ── Init ──
+    const init = () => {
+      updateEndPadding();
+      scroll.scrollLeft = 0;
+      setActive(0);
+      if (fadeLeft)  fadeLeft.style.opacity  = '0';
+      if (fadeRight) fadeRight.style.opacity = items.length > 1 ? '1' : '0';
+      if (prevBtn)   prevBtn.disabled = true;
+      if (nextBtn)   nextBtn.disabled = items.length <= 1;
+    };
 
-    // Momentum scrolling
-    function beginMomentumTracking() {
-      cancelMomentumTracking();
-      momentumID = requestAnimationFrame(momentumLoop);
+    if (document.readyState === 'complete') {
+      init();
+    } else {
+      window.addEventListener('load', init, { once: true });
     }
 
-    function cancelMomentumTracking() {
-      if (momentumID) {
-        cancelAnimationFrame(momentumID);
-      }
-    }
-
-    function momentumLoop() {
-      velocity *= 0.95; // Deceleration factor
-      if (Math.abs(velocity) > 0.5) {
-        container.scrollLeft -= velocity;
-        momentumID = requestAnimationFrame(momentumLoop);
-      }
-    }
-
-    // Initial button state
-    updateButtonStates();
+    window.addEventListener('resize', () => {
+      updateEndPadding();
+      scroll.scrollLeft = 0;
+      setActive(0);
+    });
   });
 </script>

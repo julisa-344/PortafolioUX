@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import MarqueeRibbon from '../components/MarqueeRibbon.astro';
 import ProjectsGrid from '../components/ProjectsGrid.astro';
 import About from '../components/About.astro';
 import Footer from '../components/Footer.astro';
@@ -79,6 +81,10 @@ const skills = [
       Desde la investigación hasta la implementación, creo experiencias 
       memorables que generan resultados.
     </Hero>
+
+    <StatsBar />
+
+    <MarqueeRibbon text="UX Design · UI Design · Development" speed={25} />
 
     <ProjectsGrid projects={featuredProjects} />
 
