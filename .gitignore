@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Archivos grandes — excluidos del repositorio
+public/images/projects/sandra-jordan/Bespoke Rugs - mobile.svg
+public/images/projects/sandra-jordan/Sandra Jordan (1).zip
+*.zip
