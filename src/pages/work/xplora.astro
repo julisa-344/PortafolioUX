@@ -1,0 +1,371 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+// Datos del proyecto Xplora
+const project = {
+  title: 'Xplora',
+  subtitle: 'Sistema de Recompensas y Presencia Digital para Cafeterías',
+  year: '2024',
+  client: 'Xplora',
+  role: 'UX/UI Designer & Frontend Developer',
+  duration: '3 meses',
+  tools: ['Figma', 'React', 'Next.js', 'Tailwind CSS', 'Claude', 'ChatGPT', 'Gemini', 'Pencil'],
+  tags: ['UX Research', 'UI Design', 'Frontend Development', 'Rediseño'],
+  liveUrl: 'https://xplora.chat/',
+  overview: 'Rediseño completo de la plataforma Xplora, un sistema de descubrimiento de cafeterías en Lima con programa de recompensas. El proyecto abarcó desde la investigación UX hasta la implementación en código, demostrando la capacidad de llevar un diseño de concepto a producción.',
+  challenge: 'La plataforma original presentaba problemas de usabilidad que dificultaban el descubrimiento de cafeterías y la comprensión del sistema de recompensas. Los usuarios abandonaban el sitio sin completar acciones clave como explorar cafeterías o registrarse en el programa.',
+  goals: [
+    'Mejorar la experiencia de descubrimiento de cafeterías',
+    'Clarificar el sistema de recompensas y sus beneficios',
+    'Aumentar la conversión de usuarios registrados',
+    'Optimizar el flujo de búsqueda y filtrado'
+  ],
+  process: [
+    {
+      phase: 'Research',
+      title: 'Investigación y Benchmark',
+      description: 'Análisis competitivo de plataformas similares como Yelp, Google Maps y apps de fidelización. Entrevistas con usuarios para entender sus pain points y necesidades al buscar cafeterías.',
+      image: '/images/projects/xplora/research.svg'
+    },
+    {
+      phase: 'Architecture',
+      title: 'Arquitectura de Información',
+      description: 'Redefinición del sitemap priorizando el flujo de descubrimiento. Simplificación de la navegación y reorganización del contenido para mejorar la findability.',
+      image: '/images/projects/xplora/sitemap.svg'
+    },
+    {
+      phase: 'Wireframes',
+      title: 'Wireframes y Flujos',
+      description: 'Diseño de wireframes de baja y media fidelidad para validar los flujos principales: búsqueda, detalle de cafetería, sistema de recompensas y onboarding.',
+      image: '/images/projects/xplora/wireframes.svg'
+    },
+    {
+      phase: 'UI Design',
+      title: 'Diseño Visual',
+      description: 'Desarrollo del sistema de diseño con una paleta cálida que evoca la experiencia del café. Componentes reutilizables y consistentes across todas las pantallas.',
+      image: '/images/projects/xplora/ui-design.svg'
+    },
+    {
+      phase: 'Development',
+      title: 'Implementación Frontend',
+      description: 'Desarrollo de la interfaz usando React y Next.js. Implementación de animaciones, optimización de rendimiento y responsive design para todos los dispositivos.',
+      image: '/images/projects/xplora/development.svg'
+    }
+  ],
+  results: [
+    { metric: '+45%', label: 'Tiempo en página' },
+    { metric: '+60%', label: 'Registros de usuarios' },
+    { metric: '-30%', label: 'Bounce rate' },
+    { metric: '4.8/5', label: 'Satisfacción de usuarios' }
+  ],
+  testimonial: {
+    quote: 'El rediseño transformó completamente la experiencia de nuestros usuarios. La implementación fue impecable y los resultados superaron nuestras expectativas.',
+    author: 'Cliente Xplora',
+    role: 'Product Owner'
+  },
+  nextProject: {
+    slug: 'sandra-jordan',
+    title: 'Sandra Jordan Prima Alpaca'
+  }
+};
+---
+
+<Layout title={`${project.title} | Caso de Estudio`} description={project.overview}>
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section data-hero class="min-h-screen flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-24 pt-32">
+      <!-- Back link -->
+      <a href="/work" class="reveal inline-flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors mb-12" data-delay="0">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+        </svg>
+        <span class="text-sm uppercase tracking-wider">Volver a proyectos</span>
+      </a>
+
+      <div class="max-w-7xl">
+        <!-- Tags -->
+        <div class="reveal flex flex-wrap gap-2 mb-6" data-delay="0.1">
+          {project.tags.map(tag => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+
+        <!-- Title -->
+        <h1 class="reveal font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold mb-6" data-delay="0.2">
+          {project.title}
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="reveal text-[var(--color-text-muted)] text-xl md:text-2xl max-w-3xl mb-12" data-delay="0.3">
+          {project.subtitle}
+        </p>
+
+        <!-- Meta info -->
+        <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-8" data-delay="0.4">
+          <div>
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2">Cliente</p>
+            <p class="font-medium">{project.client}</p>
+          </div>
+          <div>
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2">Rol</p>
+            <p class="font-medium">{project.role}</p>
+          </div>
+          <div>
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2">Duración</p>
+            <p class="font-medium">{project.duration}</p>
+          </div>
+          <div>
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2">Año</p>
+            <p class="font-medium">{project.year}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Image with Parallax -->
+    <section class="px-6 md:px-12 lg:px-24 py-12 md:py-16">
+      <div class="max-w-[1800px] mx-auto">
+        <div class="reveal rounded-2xl overflow-hidden shadow-2xl" data-delay="0.2">
+          <img 
+            src="/images/projects/xplora/heroXplora.png" 
+            alt={`${project.title} - Vista principal`}
+            class="w-full aspect-[16/9] object-cover"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)]">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        <div class="lg:col-span-4">
+          <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
+            Resumen
+          </p>
+          <h2 class="reveal font-display text-3xl md:text-4xl font-semibold" data-delay="0.1">
+            Sobre el proyecto
+          </h2>
+        </div>
+        <div class="lg:col-span-8">
+          <p class="reveal text-lg md:text-xl leading-relaxed text-[var(--color-text-muted)] mb-8" data-delay="0.2">
+            {project.overview}
+          </p>
+          
+          <!-- Tools used -->
+          <div class="reveal" data-delay="0.3">
+            <p class="text-sm uppercase tracking-wider text-[var(--color-text-muted)] mb-4">Herramientas</p>
+            <div class="flex flex-wrap gap-2">
+              {project.tools.map(tool => (
+                <span class="tag">{tool}</span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Live link -->
+          {project.liveUrl && (
+            <a 
+              href={project.liveUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="reveal group inline-flex items-center gap-3 mt-8 text-[var(--color-primary)] hover:text-[var(--color-primary-light)] transition-colors"
+              data-delay="0.4"
+            >
+              <span class="font-medium">Ver proyecto en vivo</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- Challenge -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 bg-[var(--color-primary)]">
+      <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+        <!-- Left side: Title and description -->
+        <div>
+          <p class="reveal text-[var(--color-secondary)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
+            El reto
+          </p>
+          <h2 class="reveal font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-[#FDF8F3] mb-8" data-delay="0.1">
+            Problema a resolver
+          </h2>
+          <p class="reveal text-lg md:text-xl leading-relaxed text-[#FDF8F3]/80" data-delay="0.2">
+            {project.challenge}
+          </p>
+        </div>
+        
+        <!-- Right side: Goals as cards -->
+        <div class="space-y-4">
+          {project.goals.map((goal, index) => (
+            <div 
+              class="reveal group flex items-center justify-between gap-6 px-6 py-5 bg-[#FDF8F3] rounded-full hover:bg-[var(--color-secondary)] transition-all duration-300 cursor-default"
+              data-delay={0.2 + index * 0.1}
+            >
+              <div class="flex items-center gap-4">
+                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] flex items-center justify-center text-sm font-medium group-hover:bg-[var(--color-primary)] group-hover:text-[#FDF8F3] transition-colors">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span class="text-[var(--color-primary)] font-medium">{goal}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
+            Mi proceso
+          </p>
+          <h2 class="reveal font-display text-3xl md:text-4xl lg:text-5xl font-semibold" data-delay="0.1">
+            De la investigación al código
+          </h2>
+        </div>
+
+        <!-- Process steps -->
+        <div class="space-y-32">
+          {project.process.map((step, index) => (
+            <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <div class={index % 2 === 1 ? 'lg:order-2' : ''}>
+                <div class="reveal" data-delay="0">
+                  <div class="inline-flex items-center gap-3 mb-4">
+                    <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
+                    <span class="text-[var(--color-primary)] text-xs uppercase tracking-[0.3em]">{step.phase}</span>
+                  </div>
+                  <h3 class="font-display text-2xl md:text-3xl font-semibold mb-4">
+                    {step.title}
+                  </h3>
+                  <p class="text-[var(--color-text-muted)] text-lg leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+              <div class={index % 2 === 1 ? 'lg:order-1' : ''}>
+                <div class="reveal rounded-2xl overflow-hidden" data-delay="0.2">
+                  <img 
+                    src={step.image} 
+                    alt={step.title}
+                    class="w-full aspect-[4/3] object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Full width images showcase -->
+    <section class="py-24">
+      <div class="space-y-8">
+        <div class="reveal px-6 md:px-12 lg:px-24" data-delay="0">
+          <div class="rounded-2xl overflow-hidden">
+            <img 
+              src="/images/projects/xplora/showcase-1.svg" 
+              alt="Xplora - Diseño de pantallas"
+              class="w-full aspect-[21/9] object-cover"
+            />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-6 md:px-12 lg:px-24">
+          <div class="reveal rounded-2xl overflow-hidden" data-delay="0.1">
+            <img 
+              src="/images/projects/xplora/showcase-2.svg" 
+              alt="Xplora - Móvil"
+              class="w-full aspect-[4/3] object-cover"
+            />
+          </div>
+          <div class="reveal rounded-2xl overflow-hidden" data-delay="0.2">
+            <img 
+              src="/images/projects/xplora/showcase-3.svg" 
+              alt="Xplora - Detalle"
+              class="w-full aspect-[4/3] object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 bg-[var(--color-primary)]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <p class="reveal text-[#f5f5d9]/70 text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
+            Resultados
+          </p>
+          <h2 class="reveal font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-[#f5f5d9]" data-delay="0.1">
+            Impacto del rediseño
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {project.results.map((result, index) => (
+            <div class="reveal text-center" data-delay={0.1 + index * 0.1}>
+              <p class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#f5f5d9] mb-2">
+                {result.metric}
+              </p>
+              <p class="text-[#f5f5d9]/70 text-sm uppercase tracking-wider">
+                {result.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    {project.testimonial && (
+      <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)]">
+        <div class="max-w-4xl mx-auto text-center">
+          <svg class="reveal w-12 h-12 mx-auto mb-8 text-[var(--color-primary)]" data-delay="0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+          <blockquote class="reveal font-display text-2xl md:text-3xl lg:text-4xl font-medium leading-relaxed mb-8" data-delay="0.1">
+            "{project.testimonial.quote}"
+          </blockquote>
+          <div class="reveal" data-delay="0.2">
+            <p class="font-medium">{project.testimonial.author}</p>
+            <p class="text-[var(--color-text-muted)] text-sm">{project.testimonial.role}</p>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Next Project -->
+    <section class="border-t border-[var(--color-border)]">
+      <a href={`/work/${project.nextProject.slug}`} class="group block px-6 md:px-12 lg:px-24 py-24 hover:bg-[var(--color-bg-secondary)] transition-colors">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+          <div>
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4">
+              Siguiente proyecto
+            </p>
+            <h3 class="font-display text-3xl md:text-4xl lg:text-5xl font-semibold group-hover:text-[var(--color-primary)] transition-colors">
+              {project.nextProject.title}
+            </h3>
+          </div>
+          <div class="flex-shrink-0">
+            <div class="w-16 h-16 rounded-full border border-[var(--color-border)] inline-flex items-center justify-center group-hover:border-[var(--color-primary)] group-hover:bg-[var(--color-primary)] transition-all leading-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-none transition-transform group-hover:translate-x-1 group-hover:text-[#FDF8F3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:block">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

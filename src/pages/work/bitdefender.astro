@@ -1,0 +1,409 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FloatingElements from '../../components/FloatingElements.astro';
+import DesktopShowcase from '../../components/DesktopShowcase.astro';
+
+// Datos del proyecto Bitdefender
+const project = {
+  title: 'Bitdefender',
+  subtitle: 'Investigación UX para Software de Seguridad',
+  year: '2023',
+  client: 'Bitdefender @ Nerd',
+  role: 'UX Researcher',
+  duration: '2 meses',
+  tools: ['Figma', 'FigJam', 'Claude', 'ChatGPT', 'Gemini', 'Pencil', 'Stitch AI'],
+  tags: ['UX Research', 'Benchmark', 'Wireframes', 'Sitemap'],
+  overview: 'Investigación UX completa para el rediseño del sitio web de Bitdefender, líder global en soluciones de ciberseguridad. El proyecto abarcó desde el análisis competitivo del mercado de software de seguridad hasta la creación de wireframes detallados para las principales secciones del sitio, incluyendo flujos para usuarios hogareños y empresariales.',
+  challenge: 'El sitio web existente no comunicaba de manera clara la diferenciación entre los productos para hogar y empresa, generando confusión en los usuarios. Además, el proceso de compra presentaba fricciones que afectaban la conversión. El reto fue diseñar una arquitectura de información clara y flujos de usuario optimizados para ambos segmentos.',
+  goals: [
+    'Analizar competidores líderes en ciberseguridad',
+    'Definir arquitectura de información clara para hogar y empresa',
+    'Diseñar flujos de compra optimizados',
+    'Crear wireframes para validar la propuesta de UX'
+  ],
+  process: [
+    {
+      phase: 'Research',
+      title: 'Benchmark Competitivo',
+      description: 'Análisis exhaustivo de los principales competidores en el mercado de ciberseguridad: Norton, McAfee, Kaspersky y ESET. Estudio de sus propuestas de valor, arquitectura de información, flujos de compra y estrategias de comunicación para segmentos B2C y B2B.',
+      image: '/images/projects/bitdefender/beanch.png'
+    },
+    {
+      phase: 'Sitemap',
+      title: 'Arquitectura de Información',
+      description: 'Definición de la estructura del sitio con foco en la clara diferenciación entre productos para hogar y empresa. Organización del contenido priorizando los flujos de descubrimiento, comparación y compra de productos de seguridad.',
+      image: '/images/projects/bitdefender/sitemap.png'
+    },
+    {
+      phase: 'Wireframes',
+      title: 'Wireframes de Alta Fidelidad',
+      description: 'Diseño de wireframes detallados para todas las páginas principales del sitio: home, páginas de productos, blog, carrito de compras, cuenta de usuario y flujos de checkout. Especial atención en la claridad de la comunicación de features y precios.',
+      image: '/images/projects/bitdefender/home.png'
+    }
+  ],
+  highlights: [
+    'Benchmark completo de 4 competidores principales del mercado',
+    'Arquitectura de información optimizada para dos segmentos: hogar y empresa',
+    'Wireframes detallados para más de 15 páginas del sitio',
+    'Flujo de compra simplificado con reducción de pasos',
+    'Sistema de comparación de productos claro y visual',
+    'Diseño de cuenta de usuario con gestión de suscripciones'
+  ],
+  nextProject: {
+    slug: 'xplora',
+    title: 'Xplora'
+  },
+  // Showcase de wireframes para este proyecto UX
+  wireframeShowcase: {
+    mainPages: [
+      { src: '/images/projects/bitdefender/home.png', label: 'Home', alt: 'Bitdefender - Página principal' },
+      { src: '/images/projects/bitdefender/hogar.png', label: 'Hogar', alt: 'Bitdefender - Productos para hogar' },
+      { src: '/images/projects/bitdefender/Products.png', label: 'Productos', alt: 'Bitdefender - Lista de productos' }
+    ],
+    contentPages: [
+      { src: '/images/projects/bitdefender/blog.png', label: 'Blog', alt: 'Bitdefender - Blog' },
+      { src: '/images/projects/bitdefender/blog-detalle.png', label: 'Blog Detalle', alt: 'Bitdefender - Artículo de blog' },
+      { src: '/images/projects/bitdefender/contacto.png', label: 'Contacto', alt: 'Bitdefender - Página de contacto' }
+    ],
+    ecommercePages: [
+      { src: '/images/projects/bitdefender/cart.png', label: 'Carrito', alt: 'Bitdefender - Carrito de compras' },
+      { src: '/images/projects/bitdefender/Account.png', label: 'Cuenta', alt: 'Bitdefender - Mi cuenta' },
+      { src: '/images/projects/bitdefender/Gracias.png', label: 'Confirmación', alt: 'Bitdefender - Página de gracias' }
+    ],
+    businessPages: [
+      { src: '/images/projects/bitdefender/empresa-detalle.png', label: 'Empresa Detalle', alt: 'Bitdefender - Detalle para empresas' }
+    ]
+  }
+};
+---
+
+<Layout title={`${project.title} | Caso de Estudio`} description={project.overview}>
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section data-hero class="relative min-h-[70vh] flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-16 pt-32 overflow-hidden">
+      <!-- Floating Elements -->
+      <FloatingElements variant="hero" intensity="subtle" />
+      
+      <!-- Back link -->
+      <a href="/work" class="reveal group inline-flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors mb-12 relative z-10" data-delay="0">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+        </svg>
+        <span class="text-sm uppercase tracking-wider underline-grow">Volver a proyectos</span>
+      </a>
+
+      <div class="max-w-7xl relative z-10">
+        <!-- Tags with stagger animation -->
+        <div class="reveal flex flex-wrap gap-2 mb-6" data-delay="0.1">
+          {project.tags.map((tag, index) => (
+            <span class="tag hover-lift" style={`animation-delay: ${index * 0.05}s`}>{tag}</span>
+          ))}
+        </div>
+
+        <!-- Title with split text animation -->
+        <h1 class="reveal font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold mb-6 leading-[1.1]" data-delay="0.2">
+          <span class="inline-block">{project.title}</span>
+        </h1>
+
+        <!-- Subtitle with elegant animation -->
+        <p class="reveal text-[var(--color-text-muted)] text-xl md:text-2xl max-w-3xl mb-12 leading-relaxed" data-delay="0.3">
+          {project.subtitle}
+        </p>
+
+        <!-- Meta info with stagger grid -->
+        <div class="reveal stagger-grid grid grid-cols-2 md:grid-cols-4 gap-8" data-delay="0.4">
+          <div class="group">
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2 transition-colors group-hover:text-[var(--color-primary)]">Cliente</p>
+            <p class="font-medium text-lg">{project.client}</p>
+          </div>
+          <div class="group">
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2 transition-colors group-hover:text-[var(--color-primary)]">Rol</p>
+            <p class="font-medium text-lg">{project.role}</p>
+          </div>
+          <div class="group">
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2 transition-colors group-hover:text-[var(--color-primary)]">Duración</p>
+            <p class="font-medium text-lg">{project.duration}</p>
+          </div>
+          <div class="group">
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2 transition-colors group-hover:text-[var(--color-primary)]">Año</p>
+            <p class="font-medium text-lg">{project.year}</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 reveal" data-delay="1">
+        <div class="flex flex-col items-center gap-2">
+          <span class="text-[var(--color-text-muted)] text-xs uppercase tracking-widest">Scroll</span>
+          <div class="w-[1px] h-12 bg-[var(--color-border)] relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-[var(--color-primary)] animate-scroll-line"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Image with Parallax -->
+    <section class="px-6 md:px-12 lg:px-24 py-8 md:py-12">
+      <div class="max-w-[1800px] mx-auto">
+        <div class="reveal rounded-2xl overflow-hidden shadow-2xl" data-delay="0.2">
+          <img 
+            src="/images/projects/bitdefender/heroBitdefender.png" 
+            alt={`${project.title} - Hero Image`}
+            class="w-full aspect-[21/9] object-cover object-center"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)] relative overflow-hidden">
+      <!-- Subtle background decoration -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-[var(--color-secondary)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+      
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 relative z-10">
+        <div class="lg:col-span-4">
+          <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2" data-delay="0">
+            <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
+            Resumen
+          </p>
+          <h2 class="reveal font-serif text-3xl md:text-4xl lg:text-5xl font-medium italic" data-delay="0.1">
+            Sobre el proyecto
+          </h2>
+        </div>
+        <div class="lg:col-span-8">
+          <p class="reveal text-lg md:text-xl leading-relaxed text-[var(--color-text-muted)] mb-8" data-delay="0.2">
+            {project.overview}
+          </p>
+          
+          <!-- Tools used with hover effects -->
+          <div class="reveal" data-delay="0.3">
+            <p class="text-sm uppercase tracking-wider text-[var(--color-text-muted)] mb-4">Herramientas</p>
+            <div class="flex flex-wrap gap-3">
+              {project.tools.map((tool, index) => (
+                <span class="tag hover-lift glow" style={`animation-delay: ${index * 0.1}s`}>{tool}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Section divider -->
+      <div class="section-divider max-w-7xl mx-auto mt-24"></div>
+    </section>
+
+    <!-- Challenge -->
+    <section class="relative px-6 md:px-12 lg:px-24 py-24 bg-[var(--color-primary)] overflow-hidden">
+      <!-- Decorative elements -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-[#FDF8F3]/5"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-[#FDF8F3]/5"></div>
+      </div>
+      
+      <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-10">
+        <!-- Left side: Title and description -->
+        <div>
+          <p class="reveal text-[var(--color-secondary)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-3" data-delay="0">
+            <span class="w-8 h-[1px] bg-[var(--color-secondary)]"></span>
+            El reto
+          </p>
+          <h2 class="reveal font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-[#FDF8F3] mb-8 italic" data-delay="0.1">
+            Problema a resolver
+          </h2>
+          <p class="reveal text-lg md:text-xl leading-relaxed text-[#FDF8F3]/80" data-delay="0.2">
+            {project.challenge}
+          </p>
+        </div>
+        
+        <!-- Right side: Goals as animated cards -->
+        <div class="space-y-4">
+          {project.goals.map((goal, index) => (
+            <div 
+              class="reveal group flex items-center justify-between gap-6 px-6 py-5 bg-[#FDF8F3] rounded-full hover:bg-[var(--color-secondary)] transition-all duration-500 cursor-default hover-lift"
+              data-delay={0.2 + index * 0.1}
+            >
+              <div class="flex items-center gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] flex items-center justify-center text-sm font-semibold group-hover:bg-[var(--color-primary)] group-hover:text-[#FDF8F3] transition-all duration-300 group-hover:scale-110">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span class="text-[var(--color-primary)] font-medium text-lg">{goal}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)] relative">
+      <!-- Background decoration -->
+      <div class="absolute bottom-0 left-0 w-72 h-72 bg-[var(--color-primary)]/5 rounded-full blur-3xl"></div>
+      
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-20">
+          <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center justify-center gap-3" data-delay="0">
+            <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
+            Mi proceso
+            <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
+          </p>
+          <h2 class="reveal font-serif text-3xl md:text-4xl lg:text-5xl font-medium italic" data-delay="0.1">
+            De la investigación a los wireframes
+          </h2>
+          <p class="reveal text-[var(--color-text-muted)] text-lg mt-4 max-w-2xl mx-auto" data-delay="0.2">
+            Un proceso de UX Research enfocado en entender el mercado de ciberseguridad y diseñar una experiencia optimizada para dos segmentos de usuarios.
+          </p>
+        </div>
+
+        <!-- Process steps - alternating layout -->
+        <div class="space-y-32">
+          {project.process.map((step, index) => (
+            <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <div class={index % 2 === 1 ? 'lg:order-2' : ''}>
+                <div class="reveal" data-delay="0">
+                  <div class="inline-flex items-center gap-3 mb-4">
+                    <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
+                    <span class="text-[var(--color-primary)] text-xs uppercase tracking-[0.3em]">{step.phase}</span>
+                  </div>
+                  
+                  <!-- Title -->
+                  <div class="flex items-center gap-4 mb-6">
+                    <h3 class="font-serif text-2xl md:text-3xl lg:text-4xl font-medium italic">
+                      {step.title}
+                    </h3>
+                  </div>
+                  
+                  <p class="text-[var(--color-text-muted)] text-lg leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+              <div class={index % 2 === 1 ? 'lg:order-1' : ''}>
+                <div class="reveal rounded-2xl overflow-hidden" data-delay="0.2">
+                  <img 
+                    src={step.image} 
+                    alt={step.title}
+                    class="w-full aspect-[4/3] object-cover object-top"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Wireframes Showcase -->
+    <DesktopShowcase
+      title="Wireframes del proyecto"
+      subtitle="Entregables"
+      sections={[
+        {
+          title: "Páginas Principales",
+          columns: 3,
+          pages: [
+            { src: '/images/projects/bitdefender/home.png', label: 'Home', alt: 'Bitdefender - Página principal', url: 'bitdefender.com' },
+            { src: '/images/projects/bitdefender/hogar.png', label: 'Hogar', alt: 'Bitdefender - Productos para hogar', url: 'bitdefender.com/hogar' },
+            { src: '/images/projects/bitdefender/Products.png', label: 'Productos', alt: 'Bitdefender - Lista de productos', url: 'bitdefender.com/products' }
+          ]
+        },
+        {
+          title: "Blog y Contacto",
+          columns: 3,
+          pages: [
+            { src: '/images/projects/bitdefender/blog.png', label: 'Blog', alt: 'Bitdefender - Blog', url: 'bitdefender.com/blog' },
+            { src: '/images/projects/bitdefender/blog-detalle.png', label: 'Blog Detalle', alt: 'Bitdefender - Artículo de blog', url: 'bitdefender.com/blog/post' },
+            { src: '/images/projects/bitdefender/contacto.png', label: 'Contacto', alt: 'Bitdefender - Contacto', url: 'bitdefender.com/contacto' }
+          ]
+        },
+        {
+          title: "Flujo de Compra",
+          columns: 3,
+          pages: [
+            { src: '/images/projects/bitdefender/cart.png', label: 'Carrito', alt: 'Bitdefender - Carrito de compras', url: 'bitdefender.com/cart' },
+            { src: '/images/projects/bitdefender/Account.png', label: 'Mi Cuenta', alt: 'Bitdefender - Mi cuenta', url: 'bitdefender.com/account' },
+            { src: '/images/projects/bitdefender/Gracias.png', label: 'Confirmación', alt: 'Bitdefender - Página de gracias', url: 'bitdefender.com/gracias' }
+          ]
+        },
+        {
+          title: "Sección Empresas",
+          columns: 2,
+          pages: [
+            { src: '/images/projects/bitdefender/empresa-detalle.png', label: 'Empresa Detalle', alt: 'Bitdefender - Detalle para empresas', url: 'bitdefender.com/empresa' },
+            { src: '/images/projects/bitdefender/Account-1.png', label: 'Cuenta Empresa', alt: 'Bitdefender - Cuenta empresarial', url: 'bitdefender.com/cuenta' }
+          ]
+        }
+      ]}
+    />
+
+    <!-- Highlights -->
+    <section class="relative px-6 md:px-12 lg:px-24 py-24 bg-[var(--color-primary)] overflow-hidden">
+      <!-- Decorative circles -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full border border-[#FDF8F3]/5"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full border border-[#FDF8F3]/5"></div>
+      </div>
+      
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+          <p class="reveal text-[var(--color-bg)]/70 text-sm uppercase tracking-[0.3em] mb-4 flex items-center justify-center gap-3" data-delay="0">
+            <span class="text-[var(--color-secondary)]">&#10038;</span>
+            Destacados
+            <span class="text-[var(--color-secondary)]">&#10038;</span>
+          </p>
+          <h2 class="reveal font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-[var(--color-bg)] italic" data-delay="0.1">
+            Resultados del research
+          </h2>
+        </div>
+
+        <div class="stagger-grid grid grid-cols-1 md:grid-cols-2 gap-6">
+          {project.highlights.map((highlight, index) => (
+            <div class="reveal group flex items-start gap-5 p-8 bg-[var(--color-bg)]/10 backdrop-blur-sm rounded-2xl border border-[var(--color-bg)]/10 hover:bg-[var(--color-bg)]/15 hover:border-[var(--color-secondary)]/30 transition-all duration-500" data-delay={0.1 + index * 0.1}>
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-[var(--color-secondary)]/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-[var(--color-secondary)] transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[var(--color-bg)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <p class="text-[var(--color-bg)] text-lg leading-relaxed">{highlight}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Next Project -->
+    <section class="border-t border-[var(--color-border)] relative overflow-hidden">
+      <a href={`/work/${project.nextProject.slug}`} class="group block px-6 md:px-12 lg:px-24 py-24 transition-colors duration-500 hover:bg-[var(--color-primary)]">
+        <!-- Background animation on hover -->
+        <div class="absolute inset-0 bg-[var(--color-primary)] transform scale-y-0 origin-bottom transition-transform duration-700 ease-out group-hover:scale-y-100 -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8 relative z-10">
+          <div>
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2 group-hover:text-[#FDF8F3]/70 transition-colors duration-500">
+              <span class="w-8 h-[1px] bg-current"></span>
+              Siguiente proyecto
+            </p>
+            <h3 class="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium italic group-hover:text-[#FDF8F3] transition-colors duration-500">
+              {project.nextProject.title}
+            </h3>
+          </div>
+          <div class="flex-shrink-0">
+            <div class="w-20 h-20 rounded-full border-2 border-[var(--color-border)] inline-flex items-center justify-center group-hover:border-[#FDF8F3] group-hover:bg-[#FDF8F3] transition-all duration-500 group-hover:scale-110 leading-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 flex-none transition-all duration-500 group-hover:translate-x-2 group-hover:text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:block">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

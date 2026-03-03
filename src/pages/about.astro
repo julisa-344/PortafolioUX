@@ -1,0 +1,232 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Skills organized by category
+const skills = [
+  {
+    name: 'UX Research',
+    items: ['Benchmark Analysis', 'User Interviews', 'Information Architecture', 'Sitemap', 'User Flows', 'Wireframes', 'Prototyping', 'Usability Testing'],
+  },
+  {
+    name: 'UI Design',
+    items: ['Design Systems', 'Visual Design', 'Responsive Design', 'Interaction Design', 'Figma', 'Adobe XD', 'Photoshop', 'Illustrator'],
+  },
+  {
+    name: 'Development',
+    items: ['React', 'Next.js', 'Vue.js', 'Astro', 'HTML/CSS', 'JavaScript', 'TypeScript', 'Tailwind CSS'],
+  },
+  {
+    name: 'Soft Skills',
+    items: ['Client Presentations', 'Stakeholder Management', 'Problem Solving', 'Team Collaboration', 'Project Planning', 'Design Thinking'],
+  },
+];
+
+// Experience/trajectory
+const experience = [
+  {
+    role: 'UX/UI Designer & Frontend Developer',
+    company: 'Freelance',
+    period: '2023 - Present',
+    description: 'Diseño y desarrollo de productos digitales para clientes diversos. Liderando proyectos desde la investigación hasta la implementación.',
+  },
+  {
+    role: 'UX/UI Designer',
+    company: 'Agencia Digital',
+    period: '2021 - 2023',
+    description: 'Diseño de experiencias de usuario para plataformas web y móviles. Participación en reuniones con clientes y presentación de propuestas de diseño.',
+  },
+];
+---
+
+<Layout title="Sobre Mí | Julisa - UX/UI Designer & Developer" description="Conoce más sobre mi trayectoria como UX/UI Designer y Developer. Habilidades, experiencia y proceso de trabajo.">
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="min-h-[70vh] flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-16 pt-32">
+      <div class="max-w-[1600px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-end">
+        <div>
+          <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
+            Sobre mí
+          </p>
+          <h1 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-semibold mb-6" data-delay="0.1">
+            Diseñadora UX/UI con superpoderes de desarrollo
+          </h1>
+        </div>
+        <div>
+          <p class="reveal text-[var(--color-text-muted)] text-lg md:text-xl leading-relaxed" data-delay="0.2">
+            Combino investigación de usuarios, diseño visual y desarrollo frontend para crear 
+            productos digitales que no solo se ven bien, sino que funcionan de manera excepcional.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profile image placeholder -->
+    <section class="px-6 md:px-12 lg:px-24 pb-24">
+      <div class="max-w-[1600px] mx-auto">
+        <div class="reveal img-reveal rounded-2xl overflow-hidden max-w-2xl" data-delay="0.3">
+          <div class="w-full aspect-[4/3] bg-[var(--color-bg-secondary)] flex items-center justify-center">
+            <div class="text-center">
+              <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <p class="text-[var(--color-text-muted)]">Foto de perfil</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bio Section -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)]">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        <div class="lg:col-span-4">
+          <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
+            Mi historia
+          </p>
+          <h2 class="reveal font-display text-3xl md:text-4xl font-semibold" data-delay="0.1">
+            Del diseño al código
+          </h2>
+        </div>
+        <div class="lg:col-span-8 space-y-6">
+          <p class="reveal text-lg md:text-xl leading-relaxed text-[var(--color-text-muted)]" data-delay="0.2">
+            Mi camino comenzó en el diseño gráfico, pero rápidamente descubrí mi pasión por crear 
+            experiencias digitales centradas en el usuario. Esto me llevó a especializarme en UX/UI, 
+            donde encontré mi verdadera vocación.
+          </p>
+          <p class="reveal text-lg md:text-xl leading-relaxed text-[var(--color-text-muted)]" data-delay="0.3">
+            Sin embargo, quería ir más allá. Aprender desarrollo frontend me permitió tener control 
+            total sobre mis diseños y entender las posibilidades y limitaciones técnicas. Hoy, puedo 
+            llevar un proyecto desde el concepto inicial hasta el producto final funcionando.
+          </p>
+          <p class="reveal text-lg md:text-xl leading-relaxed text-[var(--color-text-muted)]" data-delay="0.4">
+            En cada proyecto, lidero las reuniones con clientes, defino objetivos, resuelvo flujos 
+            de usuario y presento soluciones de diseño. Mi enfoque integral me permite comunicarme 
+            efectivamente tanto con equipos de diseño como de desarrollo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="px-6 md:px-12 lg:px-24 py-32 bg-[var(--color-bg-secondary)]">
+      <div class="max-w-[1600px] mx-auto relative">
+        <!-- Header -->
+        <div class="mb-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          <div class="lg:col-span-7">
+            <p class="reveal text-[var(--color-text-muted)] text-xs uppercase tracking-[0.4em] mb-5 flex items-center gap-3" data-delay="0">
+              <span class="block w-8 h-[1px] bg-[var(--color-primary)]/40"></span>
+              Habilidades
+            </p>
+            <h2 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.1]" data-delay="0.1">
+              Lo que hago
+            </h2>
+          </div>
+          <div class="lg:col-span-5">
+            <p class="reveal text-[var(--color-text-muted)] text-base leading-relaxed" data-delay="0.2">
+              Un conjunto de disciplinas que combino para crear productos digitales completos — desde la investigación hasta el código.
+            </p>
+          </div>
+        </div>
+
+        <!-- Skills Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[var(--color-primary)]/10 rounded-2xl overflow-hidden">
+
+          {skills.map((category, index) => (
+            <div class="reveal skills-card group bg-[var(--color-bg-secondary)] hover:bg-[var(--color-primary)] transition-colors duration-500 p-8 lg:p-10 flex flex-col" data-delay={0.1 + index * 0.1}>
+              <div class="mb-8">
+                <span class="text-[var(--color-primary)]/40 group-hover:text-white/30 text-xs font-mono tracking-widest transition-colors duration-500">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <h3 class="font-display text-2xl font-semibold mt-1 text-[var(--color-text)] group-hover:text-[#FDF8F3] transition-colors duration-500">
+                  {category.name}
+                </h3>
+              </div>
+              <ul class="space-y-3 mt-auto">
+                {category.items.map(item => (
+                  <li class="text-[var(--color-text-muted)] group-hover:text-[#FDF8F3]/70 text-sm flex items-start gap-3 leading-snug transition-colors duration-500">
+                    <span class="mt-[6px] w-1 h-1 rounded-full bg-[var(--color-primary)]/50 group-hover:bg-white/40 shrink-0 transition-colors duration-500"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)]">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        <div class="lg:col-span-4">
+          <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
+            Trayectoria
+          </p>
+          <h2 class="reveal font-display text-3xl md:text-4xl font-semibold" data-delay="0.1">
+            Experiencia
+          </h2>
+        </div>
+        <div class="lg:col-span-8">
+          <div class="space-y-12">
+            {experience.map((exp, index) => (
+              <div class="reveal border-l-2 border-[var(--color-primary)] pl-6" data-delay={0.1 + index * 0.1}>
+                <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2">
+                  {exp.period}
+                </p>
+                <h3 class="font-display text-xl md:text-2xl font-semibold mb-1">
+                  {exp.role}
+                </h3>
+                <p class="text-[var(--color-primary)] font-medium mb-3">
+                  {exp.company}
+                </p>
+                <p class="text-[var(--color-text-muted)]">
+                  {exp.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 bg-[var(--color-primary)]">
+      <div class="max-w-[1600px] mx-auto">
+        <div class="mb-16">
+          <p class="reveal text-[#FDF8F3]/60 text-xs uppercase tracking-[0.3em] mb-4 flex items-center gap-3" data-delay="0">
+            <span class="w-8 h-[1px] bg-[#FDF8F3]/40"></span>
+            Mi proceso
+          </p>
+          <h2 class="reveal font-display text-3xl md:text-4xl lg:text-5xl font-semibold text-[#FDF8F3]" data-delay="0.1">
+            Cómo trabajo
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-[#FDF8F3]/10">
+          {[
+            { num: '01', title: 'Descubrir', desc: 'Entender el problema, los usuarios y el contexto del negocio' },
+            { num: '02', title: 'Definir', desc: 'Estructurar la información y definir los flujos de usuario' },
+            { num: '03', title: 'Diseñar', desc: 'Crear interfaces visuales atractivas y funcionales' },
+            { num: '04', title: 'Desarrollar', desc: 'Implementar el diseño en código limpio y performante' },
+          ].map((step, index) => (
+            <div class="reveal border-b md:border-b-0 md:border-r border-[#FDF8F3]/10 last:border-0 px-0 py-10 md:px-8 lg:px-10" data-delay={0.1 + index * 0.1}>
+              <p class="font-display text-5xl lg:text-6xl font-bold text-[#FDF8F3]/15 mb-6 leading-none">{step.num}</p>
+              <h3 class="font-display text-xl font-semibold text-[#FDF8F3] mb-3">{step.title}</h3>
+              <p class="text-[#FDF8F3]/60 text-sm leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

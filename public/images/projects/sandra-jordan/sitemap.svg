@@ -1,0 +1,59 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#f5f5d9"/>
+  <!-- Wireframe screens -->
+  <rect x="50" y="80" width="350" height="740" rx="16" fill="#ebe8cc" stroke="#c9a5a6" stroke-width="2"/>
+  <rect x="425" y="80" width="350" height="740" rx="16" fill="#ebe8cc" stroke="#c9a5a6" stroke-width="2"/>
+  <rect x="800" y="80" width="350" height="740" rx="16" fill="#ebe8cc" stroke="#c9a5a6" stroke-width="2"/>
+  <!-- Labels -->
+  <text x="225" y="50" text-anchor="middle" fill="#a85456" font-family="system-ui" font-size="14">Home</text>
+  <text x="600" y="50" text-anchor="middle" fill="#a85456" font-family="system-ui" font-size="14">Product</text>
+  <text x="975" y="50" text-anchor="middle" fill="#a85456" font-family="system-ui" font-size="14">Checkout</text>
+  <!-- Screen 1 - Home -->
+  <rect x="70" y="110" width="310" height="50" rx="4" fill="#e0ddc0"/>
+  <rect x="70" y="180" width="310" height="200" rx="8" fill="#911A1C" fill-opacity="0.15"/>
+  <rect x="90" y="220" width="150" height="20" rx="4" fill="#c9a5a6"/>
+  <rect x="90" y="260" width="200" height="12" rx="4" fill="#c9a5a6"/>
+  <rect x="90" y="290" width="100" height="36" rx="18" fill="#c9a5a6"/>
+  <rect x="70" y="400" width="145" height="180" rx="8" fill="#e0ddc0"/>
+  <rect x="235" y="400" width="145" height="180" rx="8" fill="#e0ddc0"/>
+  <rect x="70" y="600" width="145" height="180" rx="8" fill="#e0ddc0"/>
+  <rect x="235" y="600" width="145" height="180" rx="8" fill="#e0ddc0"/>
+  <!-- Screen 2 - Product -->
+  <rect x="445" y="110" width="310" height="350" rx="8" fill="#e0ddc0"/>
+  <rect x="445" y="480" width="200" height="24" rx="4" fill="#c9a5a6"/>
+  <rect x="445" y="520" width="150" height="16" rx="4" fill="#c9a5a6"/>
+  <rect x="445" y="560" width="100" height="20" rx="4" fill="#911A1C" fill-opacity="0.3"/>
+  <rect x="445" y="610" width="310" height="12" rx="4" fill="#c9a5a6"/>
+  <rect x="445" y="635" width="280" height="12" rx="4" fill="#c9a5a6"/>
+  <rect x="445" y="660" width="250" height="12" rx="4" fill="#c9a5a6"/>
+  <rect x="445" y="710" width="150" height="50" rx="25" fill="#c9a5a6"/>
+  <rect x="610" y="710" width="145" height="50" rx="25" fill="#e0ddc0" stroke="#c9a5a6" stroke-width="2"/>
+  <!-- Screen 3 - Checkout -->
+  <rect x="820" y="110" width="310" height="50" rx="4" fill="#e0ddc0"/>
+  <text x="975" y="142" text-anchor="middle" fill="#a85456" font-family="system-ui" font-size="12">CHECKOUT</text>
+  <!-- Steps -->
+  <circle cx="870" cy="190" r="16" fill="#911A1C"/>
+  <line x1="886" y1="190" x2="924" y2="190" stroke="#c9a5a6" stroke-width="2"/>
+  <circle cx="940" cy="190" r="16" fill="#c9a5a6"/>
+  <line x1="956" y1="190" x2="994" y2="190" stroke="#c9a5a6" stroke-width="2"/>
+  <circle cx="1010" cy="190" r="16" fill="#c9a5a6"/>
+  <line x1="1026" y1="190" x2="1064" y2="190" stroke="#c9a5a6" stroke-width="2"/>
+  <circle cx="1080" cy="190" r="16" fill="#c9a5a6"/>
+  <!-- Form fields -->
+  <rect x="820" y="230" width="310" height="50" rx="8" fill="#e0ddc0"/>
+  <rect x="820" y="295" width="310" height="50" rx="8" fill="#e0ddc0"/>
+  <rect x="820" y="360" width="150" height="50" rx="8" fill="#e0ddc0"/>
+  <rect x="980" y="360" width="150" height="50" rx="8" fill="#e0ddc0"/>
+  <rect x="820" y="430" width="310" height="100" rx="8" fill="#e0ddc0"/>
+  <!-- Order summary -->
+  <rect x="820" y="550" width="310" height="200" rx="8" fill="#e0ddc0"/>
+  <rect x="840" y="570" width="60" height="60" rx="4" fill="#c9a5a6"/>
+  <rect x="920" y="580" width="150" height="16" rx="4" fill="#c9a5a6"/>
+  <rect x="920" y="608" width="80" height="12" rx="4" fill="#c9a5a6"/>
+  <line x1="840" y1="670" x2="1110" y2="670" stroke="#c9a5a6" stroke-width="1"/>
+  <rect x="840" y="690" width="80" height="14" rx="4" fill="#c9a5a6"/>
+  <rect x="1030" y="690" width="60" height="14" rx="4" fill="#c9a5a6"/>
+  <rect x="840" y="720" width="100" height="14" rx="4" fill="#911A1C" fill-opacity="0.2"/>
+  <rect x="1010" y="720" width="80" height="14" rx="4" fill="#911A1C" fill-opacity="0.2"/>
+  <rect x="820" y="770" width="310" height="50" rx="25" fill="#c9a5a6"/>
+</svg>

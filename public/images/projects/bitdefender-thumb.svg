@@ -1,0 +1,8 @@
+<svg width="1920" height="1200" viewBox="0 0 1920 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1200" fill="#f5f5d9"/>
+  <rect x="860" y="500" width="200" height="200" rx="20" fill="#ebe8cc"/>
+  <!-- Shield/security icon -->
+  <path d="M960 530 L920 550 L920 590 C920 620 935 645 960 660 C985 645 1000 620 1000 590 L1000 550 L960 530Z" fill="none" stroke="#911A1C" stroke-width="4"/>
+  <path d="M945 585 L955 595 L975 570" fill="none" stroke="#911A1C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="960" y="685" text-anchor="middle" fill="#911A1C" font-family="system-ui" font-size="20" font-weight="600">Bitdefender</text>
+</svg>

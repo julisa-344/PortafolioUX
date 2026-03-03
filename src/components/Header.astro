@@ -1,0 +1,145 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<header class={`fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-border)]/30 ${className}`} id="main-header">
+  <nav class="flex items-center justify-between px-6 md:px-12 py-6 backdrop-blur-md bg-[var(--color-bg)]/90 transition-all duration-500">
+    <!-- Logo -->
+    <a href="/" class="logo-link group relative flex items-center">
+      <img 
+        src="/logo.svg" 
+        alt="Julisa Leon" 
+        class="h-8 md:h-10 w-auto transition-all duration-500 group-hover:scale-105"
+      />
+      <!-- Hover glow effect -->
+      <div class="absolute inset-0 bg-[var(--color-primary)]/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+    </a>
+
+    <!-- Navigation Links -->
+    <div class="hidden md:flex items-center gap-10">
+      <a href="/work" class="nav-link group relative text-[var(--color-text)] text-sm uppercase tracking-widest hover:text-[var(--color-primary)] transition-colors duration-300">
+        <span class="relative z-10">Proyectos</span>
+        <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-primary)] transition-all duration-500 ease-out group-hover:w-full"></span>
+      </a>
+      <a href="/about" class="nav-link group relative text-[var(--color-text)] text-sm uppercase tracking-widest hover:text-[var(--color-primary)] transition-colors duration-300">
+        <span class="relative z-10">Sobre mí</span>
+        <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-primary)] transition-all duration-500 ease-out group-hover:w-full"></span>
+      </a>
+      <a href="/contact" class="nav-cta group relative overflow-hidden px-6 py-3 bg-[var(--color-primary)] text-[#FDF8F3] text-sm uppercase tracking-widest rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-[var(--color-primary)]/25">
+        <span class="relative z-10">Contacto</span>
+        <div class="absolute inset-0 bg-[var(--color-primary-dark)] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="md:hidden text-[var(--color-text)]" id="menu-toggle" aria-label="Toggle menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Menu -->
+<div class="fixed inset-0 bg-[var(--color-primary)] z-40 hidden" id="mobile-menu">
+  <div class="absolute inset-0 overflow-hidden">
+    <!-- Decorative floating butterflies -->
+    <img src="/mariposa.png" alt="" class="absolute top-20 right-10 w-16 h-16 opacity-20 animate-float-slow" />
+    <img src="/mariposa2.png" alt="" class="absolute bottom-32 left-10 w-12 h-12 opacity-15 animate-float-delayed" />
+  </div>
+  <div class="flex flex-col items-center justify-center h-full gap-8 relative z-10">
+    <a href="/" class="mb-8">
+      <img src="/logo.svg" alt="Julisa Leon" class="h-12 brightness-0 invert" />
+    </a>
+    <a href="/work" class="mobile-nav-link text-[#FDF8F3] text-4xl font-serif font-medium hover:opacity-80 transition-all duration-300 hover:translate-x-2">Proyectos</a>
+    <a href="/about" class="mobile-nav-link text-[#FDF8F3] text-4xl font-serif font-medium hover:opacity-80 transition-all duration-300 hover:translate-x-2">Sobre mí</a>
+    <a href="/contact" class="mobile-nav-link text-[#FDF8F3] text-4xl font-serif font-medium hover:opacity-80 transition-all duration-300 hover:translate-x-2">Contacto</a>
+  </div>
+  <button class="absolute top-6 right-6 text-[#FDF8F3] p-2 hover:rotate-90 transition-transform duration-300" id="menu-close" aria-label="Close menu">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+</div>
+
+<style>
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+  
+  @keyframes float-delayed {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(-5deg); }
+  }
+  
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+  
+  .animate-float-delayed {
+    animation: float-delayed 8s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+  
+  /* Header scroll effects */
+  header.scrolled nav {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  
+  header.scrolled .logo-link img {
+    height: 1.75rem;
+  }
+  
+  @media (min-width: 768px) {
+    header.scrolled .logo-link img {
+      height: 2rem;
+    }
+  }
+</style>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const menuClose = document.getElementById('menu-close');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const header = document.getElementById('main-header');
+
+  // Menu toggle
+  menuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  });
+
+  menuClose?.addEventListener('click', () => {
+    mobileMenu?.classList.add('hidden');
+    document.body.style.overflow = '';
+  });
+
+  // Close menu on link click
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Header scroll effect
+  let lastScroll = 0;
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    
+    if (currentScroll > 50) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+  });
+</script>

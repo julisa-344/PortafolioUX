@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ProjectsGrid from '../components/ProjectsGrid.astro';
+import About from '../components/About.astro';
+import Footer from '../components/Footer.astro';
+
+// Proyectos destacados - Aquí conectarás con tus proyectos reales
+const featuredProjects = [
+  {
+    slug: 'xplora',
+    title: 'Xplora',
+    category: 'Rediseño Web + Desarrollo',
+    tags: ['UX Research', 'UI Design', 'Frontend Dev', 'React'],
+    thumbnail: '/images/projects/xplora/portadaCard.png',
+    year: '2024',
+    featured: true,
+  },
+  {
+    slug: 'sandra-jordan',
+    title: 'Sandra Jordan Prima Alpaca',
+    category: 'E-commerce de Lujo',
+    tags: ['UX Design', 'UI Design', 'E-commerce'],
+    thumbnail: '/images/projects/sandra-jordan/portadaCard.png',
+    year: '2024',
+    featured: true,
+  },
+  {
+    slug: 'comsatel',
+    title: 'Comsatel',
+    category: 'Rediseño Web Multi-país',
+    tags: ['UX/UI Design', 'Multi-país', 'B2B'],
+    thumbnail: '/images/projects/comsatel/portadaCard.png',
+    year: '2023-2024',
+    featured: true,
+  },
+  {
+    slug: 'intense',
+    title: 'Intense Viajes',
+    category: 'Plataforma de Viajes',
+    tags: ['UX Research', 'Wireframes', 'Sitemap'],
+    thumbnail: '/images/projects/intense/portadaCard.png',
+    year: '2023',
+    featured: true,
+  },
+];
+
+// Habilidades organizadas por categoría
+const skills = [
+  {
+    name: 'UX Research',
+    items: ['Benchmark', 'User Interviews', 'Sitemap', 'User Flows', 'Wireframes', 'Prototyping'],
+  },
+  {
+    name: 'UI Design',
+    items: ['Design Systems', 'Visual Design', 'Responsive Design', 'Figma', 'Adobe XD'],
+  },
+  {
+    name: 'Development',
+    items: ['React', 'Next.js', 'Vue.js', 'HTML/CSS', 'JavaScript', 'Astro'],
+  },
+  {
+    name: 'Soft Skills',
+    items: ['Client Meetings', 'Presentations', 'Problem Solving', 'Team Collaboration'],
+  },
+];
+---
+
+<Layout title="Julisa | UX/UI Designer & Developer">
+  <Header />
+  
+  <main>
+    <Hero 
+      title="Diseño experiencias que conectan y código que las hace realidad"
+      subtitle="UX/UI Designer & Developer"
+    >
+      Transformo ideas en productos digitales centrados en el usuario. 
+      Desde la investigación hasta la implementación, creo experiencias 
+      memorables que generan resultados.
+    </Hero>
+
+    <ProjectsGrid projects={featuredProjects} />
+
+    <About skills={skills} />
+  </main>
+
+  <Footer />
+</Layout>

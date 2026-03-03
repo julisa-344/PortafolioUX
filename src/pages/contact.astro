@@ -1,0 +1,477 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingElements from '../components/FloatingElements.astro';
+
+const contactLinks = [
+  {
+    label: 'Email',
+    value: 'julisa.leon344@gmail.com',
+    href: 'mailto:julisa.leon344@gmail.com',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>`,
+  },
+  {
+    label: 'LinkedIn',
+    value: 'julisa-leon-front-ui',
+    href: 'https://www.linkedin.com/in/julisa-leon-front-ui/',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
+  },
+  {
+    label: 'Behance',
+    value: 'julisaleon1',
+    href: 'https://www.behance.net/julisaleon1',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029H23.726zm-7.726-3h3.457c-.073-1.464-.823-2.297-1.713-2.297-.955 0-1.642.856-1.744 2.297zM9.918 6.435c.668.515 1.072 1.286 1.072 2.34 0 1.073-.446 1.954-1.249 2.562-.523.393-1.133.617-1.831.713C9.23 12.325 10 13.38 10 14.92c0 1.746-.881 3.031-2.302 3.677C6.994 18.879 6.218 19 5.274 19H0V5h5.62c2.107 0 3.747.81 4.298 1.435zm-5.918.565v2.8h2.333c.6 0 1.067-.15 1.4-.447.333-.298.5-.71.5-1.2 0-1.1-.667-1.553-1.8-1.553H4zm0 5.3V17h2.8c.667 0 1.167-.167 1.5-.5.333-.333.5-.8.5-1.367 0-1.267-.833-1.833-2.267-1.833H4z"/></svg>`,
+  },
+  {
+    label: 'GitHub',
+    value: 'julisa-344',
+    href: 'https://github.com/julisa-344',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`,
+  },
+];
+---
+
+<Layout title="Contacto | Julisa - UX/UI Designer & Developer" description="¿Tienes un proyecto en mente? Hablemos sobre cómo puedo ayudarte a crear experiencias digitales excepcionales.">
+  <Header />
+
+  <main>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[55vh] flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-0 pt-32 overflow-hidden">
+      <FloatingElements variant="hero" intensity="subtle" />
+
+      <div class="max-w-[1600px] mx-auto w-full relative z-10">
+
+        <!-- Top meta row -->
+        <div class="reveal flex items-center justify-between mb-10" data-delay="0">
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-[var(--color-secondary)] animate-pulse"></span>
+            <span class="text-[var(--color-text-muted)] text-xs uppercase tracking-[0.3em]">Disponible para proyectos</span>
+          </div>
+          <span class="text-[var(--color-text-muted)] text-xs uppercase tracking-[0.3em]">Lima, Perú — 2025</span>
+        </div>
+
+        <!-- Big title -->
+        <h1 class="reveal font-display font-semibold leading-[0.9] mb-0" data-delay="0.1"
+          style="font-size: clamp(4rem, 14vw, 13rem);">
+          Hablemos.
+        </h1>
+
+      </div>
+
+      <!-- Decorative line — full cherry red -->
+      <div class="reveal max-w-[1600px] mx-auto w-full mt-8" data-delay="0.3">
+        <div class="h-[1px] w-full bg-[var(--color-primary)]"></div>
+      </div>
+    </section>
+
+    <!-- Main Grid: Info + Form -->
+    <section class="px-6 md:px-12 lg:px-24 py-20">
+      <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-16 lg:gap-40">
+
+        <!-- LEFT: Canales directos -->
+        <div class="reveal" data-delay="0.1">
+          <p class="text-[var(--color-text-muted)] text-xs uppercase tracking-[0.3em] mb-2">Canales directos</p>
+          <p class="text-[var(--color-text-muted)] text-sm leading-relaxed mb-8 max-w-xs">
+            Prefiero la comunicación directa. Escríbeme o encuéntrame en mis redes.
+          </p>
+          <div class="space-y-1">
+            {contactLinks.map((link, index) => (
+              <a
+                href={link.href}
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class="group flex items-center justify-between py-4 border-b border-[var(--color-border)] hover:border-[var(--color-primary)] transition-all duration-300"
+                style={`animation-delay: ${index * 0.05}s`}
+              >
+                <div class="flex items-center gap-3">
+                  <span class="text-[var(--color-text-muted)] group-hover:text-[var(--color-primary)] transition-colors duration-300"
+                    set:html={link.icon} />
+                  <div>
+                    <p class="text-[var(--color-text-muted)] text-xs uppercase tracking-wider">{link.label}</p>
+                    <p class="font-medium group-hover:text-[var(--color-primary)] transition-colors duration-300">{link.value}</p>
+                  </div>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[var(--color-border)] group-hover:text-[var(--color-primary)] transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="reveal" data-delay="0.2">
+          <form class="space-y-0" action="#" method="POST">
+
+            <!-- Name row -->
+            <div class="grid grid-cols-2 gap-4 mb-6">
+              <div>
+                <label for="firstname" class="block text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)] mb-2">
+                  Nombre <span class="text-[var(--color-primary)]">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="firstname"
+                  name="firstname"
+                  required
+                  placeholder="Nombre"
+                  class="w-full px-0 py-3 bg-transparent border-0 border-b border-[var(--color-border)] focus:outline-none focus:border-[var(--color-primary)] transition-colors duration-300 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50"
+                />
+              </div>
+              <div>
+                <label for="lastname" class="block text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)] mb-2">
+                  Apellido
+                </label>
+                <input
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                  placeholder="Apellido"
+                  class="w-full px-0 py-3 bg-transparent border-0 border-b border-[var(--color-border)] focus:outline-none focus:border-[var(--color-primary)] transition-colors duration-300 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50"
+                />
+              </div>
+            </div>
+
+            <!-- Service -->
+            <div class="mb-6">
+              <label for="service-trigger" class="block text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)] mb-2">
+                Servicio
+              </label>
+              <div class="relative" id="service-wrapper">
+
+                <!-- Hidden native select for form submission -->
+                <select id="service" name="service" class="sr-only" tabindex="-1" aria-hidden="true">
+                  <option value="">Selecciona un servicio</option>
+                  <option value="ux-research">UX Research &amp; Strategy</option>
+                  <option value="ui-design">UI Design</option>
+                  <option value="frontend">Frontend Development</option>
+                  <option value="full">Proyecto completo (UX + UI + Dev)</option>
+                  <option value="consultation">Consultoría</option>
+                  <option value="other">Otro</option>
+                </select>
+
+                <!-- Visible trigger button -->
+                <button
+                  type="button"
+                  id="service-trigger"
+                  role="combobox"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="service-listbox"
+                  class="w-full flex items-center justify-between py-3 border-b border-[var(--color-border)] focus:outline-none focus:border-[var(--color-primary)] bg-transparent cursor-pointer transition-colors duration-300"
+                >
+                  <span id="service-display" class="text-sm svc-placeholder-text">
+                    Selecciona un servicio
+                  </span>
+                  <svg id="service-chevron" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-shrink-0 transition-transform duration-300" style="color: var(--color-text-muted)" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                <!-- Custom dropdown panel -->
+                <div
+                  id="service-listbox"
+                  role="listbox"
+                  aria-label="Servicios disponibles"
+                  class="svc-dropdown absolute z-50 left-0 right-0 top-full mt-2 rounded-xl overflow-hidden"
+                  style="background: var(--color-bg); border: 1px solid var(--color-border); box-shadow: 0 8px 40px rgba(103,6,38,0.12), 0 2px 8px rgba(103,6,38,0.06);"
+                >
+                  <div class="py-1.5">
+                 
+                    <button type="button" role="option" data-value="ux-research" data-label="UX Research & Strategy" aria-selected="false"
+                      class="svc-option w-full text-left px-5 py-2.5 text-sm cursor-pointer">
+                      UX Research &amp; Strategy
+                    </button>
+                    <button type="button" role="option" data-value="ui-design" data-label="UI Design" aria-selected="false"
+                      class="svc-option w-full text-left px-5 py-2.5 text-sm cursor-pointer">
+                      UI Design
+                    </button>
+                    <button type="button" role="option" data-value="frontend" data-label="Frontend Development" aria-selected="false"
+                      class="svc-option w-full text-left px-5 py-2.5 text-sm cursor-pointer">
+                      Frontend Development
+                    </button>
+                    <button type="button" role="option" data-value="full" data-label="Proyecto completo (UX + UI + Dev)" aria-selected="false"
+                      class="svc-option w-full text-left px-5 py-2.5 text-sm cursor-pointer">
+                      Proyecto completo (UX + UI + Dev)
+                    </button>
+                    <button type="button" role="option" data-value="consultation" data-label="Consultoría" aria-selected="false"
+                      class="svc-option w-full text-left px-5 py-2.5 text-sm cursor-pointer">
+                      Consultoría
+                    </button>
+                    <button type="button" role="option" data-value="other" data-label="Otro" aria-selected="false"
+                      class="svc-option w-full text-left px-5 py-2.5 text-sm cursor-pointer">
+                      Otro
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-6">
+              <label for="email" class="block text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)] mb-2">
+                Email <span class="text-[var(--color-primary)]">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="tu@email.com"
+                class="w-full px-0 py-3 bg-transparent border-0 border-b border-[var(--color-border)] focus:outline-none focus:border-[var(--color-primary)] transition-colors duration-300 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50"
+              />
+            </div>
+
+            <!-- Message -->
+            <div class="mb-10">
+              <label for="message" class="block text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)] mb-2">
+                Mensaje <span class="text-[var(--color-primary)]">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                placeholder="Cuéntame sobre tu proyecto..."
+                class="w-full px-0 py-3 bg-transparent border-0 border-b border-[var(--color-border)] focus:outline-none focus:border-[var(--color-primary)] transition-colors duration-300 text-[var(--color-text)] placeholder:text-[var(--color-text-muted)]/50 resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="group inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-[var(--color-bg)] rounded-full font-medium hover:bg-[var(--color-primary-dark)] transition-all duration-300 hover-lift"
+            >
+              <span>Enviar mensaje</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Big Email + Phone Banner -->
+    <section class="bg-[var(--color-primary)] px-6 md:px-12 lg:px-24 py-16 md:py-20">
+      <div class="max-w-[1600px] mx-auto">
+
+        <!-- Email + Phone row -->
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <a
+            href="mailto:julisa.leon344@gmail.com"
+            class="group reveal"
+            data-delay="0"
+          >
+            <p class="text-xs uppercase tracking-[0.3em] text-[#FDF8F3]/60 mb-2">Email</p>
+            <p class="font-display font-semibold text-[#FDF8F3] leading-none group-hover:opacity-70 transition-opacity duration-300"
+              style="font-size: clamp(1.4rem, 3.5vw, 3rem);">
+              julisa.leon344@gmail.com
+            </p>
+          </a>
+
+          <a
+            href="tel:+51989312330"
+            class="group reveal"
+            data-delay="0.1"
+          >
+            <p class="text-xs uppercase tracking-[0.3em] text-[#FDF8F3]/60 mb-2">Teléfono</p>
+            <p class="font-display font-semibold text-[#FDF8F3] leading-none group-hover:opacity-70 transition-opacity duration-300"
+              style="font-size: clamp(1.4rem, 3.5vw, 3rem);">
+              +51 989 312 330
+            </p>
+          </a>
+        </div>
+
+        <!-- Divider -->
+        <div class="h-[1px] bg-[#FDF8F3]/20 mb-10"></div>
+
+        <!-- Bottom row: location + links -->
+        <div class="reveal flex flex-col md:flex-row md:items-center md:justify-between gap-6" data-delay="0.2">
+
+          <div class="flex items-center gap-8 text-sm text-[#FDF8F3]/70">
+            <span>Lima, Perú</span>
+            <span>·</span>
+            <span>Lun — Vie, 9AM – 6PM</span>
+          </div>
+
+          <!-- Social links -->
+          <div class="flex items-center gap-6">
+            {contactLinks.map((link) => (
+              <a
+                href={link.href}
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                aria-label={link.label}
+                class="text-[#FDF8F3]/60 hover:text-[#FDF8F3] transition-colors duration-300"
+                set:html={link.icon}
+              />
+            ))}
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  /* ── Custom Service Select ────────────────────────────── */
+  .svc-placeholder-text {
+    color: color-mix(in srgb, var(--color-text-muted) 55%, transparent);
+  }
+
+  .svc-dropdown {
+    opacity: 0;
+    transform: translateY(-6px) scaleY(0.96);
+    transform-origin: top center;
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+
+  .svc-dropdown.svc-open {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    pointer-events: auto;
+  }
+
+  .svc-option {
+    color: var(--color-text);
+    position: relative;
+    transition: background-color 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
+  }
+
+  .svc-placeholder {
+    color: color-mix(in srgb, var(--color-text-muted) 55%, transparent);
+  }
+
+  .svc-option:not(.svc-placeholder):hover,
+  .svc-option:not(.svc-placeholder):focus-visible {
+    background-color: rgba(103, 6, 38, 0.06);
+    color: var(--color-primary);
+    padding-left: 1.75rem;
+    outline: none;
+  }
+
+  .svc-option[aria-selected="true"] {
+    background-color: rgba(103, 6, 38, 0.08);
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .svc-option[aria-selected="true"]::after {
+    content: '';
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-60%) rotate(45deg);
+    width: 5px;
+    height: 9px;
+    border-right: 2px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  #service-trigger:focus-visible {
+    border-bottom-color: var(--color-primary);
+    outline: none;
+  }
+
+  #service-chevron.chevron-open {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  const trigger   = document.getElementById('service-trigger') as HTMLButtonElement | null;
+  const dropdown  = document.getElementById('service-listbox');
+  const native    = document.getElementById('service') as HTMLSelectElement | null;
+  const display   = document.getElementById('service-display');
+  const chevron   = document.getElementById('service-chevron');
+  const wrapper   = document.getElementById('service-wrapper');
+
+  let open = false;
+
+  function openSvc() {
+    open = true;
+    dropdown?.classList.add('svc-open');
+    trigger?.setAttribute('aria-expanded', 'true');
+    chevron?.classList.add('chevron-open');
+  }
+
+  function closeSvc() {
+    open = false;
+    dropdown?.classList.remove('svc-open');
+    trigger?.setAttribute('aria-expanded', 'false');
+    chevron?.classList.remove('chevron-open');
+  }
+
+  trigger?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    open ? closeSvc() : openSvc();
+  });
+
+  document.querySelectorAll<HTMLElement>('.svc-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const val   = opt.dataset.value ?? '';
+      const label = opt.dataset.label ?? '';
+
+      if (native) native.value = val;
+
+      if (display) {
+        display.textContent = label;
+        if (val) {
+          display.classList.remove('svc-placeholder-text');
+          display.style.color = 'var(--color-text)';
+        } else {
+          display.classList.add('svc-placeholder-text');
+          display.style.color = '';
+        }
+      }
+
+      document.querySelectorAll('.svc-option').forEach(o => o.setAttribute('aria-selected', 'false'));
+      if (val) opt.setAttribute('aria-selected', 'true');
+
+      closeSvc();
+      trigger?.focus();
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!wrapper?.contains(e.target as Node)) closeSvc();
+  });
+
+  // Keyboard — trigger
+  trigger?.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (['Enter', ' ', 'ArrowDown'].includes(e.key)) {
+      e.preventDefault();
+      openSvc();
+      (dropdown?.querySelector<HTMLElement>('.svc-option:not(.svc-placeholder)'))?.focus();
+    }
+    if (e.key === 'Escape') closeSvc();
+  });
+
+  // Keyboard — options
+  dropdown?.addEventListener('keydown', (e: KeyboardEvent) => {
+    const opts = Array.from(dropdown.querySelectorAll<HTMLElement>('.svc-option'));
+    const idx  = opts.indexOf(document.activeElement as HTMLElement);
+
+    if (e.key === 'ArrowDown') { e.preventDefault(); opts[Math.min(idx + 1, opts.length - 1)]?.focus(); }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (idx <= 0) { closeSvc(); trigger?.focus(); }
+      else opts[idx - 1]?.focus();
+    }
+    if (e.key === 'Escape')              { closeSvc(); trigger?.focus(); }
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); (document.activeElement as HTMLElement)?.click(); }
+  });
+</script>

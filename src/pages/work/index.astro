@@ -1,0 +1,132 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+// Todos los proyectos
+const allProjects = [
+  {
+    slug: 'xplora',
+    title: 'Xplora',
+    category: 'Rediseño Web + Desarrollo',
+    description: 'Rediseño completo de la plataforma de descubrimiento de cafeterías con sistema de recompensas. Desde investigación UX hasta implementación en código.',
+    tags: ['UX Research', 'UI Design', 'Frontend Dev', 'React'],
+    thumbnail: '/images/projects/xplora/portadaCard.png',
+    year: '2024',
+    featured: true,
+  },
+  {
+    slug: 'sandra-jordan',
+    title: 'Sandra Jordan Prima Alpaca',
+    category: 'E-commerce de Lujo',
+    description: 'Diseño de experiencia de compra para marca de textiles de lujo especializada en fibra de alpaca. Enfoque en elegancia y exclusividad.',
+    tags: ['UX Design', 'UI Design', 'E-commerce'],
+    thumbnail: '/images/projects/sandra-jordan/portadaCard.png',
+    year: '2024',
+    featured: true,
+  },
+  {
+    slug: 'comsatel',
+    title: 'Comsatel',
+    category: 'Rediseño Web Corporativo',
+    description: 'Rediseño del sitio web corporativo para empresa de telecomunicaciones con presencia en Perú, Colombia y Bolivia.',
+    tags: ['UX Research', 'UI Design', 'Multi-país'],
+    thumbnail: '/images/projects/comsatel/portadaCard.png',
+    year: '2023',
+    featured: true,
+  },
+  {
+    slug: 'intense',
+    title: 'Intense Viajes',
+    category: 'Plataforma de Viajes',
+    description: 'Investigación UX y arquitectura de información para plataforma de viajes. Benchmark, sitemap y wireframes.',
+    tags: ['UX Research', 'Wireframes', 'Sitemap'],
+    thumbnail: '/images/projects/intense/portadaCard.png',
+    year: '2023',
+    featured: true,
+  },
+  {
+    slug: 'bitdefender',
+    title: 'Bitdefender',
+    category: 'UX Research',
+    description: 'Investigación UX para software de seguridad. Benchmark competitivo, sitemap y wireframes.',
+    tags: ['UX Research', 'Benchmark', 'Wireframes'],
+    thumbnail: '/images/projects/bitdefender/portadaCard.png',
+    year: '2023',
+    featured: true,
+  },
+];
+---
+
+<Layout title="Proyectos | Julisa - UX/UI Designer & Developer" description="Portfolio de proyectos de diseño UX/UI y desarrollo frontend. Casos de estudio de rediseño web, e-commerce y plataformas digitales.">
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="min-h-[60vh] flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-16 pt-32">
+      <div class="max-w-[1600px] mx-auto w-full">
+        <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
+          Portfolio
+        </p>
+        <h1 class="reveal font-display text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold mb-6" data-delay="0.1">
+          Proyectos Seleccionados
+        </h1>
+        <p class="reveal text-[var(--color-text-muted)] text-lg md:text-xl max-w-2xl" data-delay="0.2">
+          Una selección de proyectos donde he aplicado mi enfoque integral: 
+          desde la investigación de usuarios hasta la implementación en código.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter tags (decorative for now) -->
+    <section class="px-6 md:px-12 lg:px-24 pb-12">
+      <div class="max-w-[1600px] mx-auto">
+        <div class="reveal flex flex-wrap gap-3" data-delay="0.3">
+          <button class="tag bg-[var(--color-primary)] text-[#f5f5d9] border-[var(--color-primary)]">Todos</button>
+          <button class="tag">UX Research</button>
+          <button class="tag">UI Design</button>
+          <button class="tag">Development</button>
+          <button class="tag">E-commerce</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="px-6 md:px-12 lg:px-24 pb-24">
+      <div class="max-w-[1600px] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {allProjects.map((project, index) => (
+            <div class="reveal" data-delay={0.1 + index * 0.1}>
+              <ProjectCard project={project} index={index} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)]">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
+          ¿Tienes un proyecto en mente?
+        </p>
+        <h2 class="reveal font-display text-3xl md:text-4xl lg:text-5xl font-semibold mb-8" data-delay="0.1">
+          Trabajemos juntos
+        </h2>
+        <a 
+          href="/contact"
+          class="reveal group inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-[#f5f5d9] rounded-full hover:bg-[var(--color-primary-dark)] transition-colors"
+          data-delay="0.2"
+        >
+          <span class="font-medium">Iniciar conversación</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

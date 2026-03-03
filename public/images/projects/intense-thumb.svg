@@ -1,0 +1,7 @@
+<svg width="1920" height="1200" viewBox="0 0 1920 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1200" fill="#f5f5d9"/>
+  <rect x="860" y="500" width="200" height="200" rx="20" fill="#ebe8cc"/>
+  <!-- Travel/plane hint -->
+  <path d="M930 580 L990 560 L980 580 L1000 590 L980 590 L970 610 L960 590 L930 580Z" fill="#911A1C"/>
+  <text x="960" y="660" text-anchor="middle" fill="#911A1C" font-family="system-ui" font-size="22" font-weight="600">Intense</text>
+</svg>

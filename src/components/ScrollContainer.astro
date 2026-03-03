@@ -1,0 +1,77 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  height?: string;
+  label?: string;
+}
+
+const { src, alt, height = "500px", label } = Astro.props;
+---
+
+<div class="scroll-container" style={`--container-height: ${height}`}>
+  {label && <div class="scroll-label">{label}</div>}
+  <div class="scroll-content">
+    <img src={src} alt={alt} />
+  </div>
+</div>
+
+<style>
+  .scroll-container {
+    height: var(--container-height);
+    overflow-y: auto;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+  }
+
+  .scroll-container::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scroll-container::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+    border-radius: 4px;
+  }
+
+  .scroll-container::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+  }
+
+  .scroll-container::-webkit-scrollbar-thumb:hover {
+    opacity: 0.8;
+  }
+
+  /* Firefox scrollbar */
+  .scroll-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--color-bg-secondary);
+  }
+
+  .scroll-label {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: var(--color-bg-tertiary);
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    width: fit-content;
+    border-radius: 0 0 8px 0;
+  }
+
+  .scroll-content {
+    width: 100%;
+  }
+
+  .scroll-content img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>

@@ -1,0 +1,6 @@
+<svg width="1920" height="1200" viewBox="0 0 1920 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="1200" fill="#f5f5d9"/>
+  <rect x="860" y="500" width="200" height="200" rx="20" fill="#ebe8cc"/>
+  <circle cx="960" cy="580" r="50" fill="#911A1C"/>
+  <text x="960" y="660" text-anchor="middle" fill="#911A1C" font-family="system-ui" font-size="24" font-weight="600">Xplora</text>
+</svg>

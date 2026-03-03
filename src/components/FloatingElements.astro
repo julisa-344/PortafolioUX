@@ -1,0 +1,183 @@
+---
+/**
+ * FloatingElements - Mariposas decorativas que flotan y reaccionan al scroll
+ * Crea una experiencia inmersiva con elementos que se mueven sutilmente
+ */
+interface Props {
+  variant?: 'hero' | 'section' | 'footer';
+  intensity?: 'subtle' | 'medium' | 'high';
+}
+
+const { variant = 'hero', intensity = 'medium' } = Astro.props;
+
+// Configuración según variante
+const config = {
+  hero: {
+    butterflies: [
+      { src: '/mariposa.png', position: 'top-[15%] right-[8%]', size: 'w-20 md:w-28', delay: 0, speed: 'slow' },
+      { src: '/mariposa3.png', position: 'bottom-[25%] right-[12%]', size: 'w-16 md:w-24', delay: 4, speed: 'slow' },
+    ]
+  },
+  section: {
+    butterflies: [
+      { src: '/mariposa.png', position: 'top-[10%] right-[5%]', size: 'w-12 md:w-16', delay: 0, speed: 'medium' },
+    ]
+  },
+  footer: {
+    butterflies: [
+      { src: '/mariposa3.png', position: 'top-[20%] right-[10%]', size: 'w-16 md:w-20', delay: 0, speed: 'slow' },
+    ]
+  }
+};
+
+const butterflies = config[variant].butterflies;
+const opacityMap = { subtle: 'opacity-10', medium: 'opacity-20', high: 'opacity-30' };
+---
+
+<div class="floating-elements-container absolute inset-0 overflow-hidden pointer-events-none z-0">
+  {butterflies.map((butterfly, index) => (
+    <div 
+      class={`floating-butterfly absolute ${butterfly.position} ${butterfly.size} ${opacityMap[intensity]} transition-all duration-1000`}
+      data-speed={butterfly.speed}
+      data-delay={butterfly.delay}
+      data-index={index}
+    >
+      <img 
+        src={butterfly.src} 
+        alt="" 
+        class="w-full h-auto floating-img"
+        loading="lazy"
+      />
+    </div>
+  ))}
+  
+  <!-- Decorative gradient orbs -->
+  <div class="absolute top-1/4 left-1/4 w-64 md:w-96 h-64 md:h-96 rounded-full bg-[var(--color-secondary)]/5 blur-3xl floating-orb" data-speed="slow"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-48 md:w-72 h-48 md:h-72 rounded-full bg-[var(--color-primary)]/5 blur-3xl floating-orb" data-speed="medium" data-delay="2"></div>
+</div>
+
+<style>
+  .floating-butterfly {
+    will-change: transform;
+  }
+  
+  .floating-img {
+    animation: gentle-float var(--float-duration, 8s) ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+  }
+  
+  [data-speed="slow"] .floating-img {
+    --float-duration: 10s;
+  }
+  
+  [data-speed="medium"] .floating-img {
+    --float-duration: 7s;
+  }
+  
+  [data-speed="fast"] .floating-img {
+    --float-duration: 5s;
+  }
+  
+  [data-delay="2"] .floating-img {
+    --float-delay: 2s;
+  }
+  
+  [data-delay="3"] .floating-img {
+    --float-delay: 3s;
+  }
+  
+  [data-delay="4"] .floating-img {
+    --float-delay: 4s;
+  }
+  
+  @keyframes gentle-float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+    25% {
+      transform: translateY(-15px) rotate(3deg) scale(1.02);
+    }
+    50% {
+      transform: translateY(-25px) rotate(-2deg) scale(1);
+    }
+    75% {
+      transform: translateY(-10px) rotate(2deg) scale(0.98);
+    }
+  }
+  
+  .floating-orb {
+    animation: orb-pulse 12s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  
+  .floating-orb[data-delay="2"] {
+    animation-delay: 4s;
+  }
+  
+  @keyframes orb-pulse {
+    0%, 100% {
+      transform: scale(1) translate(0, 0);
+      opacity: 0.3;
+    }
+    33% {
+      transform: scale(1.1) translate(20px, -20px);
+      opacity: 0.5;
+    }
+    66% {
+      transform: scale(0.95) translate(-10px, 10px);
+      opacity: 0.4;
+    }
+  }
+</style>
+
+<script>
+  // Parallax effect on scroll for floating elements
+  const floatingElements = document.querySelectorAll('.floating-butterfly');
+  const floatingOrbs = document.querySelectorAll('.floating-orb');
+  
+  let ticking = false;
+  
+  function updateParallax() {
+    const scrollY = window.scrollY;
+    
+    floatingElements.forEach((el) => {
+      const element = el as HTMLElement;
+      const speed = element.dataset.speed;
+      const index = parseInt(element.dataset.index || '0');
+      
+      // Different parallax speeds
+      let multiplier = 0.05;
+      if (speed === 'medium') multiplier = 0.08;
+      if (speed === 'fast') multiplier = 0.12;
+      
+      // Add slight horizontal movement based on index
+      const xOffset = Math.sin(scrollY * 0.002 + index) * 10;
+      const yOffset = scrollY * multiplier;
+      const rotation = Math.sin(scrollY * 0.001 + index) * 5;
+      
+      element.style.transform = `translate3d(${xOffset}px, ${-yOffset}px, 0) rotate(${rotation}deg)`;
+    });
+    
+    floatingOrbs.forEach((el, index) => {
+      const element = el as HTMLElement;
+      const speed = element.dataset.speed;
+      
+      let multiplier = 0.03;
+      if (speed === 'medium') multiplier = 0.05;
+      
+      const yOffset = scrollY * multiplier;
+      const xOffset = Math.sin(scrollY * 0.001 + index) * 15;
+      
+      element.style.transform = `translate3d(${xOffset}px, ${-yOffset}px, 0)`;
+    });
+    
+    ticking = false;
+  }
+  
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  });
+</script>

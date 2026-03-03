@@ -1,0 +1,472 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DesktopShowcase from '../../components/DesktopShowcase.astro';
+import MobileShowcase from '../../components/MobileShowcase.astro';
+import FloatingElements from '../../components/FloatingElements.astro';
+
+// Datos del proyecto Comsatel
+const project = {
+  title: 'Comsatel',
+  subtitle: 'Rediseño Web Multi-país para Gestión de Flotas GPS',
+  year: '2023-2024',
+  client: 'Comsatel @ Nerd',
+  role: 'UX/UI Designer',
+  duration: '4+ meses',
+  tools: ['Figma', 'FigJam', 'Gemini', 'ChatGPT', 'Claude', 'Pencil'],
+  tags: ['UX/UI Design', 'Multi-país', 'B2B', 'SaaS'],
+  overview: 'Rediseño integral de la plataforma web para Comsatel, empresa líder en soluciones de rastreo GPS vehicular con presencia en Perú, Bolivia y Colombia. El proyecto se centró en unificar la experiencia de usuario, reorganizar la arquitectura de información de sus múltiples servicios y optimizar los flujos de conversión para aumentar la generación de leads.',
+  challenge: 'Integrarme a un proyecto en curso y dar continuidad al trabajo de Estefano Delgado sin contar con sitemap ni wireframes previos. El reto principal fue reorganizar la arquitectura de información para consolidar múltiples tipos de servicios que originalmente estaban distribuidos en 3 webs diferentes (Perú, Bolivia, Colombia), creando una experiencia coherente que facilitara la navegación y aumentara la conversión.',
+  goals: [
+    'Mejorar la experiencia del usuario',
+    'Unificar arquitectura multi-país',
+    'Optimizar flujo de cotización',
+    'Aumentar leads y conversión'
+  ],
+  process: [
+    {
+      phase: 'Adaptación',
+      title: 'Continuidad sin documentación previa',
+      description: 'Acepté el reto de continuar un diseño ya iniciado sin contar con sitemap ni wireframes. Esto requirió analizar profundamente las pantallas existentes, entender las decisiones de diseño previas y definir una estrategia coherente para avanzar. Mi capacidad de adaptación fue clave para mantener la consistencia visual mientras introducía mejoras significativas.',
+      image: '/images/projects/comsatel/home.png'
+    },
+    {
+      phase: 'Arquitectura',
+      title: 'Definición de flujos y estructura',
+      description: 'El mayor desafío fue el header y la navegación: cómo estructurar todo el contenido de servicios, sectores, soluciones y herramientas de manera intuitiva. Definí flujos de usuario y reorganicé la información para que los usuarios pudieran encontrar fácilmente lo que buscaban, independientemente del país.',
+      image: '/images/projects/comsatel/header-mobile.png'
+    },
+    {
+      phase: 'UI Design',
+      title: 'Diseño Visual Corporativo',
+      description: 'Diseñé las interfaces manteniendo la identidad corporativa de Comsatel mientras modernizaba la apariencia visual. Creé componentes reutilizables para las diferentes secciones: servicios, cotizador, formularios y páginas de contenido, asegurando consistencia en toda la plataforma.',
+      image: '/images/projects/comsatel/cotizador.png'
+    }
+  ],
+  highlights: [
+    'Navegación unificada para 3 países con selector inteligente',
+    'Cotizador optimizado con flujo simplificado',
+    'Arquitectura de información clara para múltiples servicios',
+    'Diseño responsive que mejora la experiencia mobile'
+  ],
+  testimonial: {
+    quote: 'Testimonio del cliente pendiente de agregar.',
+    author: 'Cliente Comsatel',
+    role: 'Pendiente'
+  },
+  nextProject: {
+    slug: 'intense',
+    title: 'Intense Viajes'
+  },
+  desktopShowcase: {
+    mainPages: [
+      { src: '/images/projects/comsatel/home.png', label: 'Home', alt: 'Comsatel - Página principal', url: 'comsatel.com.pe' },
+      { src: '/images/projects/comsatel/SOLUCION.png', label: 'Soluciones', alt: 'Comsatel - Página de soluciones', url: 'comsatel.com.pe/soluciones' }
+    ],
+    servicesPages: [
+      { src: '/images/projects/comsatel/sector.png', label: 'Sectores', alt: 'Comsatel - Sectores', url: 'comsatel.com.pe/sectores' },
+      { src: '/images/projects/comsatel/Desktop - 75.png', label: 'Servicios', alt: 'Comsatel - Servicios', url: 'comsatel.com.pe/servicios' },
+      { src: '/images/projects/comsatel/Desktop - 82.png', label: 'Detalle Servicio', alt: 'Comsatel - Detalle de servicio', url: 'comsatel.com.pe/servicio-detalle' }
+    ],
+    quoterPages: [
+      { src: '/images/projects/comsatel/cotizador.png', label: 'Cotizador - Inicio', alt: 'Comsatel - Cotizador paso 1', url: 'comsatel.com.pe/cotizador' },
+      { src: '/images/projects/comsatel/cotizador-1.png', label: 'Cotizador - Paso 2', alt: 'Comsatel - Cotizador paso 2', url: 'comsatel.com.pe/cotizador' },
+      { src: '/images/projects/comsatel/cotizador-2.png', label: 'Cotizador - Paso 3', alt: 'Comsatel - Cotizador paso 3', url: 'comsatel.com.pe/cotizador' }
+    ],
+    toolsPages: [
+      { src: '/images/projects/comsatel/Calculadora del ahorro.png', label: 'Calculadora de Ahorro', alt: 'Comsatel - Calculadora de ahorro', url: 'comsatel.com.pe/calculadora' },
+      { src: '/images/projects/comsatel/Actualiza tus datos.png', label: 'Actualiza tus Datos', alt: 'Comsatel - Formulario actualización', url: 'comsatel.com.pe/actualiza-datos' },
+      { src: '/images/projects/comsatel/Formulariolibro de reclamaciones.png', label: 'Libro de Reclamaciones', alt: 'Comsatel - Libro de reclamaciones', url: 'comsatel.com.pe/reclamaciones' }
+    ]
+  },
+  mobileShowcase: [
+    {
+      title: 'Home',
+      mobile: '/images/projects/comsatel/home-mobile.png'
+    },
+    {
+      title: 'Header',
+      mobile: '/images/projects/comsatel/header-mobile.png'
+    },
+    {
+      title: 'Servicios',
+      mobile: '/images/projects/comsatel/mobile-servicios.png'
+    },
+    {
+      title: 'Sectores',
+      mobile: '/images/projects/comsatel/mobile-sector.png'
+    },
+    {
+      title: 'Soluciones',
+      mobile: '/images/projects/comsatel/solution-mobile.png'
+    },
+    {
+      title: 'Productos',
+      mobile: '/images/projects/comsatel/productos-mobile.png'
+    },
+    {
+      title: 'Cotizador',
+      mobile: '/images/projects/comsatel/cotizador-mobile.png'
+    },
+    {
+      title: 'Cotizador - Paso 2',
+      mobile: '/images/projects/comsatel/cotizador-mobile2.png'
+    },
+    {
+      title: 'Actualiza Datos',
+      mobile: '/images/projects/comsatel/actualizadatos-mobile.png'
+    }
+  ]
+};
+---
+
+<Layout title={`${project.title} | Caso de Estudio`} description={project.overview}>
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section data-hero class="relative min-h-[70vh] flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-16 pt-32 overflow-hidden">
+      <!-- Floating Elements -->
+      <FloatingElements variant="hero" intensity="subtle" />
+      
+      <!-- Back link -->
+      <a href="/work" class="reveal group inline-flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors mb-12 relative z-10" data-delay="0">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+        </svg>
+        <span class="text-sm uppercase tracking-wider underline-grow">Volver a proyectos</span>
+      </a>
+
+      <div class="max-w-7xl relative z-10">
+        <!-- Tags with stagger animation -->
+        <div class="reveal flex flex-wrap gap-2 mb-6" data-delay="0.1">
+          {project.tags.map((tag, index) => (
+            <span class="tag hover-lift" style={`animation-delay: ${index * 0.05}s`}>{tag}</span>
+          ))}
+        </div>
+
+        <!-- Title with split text animation -->
+        <h1 class="reveal font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold mb-6 leading-[1.1]" data-delay="0.2">
+          <span class="inline-block">{project.title}</span>
+        </h1>
+
+        <!-- Subtitle with elegant animation -->
+        <p class="reveal text-[var(--color-text-muted)] text-xl md:text-2xl max-w-3xl mb-12 leading-relaxed" data-delay="0.3">
+          {project.subtitle}
+        </p>
+
+        <!-- Meta info with stagger grid -->
+        <div class="reveal stagger-grid grid grid-cols-2 md:grid-cols-4 gap-8" data-delay="0.4">
+          <div class="group">
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2 transition-colors group-hover:text-[var(--color-primary)]">Cliente</p>
+            <p class="font-medium text-lg">{project.client}</p>
+          </div>
+          <div class="group">
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2 transition-colors group-hover:text-[var(--color-primary)]">Rol</p>
+            <p class="font-medium text-lg">{project.role}</p>
+          </div>
+          <div class="group">
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2 transition-colors group-hover:text-[var(--color-primary)]">Duración</p>
+            <p class="font-medium text-lg">{project.duration}</p>
+          </div>
+          <div class="group">
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2 transition-colors group-hover:text-[var(--color-primary)]">Año</p>
+            <p class="font-medium text-lg">{project.year}</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 reveal" data-delay="1">
+        <div class="flex flex-col items-center gap-2">
+          <span class="text-[var(--color-text-muted)] text-xs uppercase tracking-widest">Scroll</span>
+          <div class="w-[1px] h-12 bg-[var(--color-border)] relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-[var(--color-primary)] animate-scroll-line"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Image with Parallax -->
+    <section class="px-6 md:px-12 lg:px-24 py-8 md:py-12">
+      <div class="max-w-[1800px] mx-auto">
+        <div class="reveal rounded-2xl overflow-hidden shadow-2xl" data-delay="0.2">
+          <img 
+            src="/images/projects/comsatel/heroComsatel.png" 
+            alt={`${project.title} - Vista principal`}
+            class="w-full aspect-[16/9] object-cover object-top"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)] relative overflow-hidden">
+      <!-- Subtle background decoration -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-[var(--color-secondary)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+      
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 relative z-10">
+        <div class="lg:col-span-4">
+          <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2" data-delay="0">
+            <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
+            Resumen
+          </p>
+          <h2 class="reveal font-serif text-3xl md:text-4xl lg:text-5xl font-medium italic" data-delay="0.1">
+            Sobre el proyecto
+          </h2>
+        </div>
+        <div class="lg:col-span-8">
+          <p class="reveal text-lg md:text-xl leading-relaxed text-[var(--color-text-muted)] mb-8" data-delay="0.2">
+            {project.overview}
+          </p>
+          
+          <!-- Tools used with hover effects -->
+          <div class="reveal" data-delay="0.3">
+            <p class="text-sm uppercase tracking-wider text-[var(--color-text-muted)] mb-4">Herramientas</p>
+            <div class="flex flex-wrap gap-3">
+              {project.tools.map((tool, index) => (
+                <span class="tag hover-lift glow" style={`animation-delay: ${index * 0.1}s`}>{tool}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Section divider -->
+      <div class="section-divider max-w-7xl mx-auto mt-24"></div>
+    </section>
+
+    <!-- Challenge -->
+    <section class="relative px-6 md:px-12 lg:px-24 py-24 bg-[var(--color-primary)] overflow-hidden">
+      <!-- Decorative elements -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-[#FDF8F3]/5"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-[#FDF8F3]/5"></div>
+      </div>
+      
+      <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-10">
+        <!-- Left side: Title and description -->
+        <div>
+          <p class="reveal text-[var(--color-secondary)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-3" data-delay="0">
+            <span class="w-8 h-[1px] bg-[var(--color-secondary)]"></span>
+            El reto
+          </p>
+          <h2 class="reveal font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-[#FDF8F3] mb-8 italic" data-delay="0.1">
+            Problema a resolver
+          </h2>
+          <p class="reveal text-lg md:text-xl leading-relaxed text-[#FDF8F3]/80" data-delay="0.2">
+            {project.challenge}
+          </p>
+        </div>
+        
+        <!-- Right side: Goals as animated cards -->
+        <div class="space-y-4">
+          {project.goals.map((goal, index) => (
+            <div 
+              class="reveal group flex items-center justify-between gap-6 px-6 py-5 bg-[#FDF8F3] rounded-full hover:bg-[var(--color-secondary)] transition-all duration-500 cursor-default hover-lift"
+              data-delay={0.2 + index * 0.1}
+            >
+              <div class="flex items-center gap-4">
+                <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] flex items-center justify-center text-sm font-semibold group-hover:bg-[var(--color-primary)] group-hover:text-[#FDF8F3] transition-all duration-300 group-hover:scale-110">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span class="text-[var(--color-primary)] font-medium text-lg">{goal}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)] relative">
+      <!-- Background decoration -->
+      <div class="absolute bottom-0 left-0 w-72 h-72 bg-[var(--color-primary)]/5 rounded-full blur-3xl"></div>
+      
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-20">
+          <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center justify-center gap-3" data-delay="0">
+            <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
+            Mi proceso
+            <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
+          </p>
+          <h2 class="reveal font-serif text-3xl md:text-4xl lg:text-5xl font-medium italic" data-delay="0.1">
+            Adaptación y resiliencia
+          </h2>
+          <p class="reveal text-[var(--color-text-muted)] text-lg mt-4 max-w-2xl mx-auto" data-delay="0.2">
+            Este proyecto fue un reto de adaptación: continuar un diseño sin documentación previa y crear orden donde no lo había.
+          </p>
+        </div>
+
+        <!-- Process steps - alternating layout -->
+        <div class="space-y-32">
+          {project.process.map((step, index) => (
+            <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <div class={index % 2 === 1 ? 'lg:order-2' : ''}>
+                <div class="reveal" data-delay="0">
+                  <div class="inline-flex items-center gap-3 mb-4">
+                    <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
+                    <span class="text-[var(--color-primary)] text-xs uppercase tracking-[0.3em]">{step.phase}</span>
+                  </div>
+                  
+                  <!-- Title -->
+                  <div class="flex items-center gap-4 mb-6">
+                    <h3 class="font-serif text-2xl md:text-3xl lg:text-4xl font-medium italic">
+                      {step.title}
+                    </h3>
+                  </div>
+                  
+                  <p class="text-[var(--color-text-muted)] text-lg leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+              <div class={index % 2 === 1 ? 'lg:order-1' : ''}>
+                <div class="reveal rounded-2xl overflow-hidden" data-delay="0.2">
+                  <img 
+                    src={step.image} 
+                    alt={step.title}
+                    class="w-full aspect-[4/3] object-cover object-top"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights -->
+    <section class="relative px-6 md:px-12 lg:px-24 py-24 bg-[var(--color-primary)] overflow-hidden">
+      <!-- Decorative circles -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full border border-[#FDF8F3]/5"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full border border-[#FDF8F3]/5"></div>
+      </div>
+      
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+          <p class="reveal text-[var(--color-bg)]/70 text-sm uppercase tracking-[0.3em] mb-4 flex items-center justify-center gap-3" data-delay="0">
+            <span class="text-[var(--color-secondary)]">&#10038;</span>
+            Destacados
+            <span class="text-[var(--color-secondary)]">&#10038;</span>
+          </p>
+          <h2 class="reveal font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-[var(--color-bg)] italic" data-delay="0.1">
+            Soluciones clave
+          </h2>
+        </div>
+
+        <div class="stagger-grid grid grid-cols-1 md:grid-cols-2 gap-6">
+          {project.highlights.map((highlight, index) => (
+            <div class="reveal group flex items-start gap-5 p-8 bg-[var(--color-bg)]/10 backdrop-blur-sm rounded-2xl border border-[var(--color-bg)]/10 hover:bg-[var(--color-bg)]/15 hover:border-[var(--color-secondary)]/30 transition-all duration-500" data-delay={0.1 + index * 0.1}>
+              <div class="flex-shrink-0 w-12 h-12 rounded-full bg-[var(--color-secondary)]/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-[var(--color-secondary)] transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[var(--color-bg)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <p class="text-[var(--color-bg)] text-lg leading-relaxed">{highlight}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Desktop Showcase -->
+    <DesktopShowcase 
+      title="Pantallas Desktop"
+      subtitle="Diseño UI"
+      sections={[
+        {
+          title: "Páginas Principales",
+          pages: project.desktopShowcase.mainPages,
+          columns: 2
+        },
+        {
+          title: "Sectores y Servicios",
+          pages: project.desktopShowcase.servicesPages,
+          columns: 3
+        },
+        {
+          title: "Cotizador",
+          pages: project.desktopShowcase.quoterPages,
+          columns: 3
+        },
+        {
+          title: "Herramientas y Formularios",
+          pages: project.desktopShowcase.toolsPages,
+          columns: 3
+        }
+      ]}
+    />
+
+    <!-- Mobile Showcase -->
+    <MobileShowcase 
+      title="Experiencia Mobile"
+      subtitle="Responsive Design"
+      screens={project.mobileShowcase}
+    />
+
+    <!-- Testimonial (Placeholder) -->
+    <section class="relative px-6 md:px-12 lg:px-24 py-32 border-t border-[var(--color-border)] overflow-hidden">
+      <!-- Background decoration -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[var(--color-secondary)]/5 blur-3xl"></div>
+      
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <div class="reveal" data-delay="0">
+          <span class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--color-primary)]/10 mb-8">
+            <svg class="w-8 h-8 text-[var(--color-primary)]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+          </span>
+        </div>
+        <blockquote class="reveal font-serif text-2xl md:text-3xl lg:text-4xl font-medium leading-relaxed mb-10 italic text-[var(--color-text-muted)]" data-delay="0.1">
+          "{project.testimonial.quote}"
+        </blockquote>
+        <div class="reveal" data-delay="0.2">
+          <div class="inline-flex items-center gap-4">
+            <div class="w-12 h-[1px] bg-[var(--color-border)]"></div>
+            <div>
+              <p class="font-medium text-lg text-[var(--color-text-muted)]">{project.testimonial.author}</p>
+              <p class="text-[var(--color-text-muted)] text-sm">{project.testimonial.role}</p>
+            </div>
+            <div class="w-12 h-[1px] bg-[var(--color-border)]"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Next Project -->
+    <section class="border-t border-[var(--color-border)] relative overflow-hidden">
+      <a href={`/work/${project.nextProject.slug}`} class="group block px-6 md:px-12 lg:px-24 py-24 transition-colors duration-500 hover:bg-[var(--color-primary)]">
+        <!-- Background animation on hover -->
+        <div class="absolute inset-0 bg-[var(--color-primary)] transform scale-y-0 origin-bottom transition-transform duration-700 ease-out group-hover:scale-y-100 -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8 relative z-10">
+          <div>
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2 group-hover:text-[#FDF8F3]/70 transition-colors duration-500">
+              <span class="w-8 h-[1px] bg-current"></span>
+              Siguiente proyecto
+            </p>
+            <h3 class="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium italic group-hover:text-[#FDF8F3] transition-colors duration-500">
+              {project.nextProject.title}
+            </h3>
+          </div>
+          <div class="flex-shrink-0">
+            <div class="w-20 h-20 rounded-full border-2 border-[var(--color-border)] inline-flex items-center justify-center group-hover:border-[#FDF8F3] group-hover:bg-[#FDF8F3] transition-all duration-500 group-hover:scale-110 leading-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 flex-none transition-all duration-500 group-hover:translate-x-2 group-hover:text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:block">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

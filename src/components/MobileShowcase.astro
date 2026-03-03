@@ -1,0 +1,346 @@
+---
+import PhoneMockup from './PhoneMockup.astro';
+
+interface MobileScreen {
+  title: string;
+  mobile: string;
+  description?: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  screens: MobileScreen[];
+}
+
+const { 
+  title = "Experiencia Mobile", 
+  subtitle = "Responsive Design",
+  description = "Adaptación responsive manteniendo la experiencia premium en dispositivos móviles",
+  screens 
+} = Astro.props;
+---
+
+<section class="py-24 bg-[var(--color-bg-secondary)] overflow-hidden">
+  <div class="max-w-[1800px] mx-auto">
+    <!-- Section Header - Centrado y sin descripción -->
+    <div class="text-center mb-12 px-6 md:px-12 lg:px-16">
+      <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
+        {subtitle}
+      </p>
+      <h2 class="reveal font-serif text-4xl md:text-5xl lg:text-6xl font-medium" data-delay="0.1">
+        {title}
+      </h2>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <!-- Wrapper centrado que contiene scroll + botones -->
+    <div class="relative max-w-[1180px] mx-auto">
+      <!-- Fade izquierdo: oculto hasta que el usuario haga scroll -->
+      <div id="fade-left" class="fade-edge pointer-events-none absolute left-0 top-0 bottom-0 w-28 z-10 opacity-0 transition-opacity duration-300" style="background: linear-gradient(to right, var(--color-bg-secondary) 30%, transparent);"></div>
+      <!-- Fade derecho: siempre visible -->
+      <div id="fade-right" class="fade-edge pointer-events-none absolute right-0 top-0 bottom-0 w-28 z-10 transition-opacity duration-300" style="background: linear-gradient(to left, var(--color-bg-secondary) 30%, transparent);"></div>
+      <button 
+        class="scroll-nav-btn scroll-nav-prev absolute -left-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[var(--color-bg)] border border-[var(--color-border)] flex items-center justify-center hover:bg-[var(--color-primary)] hover:border-[var(--color-primary)] hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+        aria-label="Anterior"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      
+      <button 
+        class="scroll-nav-btn scroll-nav-next absolute -right-16 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[var(--color-bg)] border border-[var(--color-border)] flex items-center justify-center hover:bg-[var(--color-primary)] hover:border-[var(--color-primary)] hover:text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed"
+        aria-label="Siguiente"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <!-- Horizontal Scroll Container - Optimizado -->
+      <div class="mobile-showcase-scroll" data-lenis-prevent>
+        <div class="mobile-showcase-track">
+          {screens.map((screen, index) => (
+            <div class="mobile-showcase-item reveal" data-delay={0.1 + index * 0.05}>
+              <PhoneMockup src={screen.mobile} alt={`${screen.title} - Mobile`} />
+              <div class="mobile-showcase-info">
+                <h3 class="font-serif text-xl md:text-2xl font-medium">
+                  {screen.title}
+                </h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Hint -->
+    <div class="flex items-center justify-center gap-3 mt-8 px-6">
+      <div class="scroll-hint-line"></div>
+      <span class="text-[var(--color-text-muted)] text-xs uppercase tracking-widest">
+        Desliza para ver más
+      </span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[var(--color-text-muted)] animate-bounce-x" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mobile-showcase-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    scroll-snap-type: x mandatory;
+    will-change: scroll-position;
+    transform: translateZ(0);
+    /* Limita el ancho para mostrar 3 teléfonos + peek del 4º */
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mobile-showcase-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-showcase-scroll:active {
+    cursor: grabbing;
+  }
+
+  .mobile-showcase-track {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem 3rem;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .mobile-showcase-item {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    scroll-snap-align: start;
+    contain: layout style paint;
+  }
+
+  .mobile-showcase-info {
+    text-align: center;
+    margin-top: 1.5rem;
+    max-width: 100%;
+  }
+
+  .scroll-hint-line {
+    width: 40px;
+    height: 2px;
+    background: var(--color-border);
+    border-radius: 1px;
+  }
+
+  .scroll-nav-btn {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Mostrar botones en desktop */
+  @media (min-width: 768px) {
+    .scroll-nav-btn {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-showcase-item {
+      width: 240px;
+    }
+
+    .mobile-showcase-track {
+      gap: 3rem;
+      padding: 2rem 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mobile-showcase-item {
+      /* 3 × 270px + 2 × 3.5rem(56px) gap = 810 + 112 = 922px + peek ~130px + padding */
+      width: 270px;
+    }
+
+    .mobile-showcase-track {
+      gap: 3.5rem;
+      padding: 2rem 4rem;
+    }
+
+    .mobile-showcase-scroll {
+      max-width: 1180px;
+    }
+  }
+
+  @keyframes bounce-x {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(4px);
+    }
+  }
+
+  .animate-bounce-x {
+    animation: bounce-x 1.5s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  // Optimized drag to scroll functionality with passive event listeners
+  const scrollContainers = document.querySelectorAll('.mobile-showcase-scroll');
+  
+  scrollContainers.forEach(container => {
+    let isDown = false;
+    let startX: number;
+    let scrollLeft: number;
+    let velocity = 0;
+    let lastX = 0;
+    let momentumID: number;
+
+    // Navigation buttons
+    const prevBtn = container.parentElement?.querySelector('.scroll-nav-prev') as HTMLButtonElement;
+    const nextBtn = container.parentElement?.querySelector('.scroll-nav-next') as HTMLButtonElement;
+
+    // Reset scroll to beginning on load
+    const resetScroll = () => {
+      container.scrollLeft = 0;
+    };
+
+    // Reset on load
+    setTimeout(resetScroll, 100);
+    window.addEventListener('resize', resetScroll);
+
+    // Fade elements
+    const fadeLeft  = container.closest('.relative')?.querySelector('#fade-left')  as HTMLElement | null;
+    const fadeRight = container.closest('.relative')?.querySelector('#fade-right') as HTMLElement | null;
+
+    // Update button states + fade visibility
+    const updateButtonStates = () => {
+      const scrolled  = container.scrollLeft;
+      const atEnd     = scrolled >= container.scrollWidth - container.clientWidth - 2;
+
+      if (prevBtn && nextBtn) {
+        prevBtn.disabled = scrolled <= 0;
+        nextBtn.disabled = atEnd;
+      }
+
+      // Fade izquierdo: aparece solo cuando el usuario ha scrolleado
+      if (fadeLeft)  fadeLeft.style.opacity  = scrolled > 10 ? '1' : '0';
+      // Fade derecho: desaparece cuando llega al final
+      if (fadeRight) fadeRight.style.opacity = atEnd ? '0' : '1';
+    };
+
+    // Smooth scroll to position
+    const smoothScrollTo = (targetX: number) => {
+      container.scrollTo({
+        left: targetX,
+        behavior: 'smooth'
+      });
+    };
+
+    // Button navigation
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        const scrollAmount = container.clientWidth * 0.8;
+        smoothScrollTo(container.scrollLeft - scrollAmount);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const scrollAmount = container.clientWidth * 0.8;
+        smoothScrollTo(container.scrollLeft + scrollAmount);
+      });
+    }
+
+    // Drag to scroll with momentum
+    container.addEventListener('mousedown', (e) => {
+      isDown = true;
+      container.classList.add('active');
+      startX = (e as MouseEvent).pageX - (container as HTMLElement).offsetLeft;
+      scrollLeft = container.scrollLeft;
+      lastX = startX;
+      velocity = 0;
+      cancelMomentumTracking();
+    }, { passive: true });
+
+    container.addEventListener('mouseleave', () => {
+      isDown = false;
+      container.classList.remove('active');
+      beginMomentumTracking();
+    });
+
+    container.addEventListener('mouseup', () => {
+      isDown = false;
+      container.classList.remove('active');
+      beginMomentumTracking();
+    });
+
+    container.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = (e as MouseEvent).pageX - (container as HTMLElement).offsetLeft;
+      const walk = (x - startX) * 1.5;
+      velocity = x - lastX;
+      lastX = x;
+      container.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch support for mobile
+    let touchStartX = 0;
+    let touchScrollLeft = 0;
+
+    container.addEventListener('touchstart', (e) => {
+      const touchEvent = e as TouchEvent;
+      touchStartX = touchEvent.touches[0].pageX;
+      touchScrollLeft = container.scrollLeft;
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e) => {
+      const touchEvent = e as TouchEvent;
+      const x = touchEvent.touches[0].pageX;
+      const walk = (touchStartX - x) * 1.2;
+      container.scrollLeft = touchScrollLeft + walk;
+    }, { passive: true });
+
+    // Update buttons on scroll
+    container.addEventListener('scroll', updateButtonStates, { passive: true });
+
+    // Momentum scrolling
+    function beginMomentumTracking() {
+      cancelMomentumTracking();
+      momentumID = requestAnimationFrame(momentumLoop);
+    }
+
+    function cancelMomentumTracking() {
+      if (momentumID) {
+        cancelAnimationFrame(momentumID);
+      }
+    }
+
+    function momentumLoop() {
+      velocity *= 0.95; // Deceleration factor
+      if (Math.abs(velocity) > 0.5) {
+        container.scrollLeft -= velocity;
+        momentumID = requestAnimationFrame(momentumLoop);
+      }
+    }
+
+    // Initial button state
+    updateButtonStates();
+  });
+</script>
