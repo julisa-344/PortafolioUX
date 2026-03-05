@@ -16,14 +16,14 @@ const project = {
   duration: '4+ meses',
   tools: ['Figma', 'FigJam', 'Claude', 'ChatGPT', 'Gemini', 'Pencil'],
   tags: ['UX Research', 'UI Design', 'Rediseño'],
-  overview: 'Rediseño del sitio web para Intense Peru, agencia de viajes boutique con itinerarios exclusivos dirigidos a los mercados de Estados Unidos, México e Italia. El proyecto partió desde cero: kick-off con el cliente, recepción del brief, benchmark de competidores (directos, indirectos, nacionales e internacionales), sitemap, wireframes y UI Design con tipografía y paleta definidas desde cero, ya que el cliente no contaba con un brand book consolidado.',
-  challenge: 'El cliente quería un diseño de lujo, de muy alta fidelidad — algo que comunicara exclusividad desde el primer vistazo. El reto no fue solo el diseño en sí, sino también gestionar un equipo con múltiples interlocutores: la productora, el equipo de marketing y un socio externo. Eso implicó liderar reuniones, presentar y justificar las decisiones de diseño frente a distintas perspectivas, y mantener el foco en los objetivos del usuario.',
+  overview: 'Rediseño del sitio web para Intense Peru, agencia de viajes boutique con itinerarios exclusivos dirigidos a los mercados de Estados Unidos, México e Italia. El proyecto partió desde cero: kick-off con el cliente, recepción del brief, benchmark de competidores (directos, indirectos, nacionales e internacionales), sitemap, wireframes y UI Design.',
+  challenge: 'El cliente quería un diseño de lujo, de muy alta fidelidad — algo que comunicara exclusividad desde el primer vistazo. El reto no fue solo el diseño en sí, sino también liderar reuniones con distintos interlocutores del cliente, presentar y justificar las decisiones de diseño frente a distintas perspectivas, y mantener el foco en los objetivos del usuario.',
   goals: [
     'Transmitir exclusividad y lujo desde el primer vistazo',
-    'Definir identidad tipográfica y paleta de colores desde cero',
+    'Definir la identidad tipográfica del proyecto',
     'Estructurar la arquitectura de información del sitio completo',
-    'Diseñar flujos y pantallas hasta el nivel de UI Design',
-    'Facilitar el proceso de contacto, cotización y descarga de brochures'
+    'Diseñar wireframes de todas las pantallas y flujos',
+    'Priorizar "Design your Trip" e itinerarios como eje central del sitio'
   ],
   process: [
     {
@@ -35,29 +35,28 @@ const project = {
     {
       phase: 'Sitemap',
       title: 'Arquitectura de Información',
-      description: 'Definí la estructura del sitio desde cero, priorizando las páginas de itinerarios como punto central de conversión y organizando el contenido para facilitar el descubrimiento de destinos y journeys. Los flujos principales apuntaban hacia los formularios de contacto, cotización y la descarga de brochures con captura de datos.',
+      description: 'Definí la estructura del sitio desde cero, priorizando las páginas de itinerarios y la sección "Design your Trip" como ejes centrales de conversión. Organicé el contenido para facilitar el descubrimiento de destinos y journeys, con flujos que apuntaban hacia el contacto directo y la cotización personalizada.',
       image: '/images/projects/intense/sitemap.webp'
     },
     {
       phase: 'Wireframes',
       title: 'Wireframes y Flujos',
-      description: 'Diseñé los wireframes para validar la estructura de las páginas principales, especialmente los itinerarios — que manejaban mucha información. Aquí también comencé a gestionar activamente las reuniones con el equipo del cliente: productora, marketing y el socio externo, presentando y justificando cada decisión de diseño.',
+      description: 'Diseñé los wireframes de todas las pantallas del sitio — sin excepción — para validar la estructura antes de pasar al diseño visual. Se prestó especial atención a los itinerarios (que manejaban mucha información) y a "Design your Trip", el flujo más complejo del proyecto. Esta etapa también implicó presentar y defender cada decisión de diseño frente al equipo del cliente.',
       image: '/images/projects/intense/wireframes.webp'
     },
     {
       phase: 'UI Design',
-      title: 'Tipografía, Paleta y UI',
-      description: 'Con el cliente sin brand book, definí la tipografía y la paleta de colores del proyecto desde cero. Apliqué ambas a las pantallas, construyendo una interfaz premium inspirada en la estética Belmond: limpia, con mucho peso visual en las imágenes y textos reducidos. Incorporé imágenes de alta calidad en la estructura, aunque el trabajo de selección final y refinamiento fue continuado por otro diseñador con el cliente.',
+      title: 'Tipografía y UI',
+      description: 'Definí la identidad tipográfica del proyecto y la apliqué a las pantallas, construyendo una interfaz premium inspirada en la estética Belmond: limpia, con mucho peso visual en las imágenes y textos reducidos. Incorporé las imágenes en la estructura, aunque su selección y refinamiento final fue continuado con el cliente.',
       image: '/images/projects/intense/portadaCard.png'
     }
   ],
   highlights: [
     'Proyecto desde cero: kick-off, brief, benchmark, sitemap, wireframes y UI',
-    'Identidad tipográfica y paleta definidas desde cero (sin brand book previo)',
-    'Gestión de múltiples stakeholders: productora, marketing y socio externo',
+    'Identidad tipográfica definida para la marca',
     'Diseño visual premium con énfasis en imágenes de alta calidad',
-    'Arquitectura de información para destinos, journeys e itinerarios',
-    'Flujo de descarga de brochures con captura de leads'
+    '"Design your Trip" como eje central: flujo de itinerarios personalizados',
+    'Wireframes de absolutamente todas las pantallas del sitio'
   ],
   testimonial: {
     quote: 'Julisa formó parte del equipo de trabajo que nos apoyó en el desarrollo de nuestra nueva página web. Realizó un excelente trabajo en la maquetación y diseño. Destacó por su gran creatividad y por desarrollar cada propuesta bajo un concepto claramente enfocado en el cliente, cuidando tanto la estética como la experiencia de usuario. Su aporte fue clave para lograr un resultado alineado con nuestros objetivos, demostrando profesionalismo, compromiso y gran atención a los detalles. Sin duda, recomendamos su trabajo.',
@@ -293,7 +292,7 @@ const project = {
             De la investigación al diseño
           </h2>
           <p class="reveal text-[var(--color-text-muted)] text-lg mt-4 max-w-2xl mx-auto" data-delay="0.2">
-            Un proceso completo de UX/UI desde el kick-off, incluyendo research, arquitectura de información, wireframes y diseño visual.
+            Un proceso completo de UX/UI: desde el kick-off y research hasta wireframes de todas las pantallas y diseño visual final.
           </p>
         </div>
 
@@ -433,12 +432,12 @@ const project = {
             href={project.testimonial.authorUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 mt-1 px-4 py-1.5 rounded-full border border-[var(--color-border)] text-xs text-[var(--color-text-muted)] hover:border-[var(--color-primary)]/40 hover:text-[var(--color-primary)] transition-all duration-300"
+            aria-label="Ver perfil en LinkedIn"
+            class="inline-flex items-center justify-center mt-1 w-8 h-8 rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-primary)]/40 hover:text-[var(--color-primary)] transition-all duration-300"
           >
             <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
-            Ver perfil en LinkedIn
           </a>
         </div>
       </div>
