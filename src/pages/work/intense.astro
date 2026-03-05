@@ -29,25 +29,25 @@ const project = {
       phase: 'Research',
       title: 'Investigación y Benchmark',
       description: 'Análisis competitivo de agencias de viajes boutique como Abercrombie & Kent, Kuoda, Aracari y Belmond. Estudio de las mejores prácticas en comunicación de exclusividad y experiencias de lujo. Definición de los flujos de usuario principales: descubrimiento, interés y conversión a lead.',
-      image: '/images/projects/intense/HOME.png'
+      image: '/images/projects/intense/beanchmark.webp'
     },
     {
       phase: 'Sitemap',
       title: 'Arquitectura de Información',
       description: 'Definición de la estructura del sitio priorizando las páginas de itinerarios como punto central de conversión. Organización del contenido para facilitar el descubrimiento de destinos y journeys, con flujos claros hacia los formularios de contacto y cotización.',
-      image: '/images/projects/intense/DESTINATIONS.png'
+      image: '/images/projects/intense/sitemap.webp'
     },
     {
       phase: 'Wireframes',
       title: 'Wireframes y Flujos',
       description: 'Diseño de wireframes para validar la estructura de las páginas principales, especialmente los itinerarios que contienen mucha información. Propuesta de sistema de descarga de brochures con captura de datos (nombre y correo) para aumentar la base de leads cualificados.',
-      image: '/images/projects/intense/Journeys.png'
+      image: '/images/projects/intense/wireframes.webp'
     },
     {
       phase: 'UI Design',
       title: 'Diseño Visual Premium',
       description: 'Desarrollo del diseño visual siguiendo la inspiración de Belmond: comunicación simple, limpia y exclusiva. Énfasis en imágenes de alta calidad (50% del diseño) con textos reducidos pero optimizados para SEO. Diseño de formularios mejorados para una experiencia de cotización fluida.',
-      image: '/images/projects/intense/itinerary.png'
+      image: '/images/projects/intense/portadaCard.png'
     }
   ],
   highlights: [
@@ -59,9 +59,10 @@ const project = {
     'Arquitectura de información clara para destinos, journeys e itinerarios'
   ],
   testimonial: {
-    quote: 'Testimonio del cliente pendiente de agregar.',
-    author: 'Cliente Intense Peru',
-    role: 'Pendiente'
+    quote: 'Julisa formó parte del equipo de trabajo que nos apoyó en el desarrollo de nuestra nueva página web. Realizó un excelente trabajo en la maquetación y diseño. Destacó por su gran creatividad y por desarrollar cada propuesta bajo un concepto claramente enfocado en el cliente, cuidando tanto la estética como la experiencia de usuario. Su aporte fue clave para lograr un resultado alineado con nuestros objetivos, demostrando profesionalismo, compromiso y gran atención a los detalles. Sin duda, recomendamos su trabajo.',
+    author: 'Juan Pablo Arce',
+    authorUrl: 'https://www.linkedin.com/in/juan-pablo-arce-70739b35/',
+    role: 'Intense Perú'
   },
   nextProject: {
     slug: 'bitdefender',
@@ -116,13 +117,13 @@ const project = {
 
 <Layout title={`${project.title} | Caso de Estudio`} description={project.overview}>
   <Header />
-  
+
   <main>
     <!-- Hero Section -->
-    <section data-hero class="relative min-h-[70vh] flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-16 pt-32 overflow-hidden">
+    <section data-hero class="relative min-h-screen flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-16 pt-32 overflow-hidden">
       <!-- Floating Elements -->
       <FloatingElements variant="hero" intensity="subtle" />
-      
+
       <!-- Back link -->
       <a href="/work" class="reveal group inline-flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors mb-12 relative z-10" data-delay="0">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -169,7 +170,7 @@ const project = {
           </div>
         </div>
       </div>
-      
+
       <!-- Scroll indicator -->
       <div class="absolute bottom-8 left-1/2 -translate-x-1/2 reveal" data-delay="1">
         <div class="flex flex-col items-center gap-2">
@@ -185,8 +186,8 @@ const project = {
     <section class="px-6 md:px-12 lg:px-24 py-8 md:py-12">
       <div class="max-w-[1800px] mx-auto">
         <div class="reveal rounded-2xl overflow-hidden shadow-2xl" data-delay="0.2">
-          <img 
-            src="/images/projects/intense/heroIntense.png" 
+          <img
+            src="/images/projects/intense/heroIntense.png"
             alt={`${project.title} - Vista principal`}
             class="w-full aspect-[16/9] object-cover object-top"
             loading="eager"
@@ -201,7 +202,7 @@ const project = {
     <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)] relative overflow-hidden">
       <!-- Subtle background decoration -->
       <div class="absolute top-0 right-0 w-96 h-96 bg-[var(--color-secondary)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-      
+
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 relative z-10">
         <div class="lg:col-span-4">
           <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2" data-delay="0">
@@ -216,7 +217,7 @@ const project = {
           <p class="reveal text-lg md:text-xl leading-relaxed text-[var(--color-text-muted)] mb-8" data-delay="0.2">
             {project.overview}
           </p>
-          
+
           <!-- Tools used with hover effects -->
           <div class="reveal" data-delay="0.3">
             <p class="text-sm uppercase tracking-wider text-[var(--color-text-muted)] mb-4">Herramientas</p>
@@ -228,7 +229,7 @@ const project = {
           </div>
         </div>
       </div>
-      
+
       <!-- Section divider -->
       <div class="section-divider max-w-7xl mx-auto mt-24"></div>
     </section>
@@ -240,7 +241,7 @@ const project = {
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-[#FDF8F3]/5"></div>
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-[#FDF8F3]/5"></div>
       </div>
-      
+
       <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-10">
         <!-- Left side: Title and description -->
         <div>
@@ -255,11 +256,11 @@ const project = {
             {project.challenge}
           </p>
         </div>
-        
+
         <!-- Right side: Goals as animated cards -->
         <div class="space-y-4">
           {project.goals.map((goal, index) => (
-            <div 
+            <div
               class="reveal group flex items-center justify-between gap-6 px-6 py-5 bg-[#FDF8F3] rounded-full hover:bg-[var(--color-secondary)] transition-all duration-500 cursor-default hover-lift"
               data-delay={0.2 + index * 0.1}
             >
@@ -279,7 +280,7 @@ const project = {
     <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)] relative">
       <!-- Background decoration -->
       <div class="absolute bottom-0 left-0 w-72 h-72 bg-[var(--color-primary)]/5 rounded-full blur-3xl"></div>
-      
+
       <div class="max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-20">
           <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center justify-center gap-3" data-delay="0">
@@ -305,14 +306,14 @@ const project = {
                     <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
                     <span class="text-[var(--color-primary)] text-xs uppercase tracking-[0.3em]">{step.phase}</span>
                   </div>
-                  
+
                   <!-- Title -->
                   <div class="flex items-center gap-4 mb-6">
                     <h3 class="font-serif text-2xl md:text-3xl lg:text-4xl font-medium italic">
                       {step.title}
                     </h3>
                   </div>
-                  
+
                   <p class="text-[var(--color-text-muted)] text-lg leading-relaxed">
                     {step.description}
                   </p>
@@ -320,8 +321,8 @@ const project = {
               </div>
               <div class={index % 2 === 1 ? 'lg:order-1' : ''}>
                 <div class="reveal rounded-2xl overflow-hidden" data-delay="0.2">
-                  <img 
-                    src={step.image} 
+                  <img
+                    src={step.image}
                     alt={step.title}
                     class="w-full aspect-[4/3] object-cover object-top"
                     loading="lazy"
@@ -341,7 +342,7 @@ const project = {
         <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full border border-[#FDF8F3]/5"></div>
         <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full border border-[#FDF8F3]/5"></div>
       </div>
-      
+
       <div class="max-w-7xl mx-auto relative z-10">
         <div class="text-center mb-16">
           <p class="reveal text-[var(--color-bg)]/70 text-sm uppercase tracking-[0.3em] mb-4 flex items-center justify-center gap-3" data-delay="0">
@@ -370,7 +371,7 @@ const project = {
     </section>
 
     <!-- Desktop Showcase -->
-    <DesktopShowcase 
+    <DesktopShowcase
       title="Pantallas Desktop"
       subtitle="Diseño UI"
       sections={[
@@ -393,60 +394,72 @@ const project = {
     />
 
     <!-- Mobile Showcase -->
-    <MobileShowcase 
+    <MobileShowcase
       title="Experiencia Mobile"
       subtitle="Responsive Design"
       screens={project.mobileShowcase}
     />
 
-    <!-- Testimonial (Placeholder) -->
-    <section class="relative px-6 md:px-12 lg:px-24 py-32 border-t border-[var(--color-border)] overflow-hidden">
-      <!-- Background decoration -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[var(--color-secondary)]/5 blur-3xl"></div>
-      
-      <div class="max-w-4xl mx-auto text-center relative z-10">
-        <div class="reveal" data-delay="0">
-          <span class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--color-primary)]/10 mb-8">
-            <svg class="w-8 h-8 text-[var(--color-primary)]" fill="currentColor" viewBox="0 0 24 24">
+    <section class="relative px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)] overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[var(--color-secondary)]/5 blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-3xl mx-auto text-center relative z-10">
+        <div class="reveal mb-10" data-delay="0">
+          <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] flex items-center justify-center gap-2">
+            <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
+            Testimonio
+            <span class="w-8 h-[1px] bg-[var(--color-primary)]"></span>
+          </p>
+        </div>
+
+        <div class="reveal mb-6 flex justify-center" data-delay="0.1">
+          <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[var(--color-primary)]/10">
+            <svg class="w-5 h-5 text-[var(--color-primary)]" fill="currentColor" viewBox="0 0 24 24">
               <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
             </svg>
           </span>
         </div>
-        <blockquote class="reveal font-serif text-2xl md:text-3xl lg:text-4xl font-medium leading-relaxed mb-10 italic text-[var(--color-text-muted)]" data-delay="0.1">
+
+        <blockquote class="reveal font-serif text-xl md:text-2xl font-medium leading-relaxed mb-10 italic text-[var(--color-text-muted)]" data-delay="0.2">
           "{project.testimonial.quote}"
         </blockquote>
-        <div class="reveal" data-delay="0.2">
-          <div class="inline-flex items-center gap-4">
-            <div class="w-12 h-[1px] bg-[var(--color-border)]"></div>
-            <div>
-              <p class="font-medium text-lg text-[var(--color-text-muted)]">{project.testimonial.author}</p>
-              <p class="text-[var(--color-text-muted)] text-sm">{project.testimonial.role}</p>
-            </div>
-            <div class="w-12 h-[1px] bg-[var(--color-border)]"></div>
-          </div>
+
+        <div class="reveal flex flex-col items-center gap-3" data-delay="0.3">
+          <div class="w-10 h-[1px] bg-[var(--color-border)] mx-auto"></div>
+          <p class="font-medium text-base text-[var(--color-text)]">{project.testimonial.author}</p>
+          <p class="text-[var(--color-text-muted)] text-sm">{project.testimonial.role}</p>
+          <a
+            href={project.testimonial.authorUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 mt-1 px-4 py-1.5 rounded-full border border-[var(--color-border)] text-xs text-[var(--color-text-muted)] hover:border-[var(--color-primary)]/40 hover:text-[var(--color-primary)] transition-all duration-300"
+          >
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            Ver perfil en LinkedIn
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Next Project -->
     <section class="border-t border-[var(--color-border)] relative overflow-hidden">
-      <a href={`/work/${project.nextProject.slug}`} class="group block px-6 md:px-12 lg:px-24 py-24 transition-colors duration-500 hover:bg-[var(--color-primary)]">
-        <!-- Background animation on hover -->
-        <div class="absolute inset-0 bg-[var(--color-primary)] transform scale-y-0 origin-bottom transition-transform duration-700 ease-out group-hover:scale-y-100 -z-10"></div>
-        
+      <a href={`/work/${project.nextProject.slug}`} class="group block px-6 md:px-12 lg:px-24 py-24 transition-colors duration-500 hover:bg-[var(--color-secondary)]">
+        <div class="absolute inset-0 bg-[var(--color-secondary)] transform scale-y-0 origin-bottom transition-transform duration-700 ease-out group-hover:scale-y-100 -z-10"></div>
+
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8 relative z-10">
           <div>
-            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2 group-hover:text-[#FDF8F3]/70 transition-colors duration-500">
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2 group-hover:text-[var(--color-primary)]/70 transition-colors duration-500">
               <span class="w-8 h-[1px] bg-current"></span>
               Siguiente proyecto
             </p>
-            <h3 class="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium italic group-hover:text-[#FDF8F3] transition-colors duration-500">
+            <h3 class="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium italic group-hover:text-[var(--color-primary)] transition-colors duration-500">
               {project.nextProject.title}
             </h3>
           </div>
           <div class="flex-shrink-0">
-            <div class="w-20 h-20 rounded-full border-2 border-[var(--color-border)] inline-flex items-center justify-center group-hover:border-[#FDF8F3] group-hover:bg-[#FDF8F3] transition-all duration-500 group-hover:scale-110 leading-none">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 flex-none transition-all duration-500 group-hover:translate-x-2 group-hover:text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:block">
+            <div class="w-20 h-20 rounded-full border-2 border-[var(--color-border)] inline-flex items-center justify-center group-hover:border-[var(--color-primary)] group-hover:bg-[var(--color-primary)] transition-all duration-500 group-hover:scale-110 leading-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 flex-none transition-all duration-500 group-hover:translate-x-2 group-hover:text-[#FDF8F3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:block">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </div>

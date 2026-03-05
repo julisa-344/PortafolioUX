@@ -28,19 +28,19 @@ const project = {
       phase: 'Research',
       title: 'Benchmark Competitivo',
       description: 'Análisis exhaustivo de los principales competidores en el mercado de ciberseguridad: Norton, McAfee, Kaspersky y ESET. Estudio de sus propuestas de valor, arquitectura de información, flujos de compra y estrategias de comunicación para segmentos B2C y B2B.',
-      image: '/images/projects/bitdefender/beanch.png'
+      image: '/images/projects/bitdefender/beanchmark.webp'
     },
     {
       phase: 'Sitemap',
       title: 'Arquitectura de Información',
       description: 'Definición de la estructura del sitio con foco en la clara diferenciación entre productos para hogar y empresa. Organización del contenido priorizando los flujos de descubrimiento, comparación y compra de productos de seguridad.',
-      image: '/images/projects/bitdefender/sitemap.png'
+      image: '/images/projects/bitdefender/sitemap.webp'
     },
     {
       phase: 'Wireframes',
       title: 'Wireframes de Alta Fidelidad',
       description: 'Diseño de wireframes detallados para todas las páginas principales del sitio: home, páginas de productos, blog, carrito de compras, cuenta de usuario y flujos de checkout. Especial atención en la claridad de la comunicación de features y precios.',
-      image: '/images/projects/bitdefender/home.png'
+      image: '/images/projects/bitdefender/wireframes.webp'
     }
   ],
   highlights: [
@@ -55,7 +55,6 @@ const project = {
     slug: 'xplora',
     title: 'Xplora'
   },
-  // Showcase de wireframes para este proyecto UX
   wireframeShowcase: {
     mainPages: [
       { src: '/images/projects/bitdefender/home.png', label: 'Home', alt: 'Bitdefender - Página principal' },
@@ -83,12 +82,9 @@ const project = {
   <Header />
   
   <main>
-    <!-- Hero Section -->
-    <section data-hero class="relative min-h-[70vh] flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-16 pt-32 overflow-hidden">
-      <!-- Floating Elements -->
+    <section data-hero class="relative min-h-screen flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-16 pt-32 overflow-hidden">
       <FloatingElements variant="hero" intensity="subtle" />
       
-      <!-- Back link -->
       <a href="/work" class="reveal group inline-flex items-center gap-2 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors mb-12 relative z-10" data-delay="0">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
@@ -97,24 +93,20 @@ const project = {
       </a>
 
       <div class="max-w-7xl relative z-10">
-        <!-- Tags with stagger animation -->
         <div class="reveal flex flex-wrap gap-2 mb-6" data-delay="0.1">
           {project.tags.map((tag, index) => (
             <span class="tag hover-lift" style={`animation-delay: ${index * 0.05}s`}>{tag}</span>
           ))}
         </div>
 
-        <!-- Title with split text animation -->
         <h1 class="reveal font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold mb-6 leading-[1.1]" data-delay="0.2">
           <span class="inline-block">{project.title}</span>
         </h1>
 
-        <!-- Subtitle with elegant animation -->
         <p class="reveal text-[var(--color-text-muted)] text-xl md:text-2xl max-w-3xl mb-12 leading-relaxed" data-delay="0.3">
           {project.subtitle}
         </p>
 
-        <!-- Meta info with stagger grid -->
         <div class="reveal stagger-grid grid grid-cols-2 md:grid-cols-4 gap-8" data-delay="0.4">
           <div class="group">
             <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-wider mb-2 transition-colors group-hover:text-[var(--color-primary)]">Cliente</p>
@@ -135,7 +127,6 @@ const project = {
         </div>
       </div>
       
-      <!-- Scroll indicator -->
       <div class="absolute bottom-8 left-1/2 -translate-x-1/2 reveal" data-delay="1">
         <div class="flex flex-col items-center gap-2">
           <span class="text-[var(--color-text-muted)] text-xs uppercase tracking-widest">Scroll</span>
@@ -146,7 +137,6 @@ const project = {
       </div>
     </section>
 
-    <!-- Hero Image with Parallax -->
     <section class="px-6 md:px-12 lg:px-24 py-8 md:py-12">
       <div class="max-w-[1800px] mx-auto">
         <div class="reveal rounded-2xl overflow-hidden shadow-2xl" data-delay="0.2">
@@ -162,9 +152,7 @@ const project = {
       </div>
     </section>
 
-    <!-- Overview -->
     <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)] relative overflow-hidden">
-      <!-- Subtle background decoration -->
       <div class="absolute top-0 right-0 w-96 h-96 bg-[var(--color-secondary)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
       
       <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 relative z-10">
@@ -182,7 +170,6 @@ const project = {
             {project.overview}
           </p>
           
-          <!-- Tools used with hover effects -->
           <div class="reveal" data-delay="0.3">
             <p class="text-sm uppercase tracking-wider text-[var(--color-text-muted)] mb-4">Herramientas</p>
             <div class="flex flex-wrap gap-3">
@@ -194,20 +181,16 @@ const project = {
         </div>
       </div>
       
-      <!-- Section divider -->
       <div class="section-divider max-w-7xl mx-auto mt-24"></div>
     </section>
 
-    <!-- Challenge -->
     <section class="relative px-6 md:px-12 lg:px-24 py-24 bg-[var(--color-primary)] overflow-hidden">
-      <!-- Decorative elements -->
       <div class="absolute inset-0 overflow-hidden pointer-events-none">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-[#FDF8F3]/5"></div>
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-[#FDF8F3]/5"></div>
       </div>
       
       <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-10">
-        <!-- Left side: Title and description -->
         <div>
           <p class="reveal text-[var(--color-secondary)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-3" data-delay="0">
             <span class="w-8 h-[1px] bg-[var(--color-secondary)]"></span>
@@ -221,7 +204,6 @@ const project = {
           </p>
         </div>
         
-        <!-- Right side: Goals as animated cards -->
         <div class="space-y-4">
           {project.goals.map((goal, index) => (
             <div 
@@ -240,9 +222,7 @@ const project = {
       </div>
     </section>
 
-    <!-- Process -->
     <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)] relative">
-      <!-- Background decoration -->
       <div class="absolute bottom-0 left-0 w-72 h-72 bg-[var(--color-primary)]/5 rounded-full blur-3xl"></div>
       
       <div class="max-w-7xl mx-auto relative z-10">
@@ -260,7 +240,6 @@ const project = {
           </p>
         </div>
 
-        <!-- Process steps - alternating layout -->
         <div class="space-y-32">
           {project.process.map((step, index) => (
             <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
@@ -271,7 +250,6 @@ const project = {
                     <span class="text-[var(--color-primary)] text-xs uppercase tracking-[0.3em]">{step.phase}</span>
                   </div>
                   
-                  <!-- Title -->
                   <div class="flex items-center gap-4 mb-6">
                     <h3 class="font-serif text-2xl md:text-3xl lg:text-4xl font-medium italic">
                       {step.title}
@@ -299,7 +277,6 @@ const project = {
       </div>
     </section>
 
-    <!-- Wireframes Showcase -->
     <DesktopShowcase
       title="Wireframes del proyecto"
       subtitle="Entregables"
@@ -342,9 +319,7 @@ const project = {
       ]}
     />
 
-    <!-- Highlights -->
     <section class="relative px-6 md:px-12 lg:px-24 py-24 bg-[var(--color-primary)] overflow-hidden">
-      <!-- Decorative circles -->
       <div class="absolute inset-0 pointer-events-none overflow-hidden">
         <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full border border-[#FDF8F3]/5"></div>
         <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full border border-[#FDF8F3]/5"></div>
@@ -377,25 +352,23 @@ const project = {
       </div>
     </section>
 
-    <!-- Next Project -->
     <section class="border-t border-[var(--color-border)] relative overflow-hidden">
-      <a href={`/work/${project.nextProject.slug}`} class="group block px-6 md:px-12 lg:px-24 py-24 transition-colors duration-500 hover:bg-[var(--color-primary)]">
-        <!-- Background animation on hover -->
-        <div class="absolute inset-0 bg-[var(--color-primary)] transform scale-y-0 origin-bottom transition-transform duration-700 ease-out group-hover:scale-y-100 -z-10"></div>
+      <a href={`/work/${project.nextProject.slug}`} class="group block px-6 md:px-12 lg:px-24 py-24 transition-colors duration-500 hover:bg-[var(--color-secondary)]">
+        <div class="absolute inset-0 bg-[var(--color-secondary)] transform scale-y-0 origin-bottom transition-transform duration-700 ease-out group-hover:scale-y-100 -z-10"></div>
         
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8 relative z-10">
           <div>
-            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2 group-hover:text-[#FDF8F3]/70 transition-colors duration-500">
+            <p class="text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4 flex items-center gap-2 group-hover:text-[var(--color-primary)]/70 transition-colors duration-500">
               <span class="w-8 h-[1px] bg-current"></span>
               Siguiente proyecto
             </p>
-            <h3 class="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium italic group-hover:text-[#FDF8F3] transition-colors duration-500">
+            <h3 class="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium italic group-hover:text-[var(--color-primary)] transition-colors duration-500">
               {project.nextProject.title}
             </h3>
           </div>
           <div class="flex-shrink-0">
-            <div class="w-20 h-20 rounded-full border-2 border-[var(--color-border)] inline-flex items-center justify-center group-hover:border-[#FDF8F3] group-hover:bg-[#FDF8F3] transition-all duration-500 group-hover:scale-110 leading-none">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 flex-none transition-all duration-500 group-hover:translate-x-2 group-hover:text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:block">
+            <div class="w-20 h-20 rounded-full border-2 border-[var(--color-border)] inline-flex items-center justify-center group-hover:border-[var(--color-primary)] group-hover:bg-[var(--color-primary)] transition-all duration-500 group-hover:scale-110 leading-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 flex-none transition-all duration-500 group-hover:translate-x-2 group-hover:text-[#FDF8F3]" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:block">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </div>

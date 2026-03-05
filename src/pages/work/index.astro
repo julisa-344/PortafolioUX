@@ -7,13 +7,13 @@ import ProjectCard from '../../components/ProjectCard.astro';
 // Todos los proyectos
 const allProjects = [
   {
-    slug: 'xplora',
-    title: 'Xplora',
-    category: 'Rediseño Web + Desarrollo',
-    description: 'Rediseño completo de la plataforma de descubrimiento de cafeterías con sistema de recompensas. Desde investigación UX hasta implementación en código.',
-    tags: ['UX Research', 'UI Design', 'Frontend Dev', 'React'],
-    thumbnail: '/images/projects/xplora/portadaCard.png',
-    year: '2024',
+    slug: 'intense',
+    title: 'Intense Viajes',
+    category: 'Plataforma de Viajes',
+    description: 'Investigación UX y arquitectura de información para plataforma de viajes. Benchmark, sitemap y wireframes.',
+    tags: ['UX Research', 'Wireframes', 'Sitemap'],
+    thumbnail: '/images/projects/intense/portadaCard.png',
+    year: '2025',
     featured: true,
   },
   {
@@ -22,7 +22,7 @@ const allProjects = [
     category: 'E-commerce de Lujo',
     description: 'Diseño de experiencia de compra para marca de textiles de lujo especializada en fibra de alpaca. Enfoque en elegancia y exclusividad.',
     tags: ['UX Design', 'UI Design', 'E-commerce'],
-    thumbnail: '/images/projects/sandra-jordan/portadaCard.png',
+    thumbnail: '/images/projects/sandra-jordan/portadacard.webp',
     year: '2024',
     featured: true,
   },
@@ -32,17 +32,7 @@ const allProjects = [
     category: 'Rediseño Web Corporativo',
     description: 'Rediseño del sitio web corporativo para empresa de telecomunicaciones con presencia en Perú, Colombia y Bolivia.',
     tags: ['UX Research', 'UI Design', 'Multi-país'],
-    thumbnail: '/images/projects/comsatel/portadaCard.png',
-    year: '2023',
-    featured: true,
-  },
-  {
-    slug: 'intense',
-    title: 'Intense Viajes',
-    category: 'Plataforma de Viajes',
-    description: 'Investigación UX y arquitectura de información para plataforma de viajes. Benchmark, sitemap y wireframes.',
-    tags: ['UX Research', 'Wireframes', 'Sitemap'],
-    thumbnail: '/images/projects/intense/portadaCard.png',
+    thumbnail: '/images/projects/comsatel/portadacard.webp',
     year: '2023',
     featured: true,
   },
@@ -54,6 +44,16 @@ const allProjects = [
     tags: ['UX Research', 'Benchmark', 'Wireframes'],
     thumbnail: '/images/projects/bitdefender/portadaCard.png',
     year: '2023',
+    featured: true,
+  },
+  {
+    slug: 'xplora',
+    title: 'Xplora',
+    category: 'Rediseño Web + Desarrollo',
+    description: 'Rediseño completo de la plataforma de descubrimiento de cafeterías con sistema de recompensas. Desde investigación UX hasta implementación en código.',
+    tags: ['UX Research', 'UI Design', 'Frontend Dev', 'React'],
+    thumbnail: '/images/projects/xplora/portadaCard.png',
+    year: '2024',
     featured: true,
   },
 ];
@@ -102,28 +102,6 @@ const allProjects = [
             </div>
           ))}
         </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)]">
-      <div class="max-w-4xl mx-auto text-center">
-        <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
-          ¿Tienes un proyecto en mente?
-        </p>
-        <h2 class="reveal font-display text-3xl md:text-4xl lg:text-5xl font-semibold mb-8" data-delay="0.1">
-          Trabajemos juntos
-        </h2>
-        <a 
-          href="/contact"
-          class="reveal group inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-[#f5f5d9] rounded-full hover:bg-[var(--color-primary-dark)] transition-colors"
-          data-delay="0.2"
-        >
-          <span class="font-medium">Iniciar conversación</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
       </div>
     </section>
   </main>
