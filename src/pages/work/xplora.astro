@@ -15,8 +15,8 @@ const project = {
   tools: ['React', 'Next.js', 'Tailwind CSS', 'GitHub', 'Claude', 'ChatGPT'],
   tags: ['UX Research', 'UI Design', 'Frontend Development', 'Rediseño'],
   liveUrl: 'https://xplora.chat/',
-  overview: 'Xplora es una plataforma que ayuda a los usuarios de Lima a encontrar la cafetería perfecta según sus necesidades. En 2025 me sumé al proyecto con acceso directo al repositorio para hacer un rediseño end-to-end: investigué los comportamientos reales de los usuarios, identifiqué tres perfiles principales y rediseñé la experiencia —incluyendo el sistema de filtros— directamente en código, sin pasar por Figma.',
-  challenge: 'La plataforma original mostraba todas las cafeterías de la misma manera, sin considerar que los usuarios llegan con necesidades muy distintas. Algunos buscan un lugar tranquilo para trabajar, otros un espacio para compartir con amigos, y otros simplemente quieren encontrar el mejor café de especialidad. El reto fue reorganizar la experiencia para que cada perfil encontrara lo que busca en pocos pasos.',
+  overview: 'Xplora es una plataforma que ayuda a los usuarios de Lima a encontrar la cafetería perfecta según su perfil. El cliente ya tenía una web avanzada y un diseño previo en Figma, así que prescindimos de una etapa de diseño nueva: hice el research, definí los perfiles de usuario, replantée la arquitectura y los filtros, y ejecuté todo el rediseño directamente en el código del repositorio existente.',
+  challenge: 'El principal reto fue continuar un código que no escribí yo, entender las decisiones previas y hacer mejoras significativas desde adentro sin romper lo que ya funcionaba. Además, la plataforma trataba a todos los usuarios igual sin considerar que cada uno llega con una necesidad distinta — trabajar, socializar o encontrar café de especialidad. Reorganizar esa experiencia basándome en datos reales fue el núcleo del proyecto.',
   goals: [
     'Identificar los tres perfiles principales de usuario',
     'Rediseñar el sistema de filtros según necesidades reales',
@@ -26,8 +26,8 @@ const project = {
   process: [
     {
       phase: 'Research',
-      title: 'Antes del rediseño',
-      description: 'Antes de tocar una sola línea de código revisé el comportamiento de los usuarios en la plataforma, analicé patrones de búsqueda y estudié plataformas similares. El hallazgo clave fue que los usuarios no buscaban "una cafetería" en abstracto — buscaban un contexto específico. Eso cambió todo el enfoque del rediseño.',
+      title: 'Entender antes de tocar el código',
+      description: 'El cliente ya tenía una web funcionando y un diseño previo en Figma. Antes de intervenir revisé el comportamiento de los usuarios, analicé qué estaba fallando en la experiencia actual y estudié plataformas similares. El hallazgo clave fue que los usuarios no buscaban "una cafetería" en abstracto, sino un contexto muy específico — trabajar, reunirse con amigos o encontrar café de especialidad. Eso definió todo el rediseño.',
       image: '/images/projects/xplora/antes.webp',
       mockup: true,
       url: 'xplora.chat',
@@ -42,16 +42,16 @@ const project = {
     },
     {
       phase: 'Implementación',
-      title: 'Rediseño directo en código',
-      description: 'Con acceso al repositorio trabajé el rediseño directamente en React y Next.js, sin archivo Figma previo. El proceso fue iterativo: ajustaba, revisaba en el navegador y refinaba. La colaboración con el equipo backend se gestionó a través de GitHub con revisiones de código y pull requests.',
+      title: 'Rediseño directo en el repositorio',
+      description: 'Con la arquitectura y los filtros definidos, trabajé el rediseño directamente en el repositorio del cliente en React y Next.js, sin archivo Figma previo. El proceso fue iterativo: ajustaba, revisaba en el navegador y refinaba. La colaboración con el equipo se gestionó a través de GitHub con revisiones de código y pull requests. El entregable fue el producto final en producción, con mejor navegación, diseño más coherente y filtros basados en datos reales de usuarios.',
       image: '/images/projects/xplora/desarrollo.webp',
       mockup: false
     }
   ],
   testimonial: {
-    quote: 'El rediseño transformó la forma en que nuestros usuarios encuentran su cafetería ideal. La implementación fue precisa y el resultado habla por sí solo.',
-    author: 'Equipo Xplora',
-    role: 'Producto'
+    quote: 'Julisa se encargó del rediseño total de la web y el resultado fue increíble. Partiendo de nuestra idea, ella logró que los colores y el estilo tuvieran muchísima más coherencia y un enfoque súper moderno. Propuso estructuras nuevas para la información que hicieron que todo se vea impecable y sea fácil de navegar. La ejecución fue de diez; entregó un trabajo con una calidad y un profesionalismo que superó nuestras expectativas.',
+    author: 'Edgar Chambilla',
+    role: 'Founder & CEO, Xplora'
   },
   desktopShowcase: {
     mainPages: [
