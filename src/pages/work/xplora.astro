@@ -26,21 +26,26 @@ const project = {
   process: [
     {
       phase: 'Research',
-      title: 'Investigación de usuarios',
+      title: 'Antes del rediseño',
       description: 'Antes de tocar una sola línea de código revisé el comportamiento de los usuarios en la plataforma, analicé patrones de búsqueda y estudié plataformas similares. El hallazgo clave fue que los usuarios no buscaban "una cafetería" en abstracto — buscaban un contexto específico. Eso cambió todo el enfoque del rediseño.',
-      image: '/images/projects/xplora/page1.webp'
+      image: '/images/projects/xplora/antes.webp',
+      mockup: true,
+      url: 'xplora.chat',
+      imageLabel: 'Versión original'
     },
     {
       phase: 'Definición',
       title: 'Perfilado y rediseño de filtros',
       description: 'Con los tres perfiles identificados redefiní el sistema de filtros para que reflejaran necesidades reales: wifi, nivel de ruido, tipo de café, capacidad para grupos. Los filtros dejaron de ser atributos genéricos y pasaron a ser herramientas orientadas a cada tipo de usuario.',
-      image: '/images/projects/xplora/cafeteriasmobile.webp'
+      image: '/images/projects/xplora/home.png',
+      mockup: false
     },
     {
       phase: 'Implementación',
       title: 'Rediseño directo en código',
       description: 'Con acceso al repositorio trabajé el rediseño directamente en React y Next.js, sin archivo Figma previo. El proceso fue iterativo: ajustaba, revisaba en el navegador y refinaba. La colaboración con el equipo backend se gestionó a través de GitHub con revisiones de código y pull requests.',
-      image: '/images/projects/xplora/homemobile.webp'
+      image: '/images/projects/xplora/desarrollo.webp',
+      mockup: false
     }
   ],
   testimonial: {
@@ -69,8 +74,8 @@ const project = {
     }
   ],
   nextProject: {
-    slug: 'sandra-jordan',
-    title: 'Sandra Jordan Prima Alpaca'
+    slug: 'intense',
+    title: 'Intense Viajes'
   }
 };
 ---
@@ -267,13 +272,25 @@ const project = {
                 </div>
               </div>
               <div class={index % 2 === 1 ? 'lg:order-1' : ''}>
-                <div class="reveal rounded-2xl overflow-hidden" data-delay="0.2">
-                  <img 
-                    src={step.image}
-                    alt={step.title}
-                    class="w-full aspect-[4/3] object-cover object-top"
-                    loading="lazy"
-                  />
+                <div class="reveal" data-delay="0.2">
+                  {step.mockup ? (
+                    <BrowserMockup
+                      src={step.image}
+                      alt={step.title}
+                      label={step.imageLabel}
+                      url={step.url}
+                      height="420px"
+                    />
+                  ) : (
+                    <div class="rounded-2xl overflow-hidden">
+                      <img 
+                        src={step.image}
+                        alt={step.title}
+                        class="w-full aspect-[4/3] object-cover object-top"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -316,20 +333,70 @@ const project = {
             </div>
           </div>
 
-          <!-- Video -->
-          <div>
-            <h3 class="reveal font-serif text-2xl md:text-3xl font-medium mb-10 text-[var(--color-text)]" data-delay="0">
-              En movimiento
-            </h3>
-            <div class="reveal rounded-2xl overflow-hidden shadow-2xl bg-black" data-delay="0.1">
-              <video
-                src="/images/projects/xplora/xplora.mp4"
-                autoplay
-                muted
-                loop
-                playsinline
-                class="w-full aspect-[16/9] object-cover"
-              ></video>
+        </div>
+      </div>
+    </section>
+
+    <!-- Antes & Después -->
+    <section class="py-24 bg-[var(--color-primary)] overflow-hidden">
+      <div class="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16">
+        <!-- Header centrado -->
+        <div class="text-center mb-16">
+          <p class="reveal text-white/60 text-sm uppercase tracking-[0.35em] mb-4" data-delay="0">
+            El resultado
+          </p>
+          <h2 class="reveal font-serif text-5xl md:text-6xl lg:text-7xl font-medium text-white" data-delay="0.1">
+            Antes &amp; Después
+          </h2>
+          <p class="reveal text-white/70 text-lg mt-5 max-w-xl mx-auto" data-delay="0.2">
+            De una interfaz confusa a una experiencia fluida y personalizada.
+          </p>
+        </div>
+
+        <!-- Comparación lado a lado -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <!-- Antes -->
+          <div class="reveal" data-delay="0.15">
+            <p class="text-xs uppercase tracking-[0.3em] text-white/50 mb-4 text-center">Antes</p>
+            <BrowserMockup
+              src="/images/projects/xplora/antes.webp"
+              alt="Versión original de Xplora antes del rediseño"
+              label="Versión original"
+              url="xplora.chat"
+              height="480px"
+            />
+          </div>
+
+          <!-- Después -->
+          <div class="reveal" data-delay="0.2">
+            <p class="text-xs uppercase tracking-[0.3em] text-white/50 mb-4 text-center">Después</p>
+            <!-- Video mockup manual para mantener consistencia visual -->
+            <div class="browser-mockup-video rounded-xl overflow-hidden shadow-2xl">
+              <!-- Chrome bar -->
+              <div class="flex items-center gap-3 px-4 py-3 bg-[var(--color-bg-secondary)] border-b border-[var(--color-border)]">
+                <div class="flex gap-2">
+                  <span class="w-3 h-3 rounded-full bg-[#ff5f56] opacity-70"></span>
+                  <span class="w-3 h-3 rounded-full bg-[#ffbd2e] opacity-70"></span>
+                  <span class="w-3 h-3 rounded-full bg-[#27c93f] opacity-70"></span>
+                </div>
+                <div class="flex-1 flex items-center gap-2 bg-white/60 rounded-md px-3 py-1.5 border border-[var(--color-border)]">
+                  <svg class="w-3.5 h-3.5 text-[var(--color-text-muted)] shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+                  </svg>
+                  <span class="text-xs text-[var(--color-text-muted)] font-medium truncate">xplora.chat</span>
+                </div>
+              </div>
+              <!-- Video: overflow hidden en el wrapper recorta las franjas negras -->
+              <div style="height: 480px; overflow: hidden; position: relative;">
+                <video
+                  src="/images/projects/xplora/xplora.mp4"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; height: 130%; object-fit: cover;"
+                ></video>
+              </div>
             </div>
           </div>
         </div>
@@ -400,3 +467,101 @@ const project = {
 
   <Footer />
 </Layout>
+
+<script>
+  // Auto-scroll para el mockup "Antes" en la sección Antes & Después
+  function initBeforeScroll() {
+    // El BrowserMockup genera un div con clase browser-content.with-scroll
+    // Seleccionamos el que contiene la imagen antes.webp
+    const allScrollables = document.querySelectorAll<HTMLElement>('.browser-content.with-scroll');
+    let beforeContainer: HTMLElement | null = null;
+
+    allScrollables.forEach((el) => {
+      const img = el.querySelector<HTMLImageElement>('img');
+      if (img && img.src.includes('antes')) {
+        beforeContainer = el;
+      }
+    });
+
+    if (!beforeContainer) return;
+
+    const container = beforeContainer as HTMLElement;
+    let direction = 1;
+    let animId: number;
+    let paused = false;
+
+    // Velocidad de scroll en px por frame (~60fps)
+    const SPEED = 2;
+    // Pausa en ms al llegar al extremo
+    const PAUSE_MS = 1200;
+
+    function step() {
+      if (paused) return;
+
+      const maxScroll = container.scrollHeight - container.clientHeight;
+      if (maxScroll <= 0) return;
+
+      container.scrollTop += SPEED * direction;
+
+      if (container.scrollTop >= maxScroll - 1) {
+        paused = true;
+        setTimeout(() => {
+          direction = -1;
+          paused = false;
+          animId = requestAnimationFrame(step);
+        }, PAUSE_MS);
+        return;
+      }
+
+      if (container.scrollTop <= 0) {
+        paused = true;
+        setTimeout(() => {
+          direction = 1;
+          paused = false;
+          animId = requestAnimationFrame(step);
+        }, PAUSE_MS);
+        return;
+      }
+
+      animId = requestAnimationFrame(step);
+    }
+
+    // Iniciar solo cuando la sección entra en viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animId = requestAnimationFrame(step);
+          } else {
+            cancelAnimationFrame(animId);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    // Observar la sección padre
+    const section = container.closest('section');
+    if (section) observer.observe(section);
+
+    // Pausar al hacer hover (el usuario quiere ver algo)
+    container.addEventListener('mouseenter', () => {
+      paused = true;
+      cancelAnimationFrame(animId);
+    });
+    container.addEventListener('mouseleave', () => {
+      paused = false;
+      animId = requestAnimationFrame(step);
+    });
+  }
+
+  // Esperar a que la imagen cargue para tener el scrollHeight correcto
+  document.addEventListener('DOMContentLoaded', () => {
+    const img = document.querySelector<HTMLImageElement>('img[src*="antes"]');
+    if (img && img.complete) {
+      initBeforeScroll();
+    } else if (img) {
+      img.addEventListener('load', initBeforeScroll);
+    }
+  });
+</script>
