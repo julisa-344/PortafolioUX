@@ -1,12 +1,15 @@
 ---
 import '../styles/global.css'
+import SplashScreen from '../components/SplashScreen.astro';
 
 interface Props {
   title: string;
   description?: string;
+  showSplash?: boolean;
 }
 
-const { title, description = "UX/UI Designer & Developer - Creando experiencias digitales memorables" } = Astro.props;
+// showSplash por defecto es false — solo la home lo activa explícitamente
+const { title, description = "UX/UI Designer & Developer - Creando experiencias digitales memorables", showSplash = false } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -31,8 +34,11 @@ const { title, description = "UX/UI Designer & Developer - Creando experiencias 
     <!-- Custom cursor -->
     <div class="cursor hidden lg:block" id="cursor"></div>
     
-    <!-- Page transition overlay -->
-    <div class="page-transition fixed inset-0 bg-[var(--color-primary)] z-[9999] transform translate-y-full pointer-events-none" id="page-transition"></div>
+    <!-- Page transition overlay (para navegación entre páginas, z inferior al splash) -->
+    <div class="page-transition fixed inset-0 bg-[var(--color-primary)] z-[9998] transform translate-y-full pointer-events-none" id="page-transition"></div>
+
+    <!-- Splash Screen (solo en home) -->
+    {showSplash && <SplashScreen />}
     
     <slot />
 
@@ -149,43 +155,37 @@ const { title, description = "UX/UI Designer & Developer - Creando experiencias 
         });
       }
 
-      // Advanced reveal animations with stagger (skip img-reveal to avoid conflict)
+      // Advanced reveal animations with stagger
+      // Skip: img-reveal (has its own CSS transitions) + hero elements (have their own GSAP timeline in Hero.astro)
       const revealElements = document.querySelectorAll('.reveal:not(.img-reveal)');
       
       revealElements.forEach(el => {
         const delay = (el as HTMLElement).dataset.delay ? parseFloat((el as HTMLElement).dataset.delay!) : 0;
         
-        // Check if element is inside a hero section (first section of page)
-        const isInHero = (el as HTMLElement).closest('section.relative.min-h-screen, section[data-hero]') !== null;
+        // Skip elements inside the hero section — they have a dedicated GSAP timeline
+        const isInHero = (el as HTMLElement).closest('[data-hero]') !== null;
+        if (isInHero) return;
         
-        if (isInHero) {
-          // Hero elements: animate on load without ScrollTrigger
-          gsap.fromTo(el,
-            { opacity: 0, y: 50, scale: 0.97 },
-            { opacity: 1, y: 0, scale: 1, duration: 1.0, delay: delay, ease: 'expo.out' }
-          );
-        } else {
-          gsap.fromTo(el, 
-            {
-              opacity: 0,
-              y: 80,
-              scale: 0.95
-            },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 1.2,
-              delay: delay,
-              ease: 'expo.out',
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-              }
+        gsap.fromTo(el, 
+          {
+            opacity: 0,
+            y: 80,
+            scale: 0.95
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.2,
+            delay: delay,
+            ease: 'expo.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none none'
             }
-          );
-        }
+          }
+        );
       });
 
       // Parallax for images with img-reveal

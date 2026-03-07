@@ -24,7 +24,6 @@ const items = Array(12).fill(text);
         </span>
       ))}
     </div>
-    <!-- Duplicado para seamless loop -->
     <div class="ribbon-track track-left" style={`--speed: ${speed}s`} aria-hidden="true">
       {items.map((t) => (
         <span class="ribbon-item">
@@ -57,20 +56,16 @@ const items = Array(12).fill(text);
 </div>
 
 <style>
-  /* ─── Contenedor general ─── */
   .ribbon-wrapper {
     position: relative;
     width: 100%;
-    /* Espacio vertical para que ambas cintas se vean bien cruzadas */
     padding: 2.5rem 0;
     overflow: hidden;
-    /* Evita que el overflow diagonal genere scrollbar horizontal */
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  /* ─── Cinta base ─── */
   .ribbon {
     position: relative;
     width: 110%;
@@ -78,23 +73,21 @@ const items = Array(12).fill(text);
     display: flex;
     overflow: hidden;
     padding: 0.7rem 0;
-    /* Sombra sutil para dar sensación de papel físico */
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12), 0 -1px 4px rgba(0, 0, 0, 0.06);
   }
 
-  /* Cinta superior: verde matcha + inclinación */
   .ribbon-top {
     background-color: var(--color-secondary);
     transform: rotate(-3deg);
     transform-origin: center;
   }
 
-  /* Cinta inferior: roja + inclinación */
   .ribbon-bottom {
     background-color: var(--color-primary);
     transform: rotate(3deg);
     transform-origin: center;
   }
+
   .ribbon-track {
     display: inline-flex;
     flex-shrink: 0;
@@ -102,17 +95,14 @@ const items = Array(12).fill(text);
     will-change: transform;
   }
 
-  /* Izquierda → derecha negativo */
   .track-left {
     animation: ribbon-left var(--speed, 25s) linear infinite;
   }
 
-  /* Derecha → izquierda positivo */
   .track-right {
     animation: ribbon-right var(--speed, 28s) linear infinite;
   }
 
-  /* ─── Items individuales ─── */
   .ribbon-item {
     display: inline-flex;
     align-items: center;
@@ -124,15 +114,8 @@ const items = Array(12).fill(text);
     text-transform: uppercase;
   }
 
-  /* Texto en cinta verde → cherry */
-  .ribbon-top .ribbon-item {
-    color: var(--color-primary);
-  }
-
-  /* Texto en cinta roja → crema */
-  .ribbon-bottom .ribbon-item {
-    color: var(--color-bg);
-  }
+  .ribbon-top .ribbon-item  { color: var(--color-primary); }
+  .ribbon-bottom .ribbon-item { color: var(--color-bg); }
 
   .ribbon-star {
     margin-left: 1.75rem;
@@ -140,15 +123,9 @@ const items = Array(12).fill(text);
     font-size: 0.7rem;
   }
 
-  .ribbon-top .ribbon-star {
-    color: var(--color-primary);
-  }
+  .ribbon-top .ribbon-star    { color: var(--color-primary); }
+  .ribbon-bottom .ribbon-star { color: var(--color-bg); }
 
-  .ribbon-bottom .ribbon-star {
-    color: var(--color-bg);
-  }
-
-  /* ─── Keyframes ─── */
   @keyframes ribbon-left {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -159,15 +136,11 @@ const items = Array(12).fill(text);
     100% { transform: translateX(0); }
   }
 
-  /* ─── Pausa en hover (accesibilidad / detalle interactivo) ─── */
   .ribbon:hover .ribbon-track {
     animation-play-state: paused;
   }
 
-  /* ─── Reducir movimiento (accesibilidad) ─── */
   @media (prefers-reduced-motion: reduce) {
-    .ribbon-track {
-      animation: none;
-    }
+    .ribbon-track { animation: none; }
   }
 </style>

@@ -122,6 +122,17 @@ body {
   transform: translateY(0);
 }
 
+/* Mientras el splash está activo, ocultar el contenido de la página
+   para evitar flash de contenido antes de que GSAP tome control */
+html:not(.splash-done) .hero-subtitle,
+html:not(.splash-done) .hero-desc,
+html:not(.splash-done) .hero-ctas,
+html:not(.splash-done) .hero-right,
+html:not(.splash-done) .hero-scroll-indicator {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .reveal-fade {
   opacity: 0;
   will-change: opacity;

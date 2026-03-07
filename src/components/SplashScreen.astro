@@ -1,0 +1,182 @@
+---
+// SplashScreen — "JL" con animación iris circular (clip-path expand)
+---
+
+<div id="splash-screen" class="splash-screen" aria-hidden="true">
+  <!-- Fondo cherry red -->
+  <div class="splash-bg"></div>
+
+  <!-- Contenido centrado -->
+  <div class="splash-content" id="splash-content">
+    <!-- Monograma JL -->
+    <div class="splash-monogram" id="splash-monogram">
+      <span class="splash-letter-j">J</span><span class="splash-letter-l">L</span>
+    </div>
+    <!-- Tagline -->
+    <p class="splash-tagline" id="splash-tagline">
+      Product Designer &amp; Frontend Developer
+    </p>
+  </div>
+
+  <!-- Círculo iris — empieza cubriendo todo, se contrae al centro al salir -->
+  <!-- Al entrar: clip-path circle(0% at 50% 50%) → circle(150% at 50% 50%)  -->
+  <!-- Al salir:  circle(150%) → circle(0%)                                    -->
+  <div class="splash-iris" id="splash-iris"></div>
+</div>
+
+<style>
+  .splash-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    overflow: hidden;
+    pointer-events: all;
+  }
+
+  /* Fondo detrás del iris — cream, mismo color del sitio */
+  .splash-bg {
+    position: absolute;
+    inset: 0;
+    background-color: #FDF8F3;
+  }
+
+  /* El iris: círculo cherry red que cubre toda la pantalla al inicio */
+  .splash-iris {
+    position: absolute;
+    inset: 0;
+    background-color: #670626;
+    /* Empieza cubriendo todo */
+    clip-path: circle(150% at 50% 50%);
+    will-change: clip-path;
+    z-index: 1;
+  }
+
+  /* Contenido va encima del iris */
+  .splash-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Monograma JL */
+  .splash-monogram {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(8rem, 20vw, 16rem);
+    line-height: 0.88;
+    color: #FDF8F3;
+    letter-spacing: -0.04em;
+    user-select: none;
+    opacity: 0;
+    transform: scale(0.85);
+    will-change: transform, opacity;
+    /* Sutil sombra de profundidad */
+    text-shadow: 0 0 80px rgba(253, 248, 243, 0.06);
+  }
+
+  .splash-letter-j { display: inline-block; }
+  .splash-letter-l {
+    display: inline-block;
+    /* La L ligeramente más pequeña y desplazada, efecto monograma */
+    font-size: 0.72em;
+    vertical-align: 0.08em;
+    opacity: 0.85;
+  }
+
+  /* Tagline */
+  .splash-tagline {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-size: clamp(0.6rem, 1.3vw, 0.8rem);
+    font-weight: 400;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: rgba(253, 248, 243, 0.55);
+    margin-top: 3rem;
+    opacity: 0;
+    transform: translateY(10px);
+    will-change: transform, opacity;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+
+  const splash   = document.getElementById('splash-screen');
+  const iris     = document.getElementById('splash-iris');
+  const monogram = document.getElementById('splash-monogram');
+  const tagline  = document.getElementById('splash-tagline');
+
+  // Bloquear scroll
+  document.body.style.overflow = 'hidden';
+
+  const tl = gsap.timeline({
+    onComplete: () => {
+      if (splash) splash.remove();
+      document.body.style.overflow = '';
+      document.documentElement.classList.add('splash-done');
+      document.dispatchEvent(new CustomEvent('splashDone'));
+    }
+  });
+
+  // 1. El iris (círculo rojo) se contrae desde full-screen hacia el centro
+  //    revelando el fondo cream — pero el contenido (JL) aún no se ve
+  //    porque está sobre el iris.
+  //    Primero mostramos el JL sobre el rojo, luego contraemos el iris.
+
+  // 1a. JL aparece sobre el fondo rojo (escala + fade)
+  tl.to(monogram, {
+    opacity: 1,
+    scale: 1,
+    duration: 0.9,
+    ease: 'expo.out',
+  }, 0.1);
+
+  // 1b. Tagline aparece
+  tl.to(tagline, {
+    opacity: 1,
+    y: 0,
+    duration: 0.7,
+    ease: 'power3.out',
+  }, 0.5);
+
+  // 2. Pausa — el usuario ve el JL sobre rojo
+  // (+=0.9 desde que termina el último tween)
+
+  // 3. El iris se contrae hacia el centro (iris wipe out)
+  //    clip-path circle de 150% → 0% — el rojo "se traga" hacia el centro
+  tl.to(iris, {
+    clipPath: 'circle(0% at 50% 50%)',
+    duration: 1.0,
+    ease: 'power3.inOut',
+  }, '+=0.85');
+
+  // 4. Al mismo tiempo, el JL (que estaba en blanco sobre rojo)
+  //    cambia de color a cherry red para seguir visible sobre el cream
+  //    y luego se desvanece
+  tl.to(monogram, {
+    color: '#670626',
+    textShadow: 'none',
+    duration: 0.4,
+    ease: 'none',
+  }, '-=1.0');
+
+  tl.to(tagline, {
+    color: 'rgba(103, 6, 38, 0.45)',
+    duration: 0.4,
+    ease: 'none',
+  }, '-=1.0');
+
+  // 5. JL y tagline se desvanecen al final
+  tl.to([monogram, tagline], {
+    opacity: 0,
+    scale: 0.95,
+    duration: 0.45,
+    ease: 'power2.in',
+  }, '-=0.35');
+</script>

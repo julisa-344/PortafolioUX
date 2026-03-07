@@ -58,65 +58,102 @@ const experience = [
   <Header />
 
   <main>
-    <!-- Hero Section -->
-    <section class="min-h-[70vh] flex flex-col justify-end px-6 md:px-12 lg:px-24 pb-16 pt-32">
-      <div class="max-w-[1600px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-end">
-        <div>
-          <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
-            Sobre mí
-          </p>
-          <h1 class="reveal font-display text-4xl md:text-5xl lg:text-6xl font-semibold mb-6" data-delay="0.1">
-            Diseñadora UX/UI con superpoderes de desarrollo
-          </h1>
-        </div>
-        <div>
-          <p class="reveal text-[var(--color-text-muted)] text-lg md:text-xl leading-relaxed" data-delay="0.2">
-            Combino investigación de usuarios, diseño visual y desarrollo frontend para crear
-            productos digitales que no solo se ven bien, sino que funcionan de manera excepcional.
-          </p>
-        </div>
-      </div>
-    </section>
 
-    <!-- Profile image placeholder -->
-    <section class="px-6 md:px-12 lg:px-24 pb-24">
-      <div class="max-w-[1600px] mx-auto">
-        <div class="reveal img-reveal rounded-2xl overflow-hidden max-w-2xl" data-delay="0.3">
-          <div class="w-full aspect-[4/3] bg-[var(--color-bg-secondary)] flex items-center justify-center">
-            <div class="text-center">
-              <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-              <p class="text-[var(--color-text-muted)]">Foto de perfil</p>
-            </div>
+    <!-- ── HERO — full-width tipográfico ──────────────────────── -->
+    <section class="about-hero px-6 md:px-12 lg:px-24 bg-[var(--color-primary)]"
+             style="min-height:100svh; display:flex; flex-direction:column; justify-content:space-between;">
+      <div class="max-w-[1600px] mx-auto w-full" style="display:flex; flex-direction:column; flex:1; justify-content:space-between;">
+
+        <!-- TOP: pretitle + título -->
+        <div class="pt-36">
+        <!-- Pretitle -->
+        <p class="reveal flex items-center gap-3 text-[#FDF8F3]/50 text-xs uppercase tracking-[0.32em] mb-8" data-delay="0">
+          <span class="w-7 h-[1px] bg-[#FDF8F3]/40"></span>
+          Sobre mí
+        </p>
+
+        <!-- Título grande a ancho completo -->
+        <h1 class="reveal font-display font-semibold leading-[0.95] tracking-tight mb-12 text-[#FDF8F3]"
+            style="font-size: clamp(3rem, 7.5vw, 8rem);" data-delay="0.1">
+          Diseño lo que<br/>
+          <em class="font-serif font-medium not-italic text-[var(--color-secondary)]">conecta</em>
+          y construyo<br/>lo que
+          <em class="font-serif font-medium not-italic text-[var(--color-secondary)]">funciona.</em>
+        </h1>
+        </div>
+
+        <!-- BOTTOM: divisor + fila de datos pegada al borde inferior -->
+        <div class="pb-12">
+        <!-- Divisor crema/opaco -->
+        <div class="reveal h-[1px] w-full bg-[#FDF8F3]/20 mb-10" data-delay="0.2"></div>
+
+        <!-- Fila de datos de identidad: solo 3 columnas -->
+        <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-y-8" data-delay="0.3">
+          <div class="border-r border-[#FDF8F3]/15 pr-8">
+            <p class="text-[#FDF8F3]/45 text-[0.6rem] uppercase tracking-[0.3em] mb-2">Rol</p>
+            <p class="font-display font-semibold text-[#FDF8F3] text-sm leading-snug">UX/UI Designer &amp; Frontend Dev</p>
           </div>
-        </div>
+          <div class="border-r border-[#FDF8F3]/15 px-8">
+            <p class="text-[#FDF8F3]/45 text-[0.6rem] uppercase tracking-[0.3em] mb-2">Ubicación</p>
+            <p class="font-display font-semibold text-[#FDF8F3] text-sm">Lima, Perú</p>
+          </div>
+          <div class="pl-8">
+            <p class="text-[#FDF8F3]/45 text-[0.6rem] uppercase tracking-[0.3em] mb-2">Disponibilidad</p>
+            <p class="font-display font-semibold text-[#FDF8F3] text-sm">Abierta a proyectos</p>
+          </div>
+
+        </div><!-- /grid -->
       </div>
     </section>
 
-    <MarqueeRibbon text="UX Design · UI Design · Development · Frontend" speed={28} />
-
-    <!-- Bio Section -->
+    <!-- ── BIO — Mi historia ──────────────────────────────────── -->
     <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)]">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-        <div class="lg:col-span-4">
-          <p class="reveal text-[var(--color-text-muted)] text-sm uppercase tracking-[0.3em] mb-4" data-delay="0">
+      <div class="max-w-[1600px] mx-auto">
+
+        <!-- Título grande scroll-paint (full-width, encima de la grilla) -->
+        <div class="mb-16 overflow-hidden">
+          <p class="reveal text-[var(--color-text-muted)] text-xs uppercase tracking-[0.3em] mb-6 flex items-center gap-3" data-delay="0">
+            <span class="w-6 h-[1px] bg-[var(--color-primary)]"></span>
             Mi historia
           </p>
-          <h2 class="reveal font-display text-3xl md:text-4xl font-semibold" data-delay="0.1">
-            Del diseño al código
+          <h2 id="bio-paint-title"
+              class="font-display font-semibold leading-[1.05] tracking-tight"
+              style="font-size: clamp(3rem, 6vw, 6rem);">
+            <span class="paint-word">Del</span>
+            <span class="paint-word"> diseño</span>
+            <span class="paint-word"> al</span>
+            <span class="paint-word"> código</span><span class="paint-word">,</span><br/>
+            <span class="paint-word">de</span>
+            <span class="paint-word"> la</span>
+            <span class="paint-word"> investigación</span>
+            <span class="paint-word"> al</span>
+            <span class="paint-word"> impacto</span><span class="paint-word">.</span>
           </h2>
         </div>
-        <div class="lg:col-span-8 space-y-6">
-          <p class="reveal text-lg md:text-xl leading-relaxed text-[var(--color-text-muted)]" data-delay="0.2">
-Estudié ingeniería de software y empecé mi camino desde lo técnico. Con el tiempo, el UX/UI apareció y me cambió la forma de ver los productos: entendí que no basta con que algo funcione, también tiene que ser claro, útil y fácil de usar.          </p>
-          <p class="reveal text-lg md:text-xl leading-relaxed text-[var(--color-text-muted)]" data-delay="0.3">
-           Hoy me estoy especializando en UX, con foco en investigación: me gusta observar, entender necesidades y convertir esos hallazgos en flujos e interfaces que resuelven problemas reales. Mi perfil técnico me permite trabajar muy de cerca con desarrollo, anticipar limitaciones y llevar el diseño a implementación cuando el proyecto lo requiere.
+
+        <!-- Grid: textos + cita -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+
+          <!-- col vacía izquierda para alinear con el grid anterior -->
+          <div class="hidden lg:block lg:col-span-4"></div>
+
+          <!-- Textos -->
+          <div class="lg:col-span-8 space-y-8">
+          <p class="reveal text-base md:text-lg leading-relaxed text-[var(--color-text-muted)]" data-delay="0.2">
+            Estudié ingeniería de software y empecé mi camino desde lo técnico. Con el tiempo, el UX/UI apareció y me cambió la forma de ver los productos: entendí que no basta con que algo funcione, también tiene que ser claro, útil y fácil de usar.
           </p>
- 
+          <p class="reveal text-base md:text-lg leading-relaxed text-[var(--color-text-muted)]" data-delay="0.3">
+            Hoy me estoy especializando en UX, con foco en investigación: me gusta observar, entender necesidades y convertir esos hallazgos en flujos e interfaces que resuelven problemas reales. Mi perfil técnico me permite trabajar muy de cerca con desarrollo, anticipar limitaciones y llevar el diseño a implementación cuando el proyecto lo requiere.
+          </p>
+          <!-- Cita integrada al final del bio -->
+          <blockquote class="reveal border-l-2 border-[var(--color-primary)] pl-6 mt-2" data-delay="0.4">
+            <p class="font-serif italic text-[clamp(1.05rem,1.8vw,1.35rem)] leading-[1.45] text-[var(--color-text)]">
+              "El buen diseño es invisible: cuando algo funciona de verdad,
+              nadie lo nota — <span class="text-[var(--color-primary)]">simplemente fluye.</span>"
+            </p>
+          </blockquote>
         </div>
+
       </div>
     </section>
 
@@ -266,6 +303,15 @@ Estudié ingeniería de software y empecé mi camino desde lo técnico. Con el t
 </Layout>
 
 <style>
+  /* ═══════════════════════════════════════
+     BIO — scroll-paint title
+  ═══════════════════════════════════════ */
+  #bio-paint-title .paint-word {
+    display: inline-block;
+    color: var(--color-text-muted);
+    opacity: 0.22;
+  }
+
   /* ═══════════════════════════════════════
      EXPERIENCE — scroll-stack section
   ═══════════════════════════════════════ */
@@ -584,5 +630,30 @@ Estudié ingeniería de software y empecé mi camino desde lo técnico. Con el t
     cards.forEach(c => c.classList.add('waiting'));
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  })();
+
+  /* ─── Bio scroll-paint ─────────────────────────────────── */
+  (async function () {
+    const title = document.querySelector<HTMLElement>('#bio-paint-title');
+    if (!title) return;
+
+    const { gsap } = await import('gsap');
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+    gsap.registerPlugin(ScrollTrigger);
+
+    const words = title.querySelectorAll<HTMLElement>('.paint-word');
+
+    gsap.to(words, {
+      opacity: 1,
+      color: 'var(--color-text)',
+      stagger: 0.06,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: title,
+        start: 'top 80%',
+        end: 'bottom 30%',
+        scrub: 0.6,
+      },
+    });
   })();
 </script>
