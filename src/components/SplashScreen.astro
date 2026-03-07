@@ -112,71 +112,63 @@
   const monogram = document.getElementById('splash-monogram');
   const tagline  = document.getElementById('splash-tagline');
 
-  // Bloquear scroll
-  document.body.style.overflow = 'hidden';
+  // Si ya se mostró en esta sesión → skip inmediato
+  if (sessionStorage.getItem('splashSeen')) {
+    if (splash) splash.remove();
+    document.documentElement.classList.add('splash-done');
+    document.dispatchEvent(new CustomEvent('splashDone'));
+  } else {
+    // Primera visita de la sesión → animación completa
+    document.body.style.overflow = 'hidden';
 
-  const tl = gsap.timeline({
-    onComplete: () => {
-      if (splash) splash.remove();
-      document.body.style.overflow = '';
-      document.documentElement.classList.add('splash-done');
-      document.dispatchEvent(new CustomEvent('splashDone'));
-    }
-  });
+    const tl = gsap.timeline({
+      onComplete: () => {
+        if (splash) splash.remove();
+        document.body.style.overflow = '';
+        document.documentElement.classList.add('splash-done');
+        document.dispatchEvent(new CustomEvent('splashDone'));
+        sessionStorage.setItem('splashSeen', '1');
+      }
+    });
 
-  // 1. El iris (círculo rojo) se contrae desde full-screen hacia el centro
-  //    revelando el fondo cream — pero el contenido (JL) aún no se ve
-  //    porque está sobre el iris.
-  //    Primero mostramos el JL sobre el rojo, luego contraemos el iris.
+    tl.to(monogram, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.9,
+      ease: 'expo.out',
+    }, 0.1);
 
-  // 1a. JL aparece sobre el fondo rojo (escala + fade)
-  tl.to(monogram, {
-    opacity: 1,
-    scale: 1,
-    duration: 0.9,
-    ease: 'expo.out',
-  }, 0.1);
+    tl.to(tagline, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      ease: 'power3.out',
+    }, 0.5);
 
-  // 1b. Tagline aparece
-  tl.to(tagline, {
-    opacity: 1,
-    y: 0,
-    duration: 0.7,
-    ease: 'power3.out',
-  }, 0.5);
+    tl.to(iris, {
+      clipPath: 'circle(0% at 50% 50%)',
+      duration: 1.0,
+      ease: 'power3.inOut',
+    }, '+=0.85');
 
-  // 2. Pausa — el usuario ve el JL sobre rojo
-  // (+=0.9 desde que termina el último tween)
+    tl.to(monogram, {
+      color: '#670626',
+      textShadow: 'none',
+      duration: 0.4,
+      ease: 'none',
+    }, '-=1.0');
 
-  // 3. El iris se contrae hacia el centro (iris wipe out)
-  //    clip-path circle de 150% → 0% — el rojo "se traga" hacia el centro
-  tl.to(iris, {
-    clipPath: 'circle(0% at 50% 50%)',
-    duration: 1.0,
-    ease: 'power3.inOut',
-  }, '+=0.85');
+    tl.to(tagline, {
+      color: 'rgba(103, 6, 38, 0.45)',
+      duration: 0.4,
+      ease: 'none',
+    }, '-=1.0');
 
-  // 4. Al mismo tiempo, el JL (que estaba en blanco sobre rojo)
-  //    cambia de color a cherry red para seguir visible sobre el cream
-  //    y luego se desvanece
-  tl.to(monogram, {
-    color: '#670626',
-    textShadow: 'none',
-    duration: 0.4,
-    ease: 'none',
-  }, '-=1.0');
-
-  tl.to(tagline, {
-    color: 'rgba(103, 6, 38, 0.45)',
-    duration: 0.4,
-    ease: 'none',
-  }, '-=1.0');
-
-  // 5. JL y tagline se desvanecen al final
-  tl.to([monogram, tagline], {
-    opacity: 0,
-    scale: 0.95,
-    duration: 0.45,
-    ease: 'power2.in',
-  }, '-=0.35');
+    tl.to([monogram, tagline], {
+      opacity: 0,
+      scale: 0.95,
+      duration: 0.45,
+      ease: 'power2.in',
+    }, '-=0.35');
+  }
 </script>

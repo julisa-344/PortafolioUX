@@ -61,50 +61,57 @@ const experience = [
 
     <!-- ── HERO — full-width tipográfico ──────────────────────── -->
     <section class="about-hero px-6 md:px-12 lg:px-24 bg-[var(--color-primary)]"
+             data-hero
              style="min-height:100svh; display:flex; flex-direction:column; justify-content:space-between;">
       <div class="max-w-[1600px] mx-auto w-full" style="display:flex; flex-direction:column; flex:1; justify-content:space-between;">
 
-        <!-- TOP: pretitle + título -->
+        <!-- TOP: pretitle + grid (título izq · datos der) -->
         <div class="pt-36">
-        <!-- Pretitle -->
-        <p class="reveal flex items-center gap-3 text-[#FDF8F3]/50 text-xs uppercase tracking-[0.32em] mb-8" data-delay="0">
-          <span class="w-7 h-[1px] bg-[#FDF8F3]/40"></span>
-          Sobre mí
-        </p>
+          <!-- Pretitle -->
+          <p class="about-hero-item flex items-center gap-3 text-[#FDF8F3]/50 text-xs uppercase tracking-[0.32em] mb-8" style="animation-delay:0.1s">
+            <span class="w-7 h-[1px] bg-[#FDF8F3]/40"></span>
+            Sobre mí
+          </p>
 
-        <!-- Título grande a ancho completo -->
-        <h1 class="reveal font-display font-semibold leading-[0.95] tracking-tight mb-12 text-[#FDF8F3]"
-            style="font-size: clamp(3rem, 7.5vw, 8rem);" data-delay="0.1">
-          Diseño lo que<br/>
-          <em class="font-serif font-medium not-italic text-[var(--color-secondary)]">conecta</em>
-          y construyo<br/>lo que
-          <em class="font-serif font-medium not-italic text-[var(--color-secondary)]">funciona.</em>
-        </h1>
-        </div>
+          <!-- Grid 2 col: título izq · datos der (solo Rol + Ubicación junto al título) -->
+          <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 lg:gap-16 items-end">
 
-        <!-- BOTTOM: divisor + fila de datos pegada al borde inferior -->
+            <!-- Título grande -->
+            <h1 class="about-hero-item font-display font-semibold leading-[0.95] tracking-tight text-[#FDF8F3]"
+                style="font-size: clamp(3rem, 7.5vw, 8rem); animation-delay:0.25s">
+              Diseño lo que<br/>
+              <em class="font-serif font-medium not-italic text-[var(--color-secondary)]">conecta</em>
+              y construyo<br/>lo que
+              <em class="font-serif font-medium not-italic text-[var(--color-secondary)]">funciona.</em>
+            </h1>
+
+          </div><!-- /grid título -->
+        </div><!-- /TOP -->
+
+        <!-- BOTTOM: divisor + los 3 datos juntos pegados al borde inferior -->
         <div class="pb-12">
-        <!-- Divisor crema/opaco -->
-        <div class="reveal h-[1px] w-full bg-[#FDF8F3]/20 mb-10" data-delay="0.2"></div>
+          <!-- Divisor crema/opaco -->
+          <div class="about-hero-item h-[1px] w-full bg-[#FDF8F3]/20 mb-10" style="animation-delay:0.4s"></div>
 
-        <!-- Fila de datos de identidad: solo 3 columnas -->
-        <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-y-8" data-delay="0.3">
-          <div class="border-r border-[#FDF8F3]/15 pr-8">
-            <p class="text-[#FDF8F3]/45 text-[0.6rem] uppercase tracking-[0.3em] mb-2">Rol</p>
-            <p class="font-display font-semibold text-[#FDF8F3] text-sm leading-snug">UX/UI Designer &amp; Frontend Dev</p>
+          <!-- Fila de 3 columnas: Rol · Ubicación · Disponibilidad -->
+          <div class="about-hero-item grid grid-cols-1 md:grid-cols-3 gap-y-8" style="animation-delay:0.55s">
+            <div class="md:border-r border-[#FDF8F3]/15 md:pr-8">
+              <p class="text-[#FDF8F3]/45 text-[0.6rem] uppercase tracking-[0.3em] mb-2">Rol</p>
+              <p class="font-display font-semibold text-[#FDF8F3] text-sm leading-snug">UX/UI Designer &amp; Frontend Dev</p>
+            </div>
+            <div class="md:border-r border-[#FDF8F3]/15 md:px-8">
+              <p class="text-[#FDF8F3]/45 text-[0.6rem] uppercase tracking-[0.3em] mb-2">Ubicación</p>
+              <p class="font-display font-semibold text-[#FDF8F3] text-sm">Lima, Perú</p>
+            </div>
+            <div class="md:pl-8">
+              <p class="text-[#FDF8F3]/45 text-[0.6rem] uppercase tracking-[0.3em] mb-2">Disponibilidad</p>
+              <p class="font-display font-semibold text-[#FDF8F3] text-sm">Abierta a proyectos</p>
+            </div>
           </div>
-          <div class="border-r border-[#FDF8F3]/15 px-8">
-            <p class="text-[#FDF8F3]/45 text-[0.6rem] uppercase tracking-[0.3em] mb-2">Ubicación</p>
-            <p class="font-display font-semibold text-[#FDF8F3] text-sm">Lima, Perú</p>
-          </div>
-          <div class="pl-8">
-            <p class="text-[#FDF8F3]/45 text-[0.6rem] uppercase tracking-[0.3em] mb-2">Disponibilidad</p>
-            <p class="font-display font-semibold text-[#FDF8F3] text-sm">Abierta a proyectos</p>
-          </div>
+        </div><!-- /BOTTOM -->
 
-        </div><!-- /grid -->
-      </div>
-    </section>
+      </div><!-- /max-w container -->
+    </section><!-- /about-hero -->
 
     <!-- ── BIO — Mi historia ──────────────────────────────────── -->
     <section class="px-6 md:px-12 lg:px-24 py-24 border-t border-[var(--color-border)]">
@@ -303,6 +310,19 @@ const experience = [
 </Layout>
 
 <style>
+  /* ═══════════════════════════════════════
+     ABOUT HERO — entrada al cargar (no scroll)
+  ═══════════════════════════════════════ */
+  @keyframes about-hero-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  .about-hero-item {
+    opacity: 0;
+    animation: about-hero-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
   /* ═══════════════════════════════════════
      BIO — scroll-paint title
   ═══════════════════════════════════════ */
