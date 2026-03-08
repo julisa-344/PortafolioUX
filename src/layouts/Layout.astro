@@ -215,9 +215,21 @@ const { title, description = "UX/UI Designer & Developer - Creando experiencias 
       revealElements.forEach(el => {
         const delay = (el as HTMLElement).dataset.delay ? parseFloat((el as HTMLElement).dataset.delay!) : 0;
         
-        // Skip elements inside the hero section — they have a dedicated GSAP timeline
-        const isInHero = (el as HTMLElement).closest('[data-hero]') !== null;
-        if (isInHero) return;
+        // Skip elements inside the HOME hero — it has its own dedicated GSAP timeline in Hero.astro
+        const isInHomeHero = (el as HTMLElement).closest('[data-hero="home"]') !== null;
+        if (isInHomeHero) return;
+
+        // If the element is already in the viewport on load, animate it immediately (e.g. project case study hero)
+        const rect = (el as HTMLElement).getBoundingClientRect();
+        const alreadyVisible = rect.top < window.innerHeight * 0.95;
+
+        if (alreadyVisible) {
+          gsap.fromTo(el,
+            { opacity: 0, y: 80, scale: 0.95 },
+            { opacity: 1, y: 0, scale: 1, duration: 1.2, delay: delay, ease: 'expo.out' }
+          );
+          return;
+        }
         
         gsap.fromTo(el, 
           {
