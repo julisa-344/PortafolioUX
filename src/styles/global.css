@@ -262,6 +262,18 @@ html:not(.splash-done) .hero-scroll-indicator {
   border-color: var(--color-primary);
 }
 
+/* Tag variante para fondo oscuro */
+.tag--dark {
+  border-color: rgba(253, 248, 243, 0.2);
+  color: rgba(253, 248, 243, 0.7);
+}
+
+.tag--dark:hover {
+  background: rgba(253, 248, 243, 0.12);
+  color: #FDF8F3;
+  border-color: rgba(253, 248, 243, 0.4);
+}
+
 /* Noise texture overlay */
 .noise {
   position: fixed;

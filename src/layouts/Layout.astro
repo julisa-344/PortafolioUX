@@ -58,7 +58,7 @@ const { title, description = "UX/UI Designer & Developer - Creando experiencias 
       #wsp-widget {
         position: fixed;
         bottom: 2rem;
-        left: 2rem;
+        right: 2rem;
         z-index: 9990;
         width: 3rem;
         height: 3rem;
@@ -69,8 +69,18 @@ const { title, description = "UX/UI Designer & Developer - Creando experiencias 
         align-items: center;
         justify-content: center;
         box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
-        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(10px);
+        transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                     box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      #wsp-widget.wsp-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
       }
 
       #wsp-widget svg {
@@ -78,7 +88,7 @@ const { title, description = "UX/UI Designer & Developer - Creando experiencias 
         height: 1.5rem;
       }
 
-      #wsp-widget:hover {
+      #wsp-widget.wsp-visible:hover {
         transform: scale(1.1);
         box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
       }
@@ -86,12 +96,38 @@ const { title, description = "UX/UI Designer & Developer - Creando experiencias 
       @media (max-width: 767px) {
         #wsp-widget {
           bottom: 1.25rem;
-          left: 1.25rem;
+          right: 1.25rem;
           width: 2.75rem;
           height: 2.75rem;
         }
       }
     </style>
+
+    <script>
+      // Mostrar widget de WhatsApp solo después de salir del hero
+      const wspWidget = document.getElementById('wsp-widget');
+      if (wspWidget) {
+        const heroSection = document.querySelector('[data-hero="home"]');
+        if (heroSection) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                  wspWidget.classList.add('wsp-visible');
+                } else {
+                  wspWidget.classList.remove('wsp-visible');
+                }
+              });
+            },
+            { threshold: 0.1 }
+          );
+          observer.observe(heroSection);
+        } else {
+          // En páginas sin hero, mostrar siempre
+          wspWidget.classList.add('wsp-visible');
+        }
+      }
+    </script>
     
     <slot />
 

@@ -1,6 +1,4 @@
 ---
-import FloatingElements from './FloatingElements.astro';
-
 interface Props {
   title: string;
   subtitle: string;
@@ -9,69 +7,82 @@ interface Props {
 
 const { title, subtitle, scrollText = "Scroll para explorar" } = Astro.props;
 
-// El título se parte en dos líneas: primera mitad y segunda mitad
-// Se pasa como "Línea 1 / Línea 2" usando el separador "/"
 const titleParts = title.includes('/') ? title.split('/') : [title];
 
-// Palabras que van en serif italic cherry
+// Si una línea empieza con ~, toda la línea va en cursiva serif
 const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producción'];
 ---
 
-<section class="hero-section" data-hero="home">
+<section class="hero-section" data-hero="home" data-dark-header>
 
-  <!-- ─── MARIPOSA — elemento derecho ───────────────────────── -->
-  <div class="hero-butterfly-zone" id="hero-butterfly-zone">
-    <img
-      src="/mariposa.png"
-      alt=""
-      class="hero-butterfly-main"
-      loading="eager"
-    />
+  <!-- ─── Cursor personalizado ─────────────────────────────────── -->
+  <div id="hero-cursor" class="hero-cursor" aria-hidden="true"></div>
+
+  <!-- ─── Canvas para efecto distorsión cursor ──────────────── -->
+  <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+
+  <!-- ─── Imagen butterfly fuente (oculta, solo para el canvas) -->
+  <img
+    id="butterfly-source"
+    src="/butterfly.png"
+    alt=""
+    class="butterfly-source-hidden"
+    loading="eager"
+    crossorigin="anonymous"
+  />
+
+  <!-- ─── Línea divisoria central ───────────────────────────── -->
+  <div class="hero-divider" aria-hidden="true"></div>
+
+  <!-- ─── Meta top-right ────────────────────────────────────── -->
+  <div class="hero-meta-top" id="hero-meta-top" aria-hidden="true">
+    <span class="hero-meta-year">2025</span>
+    <span class="hero-meta-handle">{subtitle}</span>
   </div>
 
-  <!-- ─── Contenido ─────────────────────────────────────────── -->
+  <!-- ─── Contenido principal ───────────────────────────────── -->
   <div class="hero-inner">
 
-    <!-- Rol / label -->
+    <!-- Pretitle / subtitle -->
     <p class="hero-label" id="hero-label">
       <span class="hero-label-line"></span>
       {subtitle}
     </p>
 
     <!-- Título grande -->
-    <h1 class="hero-heading" id="hero-heading" aria-label={titleParts.join(' ')}>
-      {titleParts.map((line) => (
-        <span class="hero-heading-line">
-          {line.trim().split(' ').map((word) => {
-            const clean = word.toLowerCase().replace(/[.,;:!?]/g, '');
-            const isAccent = italicWords.some(iw => clean.includes(iw));
-            return (
-              <span class="hero-word-wrap">
-                <span class={`hero-word${isAccent ? ' hero-word--accent font-serif italic' : ''}`}>
-                  {word}
+    <h1 class="hero-heading" id="hero-heading" aria-label={titleParts.map(l => l.replace(/^~/, '')).join(' ')}>
+      {titleParts.map((line) => {
+        const isItalicLine = line.trim().startsWith('~');
+        const cleanLine = line.trim().replace(/^~/, '');
+        return (
+          <span class="hero-heading-line">
+            {cleanLine.trim().split(' ').map((word) => {
+              const clean = word.toLowerCase().replace(/[.,;:!?]/g, '');
+              const isAccent = isItalicLine || italicWords.some(iw => clean.includes(iw));
+              return (
+                <span class="hero-word-wrap">
+                  <span class={`hero-word${isAccent ? ' hero-word--accent font-serif italic' : ''}`}>
+                    {word}
+                  </span>
                 </span>
-              </span>
-            );
-          })}
-        </span>
-      ))}
+              );
+            })}
+          </span>
+        );
+      })}
     </h1>
 
-    <!-- Descripción — justo debajo del título -->
-    <div class="hero-bottom-left" id="hero-bottom-left">
-      <p class="hero-desc">
-        <slot />
-      </p>
+    <!-- CTAs -->
+    <div class="hero-bottom" id="hero-bottom">
       <div class="hero-ctas">
         <a
           href="/work"
-          class="group magnetic hero-btn-primary relative inline-flex items-center gap-2 overflow-hidden"
+          class="group magnetic hero-btn-primary inline-flex items-center gap-2"
         >
-          <span class="relative z-10">Ver proyectos</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="relative z-10 h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <span>Ver proyectos</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-          <div class="absolute inset-0 bg-[var(--color-primary-dark)] transform translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
         </a>
         <a href="/about" class="group magnetic hero-btn-ghost inline-flex items-center gap-2">
           Sobre mí
@@ -84,7 +95,7 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
 
   <!-- ─── Scroll indicator ──────────────────────────────────── -->
   <div class="hero-scroll" id="hero-scroll">
-    <span class="writing-vertical text-[9px] uppercase tracking-widest text-[var(--color-text-muted)]">
+    <span class="writing-vertical text-[9px] uppercase tracking-widest text-white/40">
       {scrollText}
     </span>
     <div class="hero-scroll-bar">
@@ -95,62 +106,147 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
 </section>
 
 <style>
+  /* ─── Cursor personalizado crema ────────────────────────── */
+  .hero-cursor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid rgba(253, 248, 243, 0.75);
+    pointer-events: none;
+    z-index: 100;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .hero-cursor.is-visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .hero-cursor.is-hovering-link {
+    transform: translate(-50%, -50%) scale(2.2);
+  }
+
   /* ─── Sección base ──────────────────────────────────────────── */
   .hero-section {
     position: relative;
     width: 100%;
     height: 100svh;
-    min-height: 600px;
+    min-height: 560px;
     max-height: 1000px;
     overflow: hidden;
-    background: var(--color-bg);
+    background: var(--color-primary-dark);
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    padding-bottom: 3.5rem;
+    cursor: none;
   }
 
-  /* ─── Mariposa ──────────────────────────────────────────────── */
-  .hero-butterfly-zone {
+  /* Restaurar cursor por defecto en links/botones del hero */
+  .hero-section a,
+  .hero-section button {
+    cursor: none;
+  }
+
+  /* ─── Canvas de distorsión — cubre toda la sección ──────── */
+  .hero-canvas {
     position: absolute;
-    right: auto;
-    left: 58%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: clamp(220px, 28vw, 400px);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Imagen fuente: oculta del layout pero accesible para canvas */
+  .butterfly-source-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ─── Grano de película ──────────────────────────────────── */
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     z-index: 1;
     pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    background-size: 160px;
+    opacity: 0.12;
+  }
+
+  /* ─── Línea divisoria central (solo desktop) ─────────────── */
+  .hero-divider {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hero-divider {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 2;
+    }
+  }
+
+  /* ─── Meta top-right ─────────────────────────────────────── */
+  .hero-meta-top {
+    position: absolute;
+    top: 2rem;
+    right: 1.5rem;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
     opacity: 0;
-    will-change: opacity, transform;
+    will-change: opacity;
   }
 
-  .hero-butterfly-main {
-    display: block;
-    width: 100%;
-    height: auto;
-    opacity: 0.55;
-    filter: drop-shadow(0 20px 50px rgba(103, 6, 38, 0.11));
-    animation: butterfly-hover 10s ease-in-out infinite;
-    will-change: transform;
+  @media (min-width: 768px)  { .hero-meta-top { right: 3rem; } }
+  @media (min-width: 1024px) { .hero-meta-top { right: 5rem; } }
+
+  .hero-meta-year {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1;
   }
 
-  @keyframes butterfly-hover {
-    0%, 100% { transform: translateY(0)     rotate(0deg)   scale(1);    }
-    30%       { transform: translateY(-16px) rotate(2deg)   scale(1.01); }
-    60%       { transform: translateY(-24px) rotate(-1.5deg) scale(1);   }
-    80%       { transform: translateY(-8px)  rotate(1.5deg) scale(0.99); }
+  .hero-meta-handle {
+    font-size: 0.58rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.25);
   }
 
-  /* ─── Inner: flujo vertical, columna izquierda ──────────────── */
+  /* ─── Inner ──────────────────────────────────────────────── */
   .hero-inner {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 0;
+    gap: 1.5rem;
     padding: 0 1.5rem;
-    /* En desktop: contenido ocupa solo la mitad izquierda */
-    max-width: 100%;
   }
 
   @media (min-width: 768px) {
@@ -159,54 +255,45 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
 
   @media (min-width: 1024px) {
     .hero-inner {
-      padding: 0 6rem;
-      max-width: 68%;
+      padding: 0 5rem;
+      max-width: 78%;
     }
   }
 
-  /* ─── Label de rol ──────────────────────────────────────────── */
+  /* ─── Pretitle / label ───────────────────────────────────── */
   .hero-label {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-weight: 400;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--color-text-muted);
-    margin-bottom: 1.2rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin: 0;
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(12px);
     will-change: transform, opacity;
   }
 
   .hero-label-line {
     display: inline-block;
-    width: 1.75rem;
+    width: 1.5rem;
     height: 1px;
-    background: var(--color-primary);
+    background: rgba(255, 255, 255, 0.3);
     flex-shrink: 0;
   }
 
-  /* ─── Título ────────────────────────────────────────────────── */
+  /* ─── Título ──────────────────────────────────────────────── */
   .hero-heading {
     font-family: var(--font-display);
-    font-weight: 600;
-    line-height: 1.0;
-    letter-spacing: -0.025em;
-    font-size: clamp(2.4rem, 5.2vw, 6.2rem);
-    margin: 0 0 1.75rem 0;
-  }
-
-  /* Línea 1 (serif italic) — se escala para compensar el menor peso visual */
-  .hero-heading-line:first-child {
-    font-size: 1.15em;
-    line-height: 1.05;
-  }
-
-  /* Línea 2 (display bold) — tamaño base */
-  .hero-heading-line:last-child {
-    line-height: 1.0;
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    font-size: clamp(3rem, 8.5vw, 9rem);
+    color: #FDF8F3;
+    margin: 0;
+    text-transform: uppercase;
   }
 
   .hero-heading-line {
@@ -217,38 +304,33 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     display: inline-block;
     overflow: hidden;
     vertical-align: bottom;
-    margin-right: 0.22em;
-    line-height: 1.08;
-    padding-bottom: 0.04em;
+    margin-right: 0.15em;
+    line-height: 0.95;
+    padding-bottom: 0.03em;
   }
 
   .hero-word {
     display: inline-block;
     opacity: 0;
-    transform: translateY(105%);
+    transform: translateY(108%);
     will-change: transform, opacity;
   }
 
   .hero-word--accent {
-    color: var(--color-primary);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(253, 248, 243, 0.6);
+    text-transform: none;
+    font-size: 1.08em;
+    letter-spacing: 0;
   }
 
-  /* ─── Bloque inferior (desc + CTAs) — justo debajo del título ── */
-  .hero-bottom-left {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+  /* ─── CTAs ───────────────────────────────────────────────── */
+  .hero-bottom {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(20px);
     will-change: transform, opacity;
-  }
-
-  .hero-desc {
-    font-size: clamp(0.82rem, 1.15vw, 0.95rem);
-    line-height: 1.65;
-    color: var(--color-text-muted);
-    max-width: 42ch;
-    margin: 0;
   }
 
   .hero-ctas {
@@ -258,24 +340,28 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     align-items: center;
   }
 
+  /* CTA principal — crema sólido */
   .hero-btn-primary {
     padding: 0.65rem 1.5rem;
-    background: var(--color-primary);
-    color: #FDF8F3;
+    background: #FDF8F3;
+    color: var(--color-primary-dark);
     font-size: 0.82rem;
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: 0.04em;
     border-radius: 9999px;
-    transition: box-shadow 0.3s ease;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
   }
 
   .hero-btn-primary:hover {
-    box-shadow: 0 6px 24px rgba(103, 6, 38, 0.28);
+    background: #ede3d9;
+    box-shadow: 0 6px 28px rgba(253, 248, 243, 0.22);
   }
 
+  /* CTA fantasma — borde crema */
   .hero-btn-ghost {
     padding: 0.65rem 1.5rem;
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
+    border: 1px solid rgba(253, 248, 243, 0.25);
+    color: rgba(253, 248, 243, 0.6);
     font-size: 0.82rem;
     font-weight: 500;
     border-radius: 9999px;
@@ -283,11 +369,11 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
   }
 
   .hero-btn-ghost:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+    border-color: rgba(253, 248, 243, 0.5);
+    color: #FDF8F3;
   }
 
-  /* ─── Scroll indicator ──────────────────────────────────────── */
+  /* ─── Scroll indicator ──────────────────────────────────── */
   .hero-scroll {
     position: absolute;
     bottom: 2rem;
@@ -301,12 +387,12 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
   }
 
   @media (min-width: 768px)  { .hero-scroll { right: 3rem; } }
-  @media (min-width: 1024px) { .hero-scroll { right: 6rem; } }
+  @media (min-width: 1024px) { .hero-scroll { right: 5rem; } }
 
   .hero-scroll-bar {
     width: 1px;
     height: 3rem;
-    background: var(--color-border);
+    background: rgba(255, 255, 255, 0.12);
     position: relative;
     overflow: hidden;
   }
@@ -314,7 +400,7 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
   .hero-scroll-fill {
     position: absolute;
     inset: 0;
-    background: var(--color-primary);
+    background: rgba(255, 255, 255, 0.5);
   }
 
   .writing-vertical {
@@ -326,56 +412,283 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
 <script>
   import gsap from 'gsap';
 
-  function animateHero() {
-    const label      = document.getElementById('hero-label');
-    const words      = document.querySelectorAll<HTMLElement>('.hero-word');
-    const bottomLeft = document.getElementById('hero-bottom-left');
-    const butterfly  = document.getElementById('hero-butterfly-zone');
-    const scroll     = document.getElementById('hero-scroll');
+  /* ──────────────────────────────────────────────────────────────
+     CANVAS — efecto distorsión con cursor
+     Renderiza butterfly.png en la mitad derecha del canvas y
+     aplica un desplazamiento de píxeles radial alrededor del cursor.
+  ────────────────────────────────────────────────────────────── */
+  class DistortionCanvas {
+    private canvas: HTMLCanvasElement;
+    private ctx: CanvasRenderingContext2D;
+    private img: HTMLImageElement;
+    private mouse = { x: -9999, y: -9999 };
+    private target = { x: -9999, y: -9999 };
+    private rafId = 0;
+    private ready = false;
+    // Off-screen buffer para leer píxeles originales sin perder calidad
+    private offCanvas: HTMLCanvasElement;
+    private offCtx: CanvasRenderingContext2D;
+    // Parámetros del efecto — distorsión más fuerte
+    private readonly RADIUS = 160;
+    private readonly STRENGTH = 52;
+
+    constructor(canvas: HTMLCanvasElement, img: HTMLImageElement) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d')!;
+      this.img = img;
+      this.offCanvas = document.createElement('canvas');
+      this.offCtx = this.offCanvas.getContext('2d')!;
+    }
+
+    resize(): void {
+      const rect = this.canvas.parentElement!.getBoundingClientRect();
+      this.canvas.width  = rect.width;
+      this.canvas.height = rect.height;
+      this.offCanvas.width  = rect.width;
+      this.offCanvas.height = rect.height;
+      if (this.ready) this.drawBase();
+    }
+
+    /* Dibuja la imagen base en el offCanvas (sin distorsión) */
+    drawBase(): void {
+      const w = this.offCanvas.width;
+      const h = this.offCanvas.height;
+      this.offCtx.clearRect(0, 0, w, h);
+
+      // Posicionar imagen en mitad derecha, centrada verticalmente
+      const imgW = w * 0.62;
+      const imgH = (this.img.naturalHeight / this.img.naturalWidth) * imgW;
+      const imgX = w * 0.42;
+      const imgY = (h - imgH) / 2;
+
+      // Guardar estado para clipping + máscara
+      this.offCtx.save();
+
+      // Máscara de gradiente (fade horizontal desde izquierda)
+      const grad = this.offCtx.createLinearGradient(imgX, 0, imgX + imgW, 0);
+      grad.addColorStop(0,    'rgba(0,0,0,0)');
+      grad.addColorStop(0.22, 'rgba(0,0,0,0.25)');
+      grad.addColorStop(0.48, 'rgba(0,0,0,0.72)');
+      grad.addColorStop(1,    'rgba(0,0,0,0.88)');
+
+      // Aplicar máscara via composición
+      this.offCtx.globalAlpha = 1;
+      this.offCtx.drawImage(this.img, imgX, imgY, imgW, imgH);
+
+      // Pintar el gradiente encima con destination-in para recortar
+      this.offCtx.globalCompositeOperation = 'destination-in';
+      this.offCtx.fillStyle = grad;
+      this.offCtx.fillRect(imgX, 0, imgW, h);
+
+      this.offCtx.restore();
+    }
+
+    /* Loop de render: copia offCanvas → canvas y aplica distorsión */
+    render(): void {
+      const w = this.canvas.width;
+      const h = this.canvas.height;
+
+      // Suavizar movimiento del cursor
+      this.mouse.x += (this.target.x - this.mouse.x) * 0.18;
+      this.mouse.y += (this.target.y - this.mouse.y) * 0.18;
+
+      // Limpiar canvas
+      this.ctx.clearRect(0, 0, w, h);
+
+      if (!this.ready) {
+        this.rafId = requestAnimationFrame(() => this.render());
+        return;
+      }
+
+      // Dibujar base sin distorsión primero
+      this.ctx.drawImage(this.offCanvas, 0, 0);
+
+      // Leer píxeles del offCanvas (imagen sin distorsionar)
+      const srcData = this.offCtx.getImageData(0, 0, w, h);
+
+      // Escribir distorsión sobre el canvas principal
+      const destData = this.ctx.getImageData(0, 0, w, h);
+
+      const mx = this.mouse.x;
+      const my = this.mouse.y;
+      const R  = this.RADIUS;
+      const S  = this.STRENGTH;
+
+      // Solo procesar el área del círculo para performance
+      const x0 = Math.max(0, Math.floor(mx - R));
+      const y0 = Math.max(0, Math.floor(my - R));
+      const x1 = Math.min(w, Math.ceil(mx + R));
+      const y1 = Math.min(h, Math.ceil(my + R));
+
+      for (let y = y0; y < y1; y++) {
+        for (let x = x0; x < x1; x++) {
+          const dx = x - mx;
+          const dy = y - my;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist >= R || dist === 0) continue;
+
+          // Factor de distorsión: máximo en el centro, 0 en el borde
+          const factor = (1 - dist / R);
+          const smooth = factor * factor * (3 - 2 * factor); // smoothstep
+
+          // Desplazamiento radial — empuja píxeles hacia afuera
+          const offsetX = (dx / dist) * smooth * S;
+          const offsetY = (dy / dist) * smooth * S;
+
+          const srcX = Math.round(x - offsetX);
+          const srcY = Math.round(y - offsetY);
+
+          if (srcX < 0 || srcX >= w || srcY < 0 || srcY >= h) continue;
+
+          const destIdx = (y * w + x) * 4;
+          const srcIdx  = (srcY * w + srcX) * 4;
+
+          destData.data[destIdx]     = srcData.data[srcIdx];
+          destData.data[destIdx + 1] = srcData.data[srcIdx + 1];
+          destData.data[destIdx + 2] = srcData.data[srcIdx + 2];
+          destData.data[destIdx + 3] = srcData.data[srcIdx + 3];
+        }
+      }
+
+      this.ctx.putImageData(destData, 0, 0);
+
+      this.rafId = requestAnimationFrame(() => this.render());
+    }
+
+    setMousePos(x: number, y: number): void {
+      this.target.x = x;
+      this.target.y = y;
+    }
+
+    leaveMouse(): void {
+      this.target.x = -9999;
+      this.target.y = -9999;
+    }
+
+    init(): void {
+      this.resize();
+      this.drawBase();
+      this.ready = true;
+      this.render();
+    }
+
+    destroy(): void {
+      cancelAnimationFrame(this.rafId);
+    }
+  }
+
+  /* ──────────────────────────────────────────────────────────────
+     Animaciones de entrada (GSAP)
+  ────────────────────────────────────────────────────────────── */
+  function animateHero(distortion: DistortionCanvas): void {
+    const words   = document.querySelectorAll<HTMLElement>('.hero-word');
+    const label   = document.getElementById('hero-label');
+    const bottom  = document.getElementById('hero-bottom');
+    const metaTop = document.getElementById('hero-meta-top');
+    const scroll  = document.getElementById('hero-scroll');
 
     const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
 
-    // Label de rol
-    if (label) tl.to(label, { opacity: 1, y: 0, duration: 0.7 }, 0.1);
+    // Canvas: fade in
+    tl.to('#hero-canvas', { opacity: 1, duration: 1.4, ease: 'power2.out' }, 0);
 
-    // Palabras del título — clip desde abajo, stagger
+    // Meta top
+    if (metaTop) tl.to(metaTop, { opacity: 1, duration: 0.7 }, 0.1);
+
+    // Label / pretitle
+    if (label) tl.to(label, { opacity: 1, y: 0, duration: 0.7 }, 0.15);
+
+    // Palabras del título
     if (words.length) {
-      tl.to(words, { opacity: 1, y: '0%', duration: 0.8, stagger: 0.055 }, 0.2);
+      tl.to(words, { opacity: 1, y: '0%', duration: 0.9, stagger: 0.055 }, 0.2);
     }
 
-    // Zona inferior (desc + CTAs)
-    if (bottomLeft) tl.to(bottomLeft, { opacity: 1, y: 0, duration: 0.75 }, 0.55);
-
-    // Mariposa — entra desde la derecha con fade
-    if (butterfly) {
-      tl.to(butterfly, {
-        opacity: 1,
-        x: 0,
-        duration: 1.2,
-        ease: 'expo.out',
-      }, 0.2);
-    }
+    // CTAs
+    if (bottom) tl.to(bottom, { opacity: 1, y: 0, duration: 0.7 }, 0.65);
 
     // Scroll indicator
-    if (scroll) tl.to(scroll, { opacity: 1, duration: 0.6 }, 1.1);
+    if (scroll) tl.to(scroll, { opacity: 1, duration: 0.5 }, 1.0);
   }
 
-  // Estado inicial de la mariposa para GSAP
-  const butterfly = document.getElementById('hero-butterfly-zone');
-  if (butterfly) {
-    butterfly.style.transform = 'translateY(-50%) translateX(50px)';
-  }
+  /* ──────────────────────────────────────────────────────────────
+     Bootstrap
+  ────────────────────────────────────────────────────────────── */
+  function init() {
+    const canvas  = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+    const imgSrc  = document.getElementById('butterfly-source') as HTMLImageElement | null;
+    const section = document.querySelector<HTMLElement>('.hero-section');
+    const cursor  = document.getElementById('hero-cursor');
+    if (!canvas || !imgSrc || !section) return;
 
-  // Esperar al splash
-  document.addEventListener('splashDone', animateHero);
+    // Iniciar con opacidad 0 (se anima con GSAP)
+    canvas.style.opacity = '0';
 
-  // Fallback
-  let animated = false;
-  document.addEventListener('splashDone', () => { animated = true; });
-  setTimeout(() => {
-    if (!animated) {
-      document.documentElement.classList.add('splash-done');
-      animateHero();
+    const distortion = new DistortionCanvas(canvas, imgSrc);
+
+    /* ── Cursor personalizado crema ── */
+    let cursorRafId = 0;
+    let cursorX = 0, cursorY = 0;
+    let cursorTargetX = 0, cursorTargetY = 0;
+
+    const updateCursor = () => {
+      cursorX += (cursorTargetX - cursorX) * 0.22;
+      cursorY += (cursorTargetY - cursorY) * 0.22;
+      if (cursor) {
+        cursor.style.left = `${cursorX}px`;
+        cursor.style.top  = `${cursorY}px`;
+      }
+      cursorRafId = requestAnimationFrame(updateCursor);
+    };
+    cursorRafId = requestAnimationFrame(updateCursor);
+
+    section.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = section.getBoundingClientRect();
+      cursorTargetX = e.clientX - rect.left;
+      cursorTargetY = e.clientY - rect.top;
+      cursor?.classList.add('is-visible');
+
+      // También mover la distorsión
+      const canvasRect = canvas.getBoundingClientRect();
+      distortion.setMousePos(e.clientX - canvasRect.left, e.clientY - canvasRect.top);
+    });
+
+    section.addEventListener('mouseleave', () => {
+      cursor?.classList.remove('is-visible');
+      distortion.leaveMouse();
+    });
+
+    // Escalar cursor sobre links
+    section.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor?.classList.add('is-hovering-link'));
+      el.addEventListener('mouseleave', () => cursor?.classList.remove('is-hovering-link'));
+    });
+
+    const startDistortion = () => {
+      distortion.init();
+      window.addEventListener('resize', () => distortion.resize());
+    };
+
+    if (imgSrc.complete && imgSrc.naturalWidth > 0) {
+      startDistortion();
+    } else {
+      imgSrc.addEventListener('load', startDistortion);
     }
-  }, 200);
+
+    let animated = false;
+    const run = () => {
+      if (animated) return;
+      animated = true;
+      animateHero(distortion);
+    };
+
+    document.addEventListener('splashDone', run);
+    setTimeout(() => {
+      if (!animated) {
+        document.documentElement.classList.add('splash-done');
+        run();
+      }
+    }, 200);
+  }
+
+  init();
 </script>
