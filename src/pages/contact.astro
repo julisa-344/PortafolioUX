@@ -243,16 +243,11 @@ Escríbeme o contáctame a través de mis redes.          </p>
             <button
               type="submit"
               id="submit-btn"
-              class="group inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-[var(--color-bg)] rounded-full font-medium hover:bg-[var(--color-primary-dark)] transition-all duration-300 hover-lift disabled:opacity-60 disabled:cursor-not-allowed"
+              class="group magnetic inline-flex items-center gap-3 px-8 py-4 bg-[var(--color-primary)] text-[#FDF8F3] text-sm uppercase tracking-[0.2em] font-medium transition-all duration-300 hover:gap-5"
             >
               <span id="submit-label">Enviar mensaje</span>
-              <svg id="submit-arrow" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg id="submit-arrow" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-              <!-- Spinner (oculto por defecto) -->
-              <svg id="submit-spinner" class="hidden h-5 w-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
               </svg>
             </button>
 
@@ -480,47 +475,26 @@ Escríbeme o contáctame a través de mis redes.          </p>
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); (document.activeElement as HTMLElement)?.click(); }
   });
 
-  // ── AJAX submit — redirige a /gracias sin depender de Formspree _next ──
-  const form       = document.getElementById('contact-form') as HTMLFormElement | null;
-  const submitBtn  = document.getElementById('submit-btn') as HTMLButtonElement | null;
-  const submitLabel  = document.getElementById('submit-label');
-  const submitArrow  = document.getElementById('submit-arrow');
-  const submitSpinner = document.getElementById('submit-spinner');
+  // ── AJAX submit — redirect optimístico inmediato ──
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
 
-  form?.addEventListener('submit', async (e) => {
+  form?.addEventListener('submit', (e) => {
     e.preventDefault();
-
     if (!form) return;
 
-    // Estado: enviando
-    if (submitBtn)    submitBtn.disabled = true;
-    if (submitLabel)  submitLabel.textContent = 'Enviando...';
-    if (submitArrow)  submitArrow.classList.add('hidden');
-    if (submitSpinner) submitSpinner.classList.remove('hidden');
+    // Redirigir de inmediato — no esperamos respuesta de Formspree
+    const destination = '/gracias';
+    const data = new FormData(form);
 
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' },
-      });
+    // Envío en background
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' },
+    }).catch(() => {
+      // Fallo silencioso — el usuario ya está en /gracias
+    });
 
-      if (response.ok) {
-        window.location.href = '/gracias';
-      } else {
-        // Error de Formspree — restaurar botón y mostrar mensaje
-        if (submitBtn)    submitBtn.disabled = false;
-        if (submitLabel)  submitLabel.textContent = 'Enviar mensaje';
-        if (submitArrow)  submitArrow.classList.remove('hidden');
-        if (submitSpinner) submitSpinner.classList.add('hidden');
-        alert('Hubo un error al enviar el mensaje. Por favor inténtalo de nuevo.');
-      }
-    } catch {
-      if (submitBtn)    submitBtn.disabled = false;
-      if (submitLabel)  submitLabel.textContent = 'Enviar mensaje';
-      if (submitArrow)  submitArrow.classList.remove('hidden');
-      if (submitSpinner) submitSpinner.classList.add('hidden');
-      alert('Sin conexión. Revisa tu internet e inténtalo de nuevo.');
-    }
+    window.location.href = destination;
   });
 </script>
