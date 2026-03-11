@@ -79,7 +79,7 @@ const ogImageURL = `${SITE_URL}${ogImage}`;
     <div class="cursor hidden lg:block" id="cursor"></div>
     
     <!-- Page transition overlay (para navegación entre páginas, z inferior al splash) -->
-    <div class="page-transition fixed inset-0 bg-[var(--color-primary)] z-[9998] transform translate-y-full pointer-events-none" id="page-transition"></div>
+    <div class="page-transition fixed inset-0 bg-[var(--color-primary)] z-[9998] transform translate-y-full pointer-events-none invisible" id="page-transition"></div>
 
     <!-- Splash Screen (solo en home) -->
     {showSplash && <SplashScreen />}

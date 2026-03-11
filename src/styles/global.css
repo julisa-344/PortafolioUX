@@ -43,6 +43,7 @@ html {
   color: var(--color-text);
   font-family: var(--font-body);
   scroll-behavior: smooth;
+  overscroll-behavior-y: none;
 }
 
 html.lenis, html.lenis body {

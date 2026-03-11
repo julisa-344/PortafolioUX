@@ -97,6 +97,8 @@ const {
     .showcase-section {
       padding-top: 3.5rem;
       padding-bottom: 3.5rem;
+      /* Prevent elastic overscroll from exposing the red bg */
+      overscroll-behavior: none;
     }
   }
 
@@ -203,12 +205,15 @@ const {
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    overscroll-behavior-y: none;
     scrollbar-width: none;
     -ms-overflow-style: none;
     cursor: grab;
-    /* Sin scroll-snap: el JS maneja todo el posicionamiento */
     will-change: scroll-position;
     max-width: 100%;
+    /* Restrict touch to horizontal only — prevents vertical scroll bleed */
+    touch-action: pan-x;
   }
 
   .showcase-scroll::-webkit-scrollbar { display: none; }
