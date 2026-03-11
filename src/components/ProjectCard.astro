@@ -20,7 +20,7 @@ const isLarge = index === 0 || index === 3;
 
 <a 
   href={`/work/${project.slug}`} 
-  class={`project-card group block relative aspect-[16/10] overflow-hidden rounded-2xl ${isLarge ? 'md:col-span-2' : ''}`}
+  class={`project-card group block relative aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-2xl ${isLarge ? 'md:col-span-2' : ''}`}
   data-delay={0.1 * index}
 >
   <!-- Image fills the full card -->

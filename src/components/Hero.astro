@@ -143,9 +143,9 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     overflow: hidden;
     background: var(--color-primary-dark);
     display: flex;
-    align-items: center;
-    padding-bottom: 2rem;
-    padding-top: 5rem;
+    align-items: flex-end;
+    padding-bottom: 2.5rem;
+    padding-top: 4.5rem;
     cursor: none;
   }
 
@@ -255,12 +255,15 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     padding: 0 1.5rem;
   }
 
   @media (min-width: 768px) {
-    .hero-inner { padding: 0 3rem; }
+    .hero-inner {
+      gap: 1.5rem;
+      padding: 0 3rem;
+    }
   }
 
   @media (min-width: 1024px) {
@@ -300,10 +303,16 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     font-weight: 700;
     line-height: 0.9;
     letter-spacing: -0.02em;
-    font-size: clamp(3rem, 8.5vw, 9rem);
+    font-size: clamp(2.2rem, 8.5vw, 9rem);
     color: #FDF8F3;
     margin: 0;
     text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .hero-heading {
+      font-size: clamp(3rem, 8.5vw, 9rem);
+    }
   }
 
   .hero-heading-line {
