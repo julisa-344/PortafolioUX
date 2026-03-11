@@ -337,15 +337,14 @@ const experience = [
      EXPERIENCE — scroll-stack section
   ═══════════════════════════════════════ */
 
-  /* 400vh: 1 segmento vacío + 3 cards */
+  /* 300vh: 3 segmentos, uno por card */
   .exp-section {
-    height: 400vh;
+    height: 300vh;
   }
 
-  /* Escena sticky — fondo rojo, viewport completo */
+  /* Escena — fondo rojo, viewport completo (GSAP ScrollTrigger la pinea) */
   .exp-scene {
-    position: sticky;
-    top: 0;
+    position: relative;
     height: 100vh;
     overflow: hidden;
     display: flex;
@@ -602,17 +601,21 @@ const experience = [
 </style>
 
 <script>
-  (function () {
+  /* ─── Experience scroll-pinned cards ───────────────────── */
+  (async function () {
     const section = document.querySelector<HTMLElement>('.exp-section');
+    const scene   = document.querySelector<HTMLElement>('.exp-scene');
     const cards   = document.querySelectorAll<HTMLElement>('.exp-card');
     const total   = cards.length; // 3
 
-    if (!section || total === 0) return;
+    if (!section || !scene || total === 0) return;
 
     const mq = window.matchMedia('(max-width: 767px)');
     if (mq.matches) return;
 
-    const sect = section as HTMLElement;
+    const { gsap } = await import('gsap');
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+    gsap.registerPlugin(ScrollTrigger);
 
     // Estados posibles para cada card dado el índice activo:
     // -1 = exiting (ya fue mostrada y salió por arriba)
@@ -627,31 +630,23 @@ const experience = [
       });
     }
 
-    function onScroll() {
-      const rect       = sect.getBoundingClientRect();
-      const scrollable = sect.offsetHeight - window.innerHeight;
-      const progress   = Math.max(0, Math.min(1, -rect.top / scrollable));
-
-      // 4 segmentos: [0-0.25] vacío, [0.25-0.5] card0, [0.5-0.75] card1, [0.75-1] card2
-      const segments = total + 1; // 4
-      const slot     = progress * segments; // 0 → 4
-
-      // Si slot < 1 → escena vacía (ninguna card activa aún)
-      // Mapeamos: slot 1 → card 0, slot 2 → card 1, slot 3 → card 2
-      const cardIdx = Math.min(total - 1, Math.floor(slot) - 1);
-
-      if (slot < 1) {
-        // Primera escena: todas en waiting
-        cards.forEach(c => { c.classList.remove('active', 'waiting', 'exiting'); c.classList.add('waiting'); });
-      } else {
-        setCards(cardIdx);
-      }
-    }
-
     // Estado inicial: todas en waiting
     cards.forEach(c => c.classList.add('waiting'));
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+
+    // ScrollTrigger pin — la escena se pega mientras scrolleas la sección
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: scene,
+      pinSpacing: false,
+      onUpdate: (self) => {
+        // 3 segmentos: [0-0.33] card0, [0.33-0.66] card1, [0.66-1] card2
+        const slot    = self.progress * total; // 0 → 3
+        const cardIdx = Math.min(total - 1, Math.floor(slot));
+        setCards(cardIdx);
+      },
+    });
   })();
 
   /* ─── Bio scroll-paint ─────────────────────────────────── */
