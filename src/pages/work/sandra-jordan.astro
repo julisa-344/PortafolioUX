@@ -253,7 +253,7 @@ const project = {
                 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] flex items-center justify-center text-sm font-semibold group-hover:bg-[var(--color-primary)] group-hover:text-[#FDF8F3] transition-all duration-300 group-hover:scale-110">
                   {String(index + 1).padStart(2, '0')}
                 </span>
-                <span class="text-[var(--color-primary)] font-medium text-lg">{goal}</span>
+                <span class="text-[var(--color-primary)] font-medium text-sm md:text-lg">{goal}</span>
               </div>
             </div>
           ))}
@@ -335,7 +335,7 @@ const project = {
 
         <div class="stagger-grid grid grid-cols-1 md:grid-cols-2 gap-6">
           {project.highlights.map((highlight, index) => (
-            <div class="reveal group flex items-start gap-5 p-8 bg-[var(--color-bg)]/10 backdrop-blur-sm rounded-2xl border border-[var(--color-bg)]/10 hover:bg-[var(--color-bg)]/15 hover:border-[var(--color-secondary)]/30 transition-all duration-500" data-delay={0.1 + index * 0.1}>
+            <div class="group flex items-start gap-5 p-8 bg-[var(--color-bg)]/10 backdrop-blur-sm rounded-2xl border border-[var(--color-bg)]/10 hover:bg-[var(--color-bg)]/15 hover:border-[var(--color-secondary)]/30 transition-all duration-500">
               <div class="flex-shrink-0 w-12 h-12 rounded-full bg-[var(--color-secondary)]/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-[var(--color-secondary)] transition-all duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[var(--color-bg)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />

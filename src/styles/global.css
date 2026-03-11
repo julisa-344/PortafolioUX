@@ -63,6 +63,7 @@ html.lenis, html.lenis body {
 body {
   background-color: var(--color-bg);
   overflow-x: hidden;
+  overscroll-behavior: none;
 }
 
 /* Selection */
