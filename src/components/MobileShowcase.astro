@@ -134,10 +134,6 @@ const {
     }
   }
 
-  @media (max-width: 479px) {
-    .fade-edge { display: none; }
-  }
-
   /* ── Fades laterales ── */
   .fade-edge {
     position: absolute;
@@ -273,13 +269,23 @@ const {
      → calc(100vw - 8rem) fills it perfectly
   ── */
   @media (max-width: 479px) {
-    /* carousel-root padding = 0 3.5rem → scroll container = 100vw - 7rem
-       item fills the container exactly so one device shows at a time */
-    .carousel-root { padding: 0 3.5rem; }
-    .showcase-track { gap: 1rem; padding: 3rem 0; /* remove horizontal padding */ }
-    .showcase-item { width: calc(100vw - 7rem); }
-    /* no scale needed when item fills the container */
+    /* Carousel: buttons outside, scroll area fills the rest */
+    .carousel-root { padding: 0 2.5rem; }
+    /* Track: no horizontal padding, items centered via JS */
+    .showcase-track {
+      gap: 2rem;
+      padding: 2rem 0;
+      /* Equal padding so every item can be centered */
+    }
+    /* Fixed small width — phone aspect-ratio handles height */
+    .showcase-item {
+      width: 180px;
+    }
     .showcase-item.is-active { transform: scale(1); }
+    .fade-edge { display: none; }
+    /* Smaller nav buttons */
+    .nav-btn { width: 32px; height: 32px; }
+    .nav-btn svg { width: 14px; height: 14px; }
   }
 
   @media (min-width: 480px) {
@@ -353,15 +359,16 @@ const {
 
     let activeIndex = 0;
 
-    // ── Padding derecho dinamico para que el ultimo item pueda centrarse ──
-    // Solo padding derecho — el izquierdo es fijo en CSS (2rem) y el primer item
-    // queda al inicio (scroll = 0), lo cual es correcto.
-    const updateEndPadding = () => {
+    // ── Padding dinamico para que TODOS los items puedan centrarse ──
+    // Agrega padding-left y padding-right iguales = mitad del scroll menos mitad del item
+    const updateEdgePadding = () => {
+      if (!items.length) return;
+      const firstItem = items[0];
       const lastItem  = items[items.length - 1];
-      // Espacio necesario a la derecha = mitad del scroll container - mitad del item
-      // Math.max(0, …) — cuando el item llena el contenedor (mobile) needed=0 y no hay padding extra
-      const needed = Math.max(0, scroll.clientWidth / 2 - lastItem.offsetWidth / 2);
-      track.style.paddingRight = needed + 'px';
+      const padLeft  = Math.max(0, scroll.clientWidth / 2 - firstItem.offsetWidth / 2);
+      const padRight = Math.max(0, scroll.clientWidth / 2 - lastItem.offsetWidth / 2);
+      track.style.paddingLeft  = padLeft  + 'px';
+      track.style.paddingRight = padRight + 'px';
     };
 
     // ── Activar item ──
@@ -400,26 +407,15 @@ const {
       return nearest;
     };
 
-    // ── Scroll programatico al item (centrado) ──
+    // ── Scroll programatico al item (siempre centrado) ──
     const scrollToItem = (index: number) => {
       const clamped = Math.max(0, Math.min(index, items.length - 1));
       const item    = items[clamped];
       if (!item) return;
 
-      let target: number;
-      if (clamped === 0) {
-        // Primer item: scroll al inicio
-        target = 0;
-      } else if (clamped === items.length - 1) {
-        // Ultimo item: scroll al final
-        target = scroll.scrollWidth - scroll.clientWidth;
-      } else {
-        // Centrar el item
-        target = item.offsetLeft + item.offsetWidth / 2 - scroll.clientWidth / 2;
-      }
-
+      // Siempre centrar: target = centro del item - mitad del viewport
+      const target = item.offsetLeft + item.offsetWidth / 2 - scroll.clientWidth / 2;
       scroll.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
-      // Actualizar foco inmediatamente — no esperar al evento scroll
       setActive(clamped);
     };
 
@@ -505,8 +501,9 @@ const {
 
     // ── Init ──
     const init = () => {
-      updateEndPadding();
-      scroll.scrollLeft = 0;
+      updateEdgePadding();
+      // Center first item
+      scrollToItem(0);
       setActive(0);
       if (fadeLeft)  fadeLeft.style.opacity  = '0';
       if (fadeRight) fadeRight.style.opacity = items.length > 1 ? '1' : '0';
@@ -521,8 +518,8 @@ const {
     }
 
     window.addEventListener('resize', () => {
-      updateEndPadding();
-      scroll.scrollLeft = 0;
+      updateEdgePadding();
+      scrollToItem(0);
       setActive(0);
     });
   });

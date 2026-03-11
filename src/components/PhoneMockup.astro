@@ -36,6 +36,12 @@ const { src, alt, scrollable = true } = Astro.props;
       inset 0 0 0 1px rgba(255, 255, 255, 0.2);
   }
 
+  @media (max-width: 479px) {
+    .phone-mockup {
+      max-height: 380px;
+    }
+  }
+
   @media (max-width: 767px) {
     .phone-mockup {
       box-shadow:
