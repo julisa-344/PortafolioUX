@@ -97,6 +97,13 @@ const {
     position: relative;
   }
 
+  @media (max-width: 767px) {
+    .showcase-section {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
+    }
+  }
+
   /* ── Linea decorativa del header ── */
   .deco-line {
     display: block;
@@ -217,9 +224,9 @@ const {
   /* ── Track ── */
   .showcase-track {
     display: flex;
-    gap: 1.5rem;
+    gap: 2.5rem;
     /* padding lateral minimo — el JS agrega el padding-right dinamico para el ultimo item */
-    padding: 2.5rem 0 2.5rem 2rem;
+    padding: 3rem 0 3rem 2.5rem;
     width: max-content;
     align-items: center;
   }
@@ -231,7 +238,7 @@ const {
     flex-direction: column;
     align-items: center;
     gap: 1.25rem;
-    width: 220px;
+    width: 200px;
     /* Sin scroll-snap — el JS posiciona */
     transition:
       transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
@@ -266,6 +273,10 @@ const {
      Objetivo: 3 items completos + ~60px del 4to visible
      Calculo lg: contenedor ~1000px, 3 × 290px + 2 × 1.75rem gap ≈ 930px → peek de ~70px ✓
   ── */
+  @media (min-width: 480px) {
+    .showcase-item { width: 220px; }
+  }
+
   @media (min-width: 640px) {
     .showcase-item { width: 240px; }
   }
