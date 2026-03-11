@@ -22,20 +22,26 @@ const { src, alt, scrollable = true } = Astro.props;
 <style>
   .phone-mockup {
     position: relative;
-    /* Marco exterior cherry con opacidad suave */
-    background-color: var(--color-primary);
+    /* Marco exterior cream para contrastar con fondo cherry */
+    background-color: #FDF8F3;
     border-radius: 44px;
     padding: 3px;
     aspect-ratio: 9 / 19.5;
     max-height: 600px;
     width: auto;
     box-shadow:
-      /* Sombra difusa principal */
-      0 24px 60px rgba(103, 6, 38, 0.22),
-      /* Sombra dura cercana para profundidad */
-      0 6px 16px rgba(0, 0, 0, 0.18),
-      /* Borde interior iluminado */
-      inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+      /* Sombra difusa más suave */
+      0 20px 40px rgba(0, 0, 0, 0.15),
+      /* Borde interior sutil */
+      inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 767px) {
+    .phone-mockup {
+      box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.12),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+    }
   }
 
   /* Capa intermedia entre el borde cherry y la pantalla */

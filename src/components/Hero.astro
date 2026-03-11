@@ -420,7 +420,7 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     bottom: 2rem;
     left: auto;
     right: 1.5rem;
-    display: flex;
+    display: none;
     align-items: center;
     gap: 0.6rem;
     opacity: 0;
@@ -428,7 +428,12 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     z-index: 5;
   }
 
-  @media (min-width: 768px)  { .hero-scroll { right: 3rem; } }
+  @media (min-width: 768px) {
+    .hero-scroll {
+      display: flex;
+      right: 3rem;
+    }
+  }
   @media (min-width: 1024px) { .hero-scroll { right: 5rem; } }
 
   .hero-scroll-bar {
@@ -500,24 +505,36 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
       // Detectar mobile (breakpoint 768px)
       const isMobile = w < 768;
 
-      // Posicionar imagen: en mobile hacia izquierda-arriba, en desktop mitad derecha
-      const imgW = isMobile ? w * 0.75 : w * 0.62;
+      // Posicionar imagen: en mobile más pequeña y centrada arriba, en desktop mitad derecha
+      const imgW = isMobile ? w * 0.65 : w * 0.62;
       const imgH = (this.img.naturalHeight / this.img.naturalWidth) * imgW;
-      const imgX = isMobile ? w * 0.02 : w * 0.42;
-      const imgY = isMobile ? h * 0.08 : (h - imgH) / 2;
+      const imgX = isMobile ? (w - imgW) / 2 : w * 0.42;
+      const imgY = isMobile ? h * 0.06 : (h - imgH) / 2;
 
       // Guardar estado para clipping + máscara
       this.offCtx.save();
 
-      // Máscara de gradiente (fade horizontal desde izquierda)
-      const grad = this.offCtx.createLinearGradient(imgX, 0, imgX + imgW, 0);
-      grad.addColorStop(0,    'rgba(0,0,0,0)');
-      grad.addColorStop(0.22, 'rgba(0,0,0,0.25)');
-      grad.addColorStop(0.48, 'rgba(0,0,0,0.72)');
-      grad.addColorStop(1,    'rgba(0,0,0,0.88)');
+      // En mobile, reducir opacidad general para que se vea más el fondo
+      this.offCtx.globalAlpha = isMobile ? 0.7 : 1;
 
-      // Aplicar máscara via composición
-      this.offCtx.globalAlpha = 1;
+      // Máscara de gradiente diferente para mobile (más suave)
+      const grad = this.offCtx.createLinearGradient(imgX, 0, imgX + imgW, 0);
+      if (isMobile) {
+        // Mobile: fade más suave en todos los bordes
+        grad.addColorStop(0,    'rgba(0,0,0,0.1)');
+        grad.addColorStop(0.15, 'rgba(0,0,0,0.5)');
+        grad.addColorStop(0.5,  'rgba(0,0,0,0.7)');
+        grad.addColorStop(0.85, 'rgba(0,0,0,0.5)');
+        grad.addColorStop(1,    'rgba(0,0,0,0.1)');
+      } else {
+        // Desktop: mantener el fade original
+        grad.addColorStop(0,    'rgba(0,0,0,0)');
+        grad.addColorStop(0.22, 'rgba(0,0,0,0.25)');
+        grad.addColorStop(0.48, 'rgba(0,0,0,0.72)');
+        grad.addColorStop(1,    'rgba(0,0,0,0.88)');
+      }
+
+      // Dibujar imagen
       this.offCtx.drawImage(this.img, imgX, imgY, imgW, imgH);
 
       // Pintar el gradiente encima con destination-in para recortar
