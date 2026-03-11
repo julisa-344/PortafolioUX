@@ -143,7 +143,8 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     overflow: hidden;
     background: var(--color-primary-dark);
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: center;
     padding-bottom: 2.5rem;
     padding-top: 4.5rem;
     cursor: none;
@@ -153,6 +154,7 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
   @media (min-width: 768px) {
     .hero-section {
       align-items: flex-end;
+      justify-content: flex-start;
       padding-bottom: 3.5rem;
       padding-top: 0;
     }
@@ -255,12 +257,16 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    align-items: center;
+    text-align: center;
+    gap: 1.75rem;
     padding: 0 1.5rem;
   }
 
   @media (min-width: 768px) {
     .hero-inner {
+      align-items: flex-start;
+      text-align: left;
       gap: 1.5rem;
       padding: 0 3rem;
     }
@@ -277,6 +283,7 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
   .hero-label {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.6rem;
     font-size: 0.65rem;
     font-weight: 400;
@@ -287,6 +294,12 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     opacity: 0;
     transform: translateY(12px);
     will-change: transform, opacity;
+  }
+
+  @media (min-width: 768px) {
+    .hero-label {
+      justify-content: flex-start;
+    }
   }
 
   .hero-label-line {
@@ -301,7 +314,7 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
   .hero-heading {
     font-family: var(--font-display);
     font-weight: 700;
-    line-height: 0.9;
+    line-height: 1.1;
     letter-spacing: -0.02em;
     font-size: clamp(2.2rem, 8.5vw, 9rem);
     color: #FDF8F3;
@@ -311,6 +324,7 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
 
   @media (min-width: 768px) {
     .hero-heading {
+      line-height: 0.9;
       font-size: clamp(3rem, 8.5vw, 9rem);
     }
   }
@@ -357,6 +371,13 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     flex-wrap: wrap;
     gap: 0.6rem;
     align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .hero-ctas {
+      justify-content: flex-start;
+    }
   }
 
   /* CTA principal — crema sólido */
@@ -397,6 +418,7 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
   .hero-scroll {
     position: absolute;
     bottom: 2rem;
+    left: auto;
     right: 1.5rem;
     display: flex;
     align-items: center;
@@ -475,11 +497,14 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
       const h = this.offCanvas.height;
       this.offCtx.clearRect(0, 0, w, h);
 
-      // Posicionar imagen en mitad derecha, centrada verticalmente
-      const imgW = w * 0.62;
+      // Detectar mobile (breakpoint 768px)
+      const isMobile = w < 768;
+
+      // Posicionar imagen: en mobile hacia izquierda-arriba, en desktop mitad derecha
+      const imgW = isMobile ? w * 0.75 : w * 0.62;
       const imgH = (this.img.naturalHeight / this.img.naturalWidth) * imgW;
-      const imgX = w * 0.42;
-      const imgY = (h - imgH) / 2;
+      const imgX = isMobile ? w * 0.02 : w * 0.42;
+      const imgY = isMobile ? h * 0.08 : (h - imgH) / 2;
 
       // Guardar estado para clipping + máscara
       this.offCtx.save();
