@@ -12,7 +12,7 @@ const { src, alt, height = "500px", label } = Astro.props;
 <div class="scroll-container" style={`--container-height: ${height}`}>
   {label && <div class="scroll-label">{label}</div>}
   <div class="scroll-content">
-    <img src={src} alt={alt} />
+    <img src={src} alt={alt} loading="lazy" decoding="async" />
   </div>
 </div>
 

@@ -182,28 +182,25 @@ const ogImageURL = `${SITE_URL}${ogImage}`;
       // Mark that JavaScript is loaded - for progressive enhancement
       document.documentElement.classList.add('js-loaded');
       
-      // Detect if user is on mobile
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      
-      const lenis = new Lenis({
-        duration: isMobile ? 1.0 : 1.2, // Faster on mobile for better responsiveness
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        gestureOrientation: 'vertical',
-        smoothWheel: !isMobile, // Disable smooth wheel on mobile for better performance
-        touchMultiplier: 2, // More responsive touch scrolling
-        infinite: false,
-      });
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
 
-      function raf(time: number) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
+      // Con "reducir movimiento" se usa el scroll nativo (sin Lenis)
+      if (!reduceMotion) {
+        const lenis = new Lenis({
+          duration: isTouch ? 1.0 : 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: !isTouch,
+          touchMultiplier: 2,
+          infinite: false,
+          autoRaf: true, // único loop de raf (el script GSAP ya no llama a lenis.raf)
+        });
+
+        // Disponible para la integración con ScrollTrigger
+        (window as any).lenis = lenis;
       }
-
-      requestAnimationFrame(raf);
-      
-      // Make lenis available globally for ScrollTrigger integration
-      (window as any).lenis = lenis;
     </script>
 
     <!-- GSAP Advanced Animations -->
@@ -212,21 +209,20 @@ const ogImageURL = `${SITE_URL}${ogImage}`;
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
       
       gsap.registerPlugin(ScrollTrigger);
-      
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       // Sync ScrollTrigger with Lenis
       const lenis = (window as any).lenis;
       if (lenis) {
         lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-          lenis.raf(time * 1000);
-        });
         gsap.ticker.lagSmoothing(0);
       }
 
       // Custom cursor with magnetic effect
       const cursor = document.getElementById('cursor');
       
-      if (cursor && window.innerWidth > 1024) {
+      if (cursor && window.innerWidth > 1024 && !reduceMotion) {
         let mouseX = 0;
         let mouseY = 0;
         let cursorX = 0;
@@ -288,6 +284,15 @@ const ogImageURL = `${SITE_URL}${ogImage}`;
         });
       }
 
+      if (reduceMotion) {
+        // Reduced motion: todo en su estado final, sin animaciones
+        document.querySelectorAll('.reveal, .reveal-fade, .img-reveal').forEach(el => {
+          if (!el.closest('[data-hero="home"]')) el.classList.add('is-visible');
+        });
+        document.querySelectorAll('.counter').forEach(el => {
+          (el as HTMLElement).innerText = (el as HTMLElement).dataset.target || '0';
+        });
+      } else {
       // Advanced reveal animations with stagger
       // Skip: img-reveal (has its own CSS transitions) + hero elements (have their own GSAP timeline in Hero.astro)
       const revealElements = document.querySelectorAll('.reveal:not(.img-reveal)');
@@ -485,6 +490,8 @@ const ogImageURL = `${SITE_URL}${ogImage}`;
           }
         );
       });
+
+      } // end !reduceMotion
 
       // Refresh ScrollTrigger after all images load + reveal any missed elements
       window.addEventListener('load', () => {
