@@ -642,7 +642,7 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
   /* ──────────────────────────────────────────────────────────────
      Animaciones de entrada (GSAP)
   ────────────────────────────────────────────────────────────── */
-  function animateHero(distortion: DistortionCanvas): void {
+  function animateHero(): void {
     const words   = document.querySelectorAll<HTMLElement>('.hero-word');
     const label   = document.getElementById('hero-label');
     const bottom  = document.getElementById('hero-bottom');
@@ -688,7 +688,6 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     const distortion = new DistortionCanvas(canvas, imgSrc);
 
     /* ── Cursor personalizado crema ── */
-    let cursorRafId = 0;
     let cursorX = 0, cursorY = 0;
     let cursorTargetX = 0, cursorTargetY = 0;
 
@@ -699,9 +698,9 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
         cursor.style.left = `${cursorX}px`;
         cursor.style.top  = `${cursorY}px`;
       }
-      cursorRafId = requestAnimationFrame(updateCursor);
+      requestAnimationFrame(updateCursor);
     };
-    cursorRafId = requestAnimationFrame(updateCursor);
+    requestAnimationFrame(updateCursor);
 
     section.addEventListener('mousemove', (e: MouseEvent) => {
       const rect = section.getBoundingClientRect();
@@ -740,7 +739,7 @@ const italicWords = ['diseño', 'código', 'digital', 'investigación', 'producc
     const run = () => {
       if (animated) return;
       animated = true;
-      animateHero(distortion);
+      animateHero();
     };
 
     document.addEventListener('splashDone', run);

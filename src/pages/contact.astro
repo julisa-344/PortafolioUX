@@ -416,7 +416,7 @@ Escríbeme o contáctame a través de mis redes.          </p>
 
   trigger?.addEventListener('click', (e) => {
     e.stopPropagation();
-    open ? closeSvc() : openSvc();
+    if (open) closeSvc(); else openSvc();
   });
 
   document.querySelectorAll<HTMLElement>('.svc-option').forEach(opt => {

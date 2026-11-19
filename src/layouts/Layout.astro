@@ -66,6 +66,7 @@ const ogImageURL = `${SITE_URL}${ogImage}`;
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KPD13TEE5R"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
+      // eslint-disable-next-line prefer-rest-params
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-KPD13TEE5R');
@@ -178,7 +179,13 @@ const ogImageURL = `${SITE_URL}${ogImage}`;
     <!-- Lenis Smooth Scroll -->
     <script>
       import Lenis from 'lenis';
-      
+
+      declare global {
+        interface Window {
+          lenis?: Lenis;
+        }
+      }
+
       // Mark that JavaScript is loaded - for progressive enhancement
       document.documentElement.classList.add('js-loaded');
       
@@ -199,7 +206,7 @@ const ogImageURL = `${SITE_URL}${ogImage}`;
         });
 
         // Disponible para la integración con ScrollTrigger
-        (window as any).lenis = lenis;
+        window.lenis = lenis;
       }
     </script>
 
@@ -213,7 +220,7 @@ const ogImageURL = `${SITE_URL}${ogImage}`;
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       // Sync ScrollTrigger with Lenis
-      const lenis = (window as any).lenis;
+      const lenis = window.lenis;
       if (lenis) {
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.lagSmoothing(0);
