@@ -55,8 +55,8 @@ export const project = defineProject({
     'Benchmark completo de competidores del mercado de ciberseguridad'
   ],
   nextProject: {
-    slug: 'xplora',
-    title: 'Xplora'
+    slug: 'intense',
+    title: 'Intense Viajes'
   },
   wireframeShowcase: {
     mainPages: [

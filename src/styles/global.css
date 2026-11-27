@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Borrador local ignorado por git: Tailwind no lo escanea sin esta línea */
+@source "../pages/work/detecta-app.astro";
+
 /* Custom CSS Variables */
 @theme {
   /* Primary palette - Cherry & Matcha */

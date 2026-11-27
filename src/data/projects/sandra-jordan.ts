@@ -54,8 +54,8 @@ export const project = defineProject({
   ],
   testimonial: null as null | { quote: string; author: string; role: string },
   nextProject: {
-    slug: 'comsatel',
-    title: 'Comsatel'
+    slug: 'xplora',
+    title: 'Xplora'
   },
   desktopShowcase: {
     mainPages: [

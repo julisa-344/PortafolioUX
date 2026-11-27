@@ -27,3 +27,10 @@ pnpm-debug.log*
 public/images/projects/sandra-jordan/Bespoke Rugs - mobile.svg
 public/images/projects/sandra-jordan/Sandra Jordan (1).zip
 *.zip
+
+# borradores de casos de estudio (datos pendientes de permiso)
+borradores/
+
+# borrador de la app Detecta (quitar estas líneas al publicar)
+src/pages/work/detecta-app.astro
+public/images/projects/detecta-app/

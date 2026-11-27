@@ -77,7 +77,7 @@ export const project = defineProject({
     }
   ],
   nextProject: {
-    slug: 'intense',
-    title: 'Intense Viajes'
+    slug: 'bitdefender',
+    title: 'Bitdefender'
   }
 });
