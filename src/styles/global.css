@@ -2,6 +2,7 @@
 
 /* Borrador local ignorado por git: Tailwind no lo escanea sin esta línea */
 @source "../pages/work/detecta-app.astro";
+@source "../pages/work/detecta-his.astro";
 
 /* Custom CSS Variables */
 @theme {

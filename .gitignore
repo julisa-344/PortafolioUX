@@ -34,3 +34,5 @@ borradores/
 # borrador de la app Detecta (quitar estas líneas al publicar)
 src/pages/work/detecta-app.astro
 public/images/projects/detecta-app/
+src/pages/work/detecta-his.astro
+public/images/projects/detecta-his/

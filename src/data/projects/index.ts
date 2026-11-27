@@ -22,6 +22,15 @@ const publishedCards: Project[] = caseStudies.map((p) => ({
 const draftCards: Project[] = import.meta.env.DEV
   ? [
       {
+        slug: 'detecta-his',
+        title: 'Detecta Clínica HIS',
+        category: 'Sistema hospitalario · En diseño',
+        tags: ['Design System', 'Salud', 'UX/UI'],
+        thumbnail: '/images/projects/detecta-his/cover.webp',
+        year: '2026',
+        featured: true,
+      },
+      {
         slug: 'detecta-app',
         title: 'Detecta Clínica App',
         category: 'App de salud',
